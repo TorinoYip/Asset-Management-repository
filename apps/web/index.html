@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="风电与储能资产管理看板 V2 交互架构 Demo">
+  <title>Northstar Assets · V2 Demo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="主导航">
+      <a class="brand" href="#overview" aria-label="返回资产总览">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span><strong>Northstar</strong><small>ASSET INTELLIGENCE</small></span>
+      </a>
+
+      <div class="demo-chip"><span></span> V2 · FAKE DATA</div>
+
+      <nav class="primary-nav">
+        <a class="nav-item" href="#overview" data-route-link="overview">
+          <span class="nav-index">01</span><span>资产总览<small>Portfolio overview</small></span>
+        </a>
+        <a class="nav-item" href="#business" data-route-link="business">
+          <span class="nav-index">02</span><span>经营看板<small>Business performance</small></span>
+        </a>
+        <a class="nav-item" href="#operations" data-route-link="operations">
+          <span class="nav-index">03</span><span>运营看板<small>Asset operations</small></span>
+        </a>
+      </nav>
+
+      <div class="sidebar-foot">
+        <p>ARCHITECTURE PROTOTYPE</p>
+        <span>月度管理视图<br>非实时监控系统</span>
+      </div>
+    </aside>
+
+    <div class="workspace">
+      <header class="topbar">
+        <div class="mobile-brand">Northstar · V2</div>
+        <div class="filter-set" aria-label="全局筛选">
+          <label>统计期
+            <select id="monthFilter">
+              <option value="2025-07">截至 2025 年 7 月</option>
+              <option value="2025-06">截至 2025 年 6 月</option>
+            </select>
+          </label>
+          <label>区域
+            <select id="regionFilter">
+              <option value="all">全部区域</option>
+              <option value="north">北部区域</option>
+              <option value="east">东部区域</option>
+              <option value="west">西部区域</option>
+            </select>
+          </label>
+          <label>资产类型
+            <select id="assetFilter">
+              <option value="all">风电 + 储能</option>
+              <option value="wind">风电</option>
+              <option value="storage">储能</option>
+            </select>
+          </label>
+        </div>
+        <div class="freshness"><span></span> 数据更新于 08:30</div>
+      </header>
+
+      <main id="mainContent">
+        <section class="route-page" data-route="overview" aria-labelledby="overviewTitle">
+          <header class="page-heading overview-heading">
+            <div>
+              <p class="eyebrow">PORTFOLIO EXECUTIVE OVERVIEW</p>
+              <h1 id="overviewTitle">资产组合，一眼看清规模与状态</h1>
+              <p class="page-intro">先回答“我们拥有什么、表现如何、哪里需要关注”，再进入经营或运营视图。</p>
+            </div>
+            <div class="scope-stamp"><span>当前范围</span><strong data-scope>全部区域 · 全部资产</strong></div>
+          </header>
+
+          <section class="portfolio-lead" aria-label="组合核心状态">
+            <div class="lead-story">
+              <p class="section-kicker">组合规模</p>
+              <div class="lead-number"><strong data-bind="capacity">1.26</strong><span>GW</span></div>
+              <p class="lead-caption">风电装机容量 · <b data-bind="wind-count">186</b> 台风机</p>
+              <div class="lead-divider"></div>
+              <div class="storage-inline">
+                <span>储能组合</span><strong data-bind="storage-power">420</strong><em>MW</em><strong data-bind="storage-capacity">840</strong><em>MWh</em>
+              </div>
+            </div>
+            <div class="lead-metrics">
+              <article><span>风电 YTD 上网电量</span><strong data-bind="wind-energy">1,846</strong><small>GWh · 目标完成 <b>98.4%</b></small></article>
+              <article><span>储能 YTD 放电量</span><strong data-bind="storage-energy">612</strong><small>GWh · 目标完成 <b>101.8%</b></small></article>
+              <article class="attention"><span>需关注资产</span><strong data-bind="attention-count">9</strong><small>较上月减少 <b>2</b> 个</small></article>
+            </div>
+          </section>
+
+          <section class="overview-stage">
+            <article class="panel map-panel">
+              <div class="panel-head">
+                <div><p class="section-kicker">ASSET FOOTPRINT</p><h2>资产地图</h2></div>
+                <div class="legend"><span><i class="wind-dot"></i>风电项目</span><span><i class="storage-dot"></i>储能电站</span><span><i class="risk-dot"></i>需关注</span></div>
+              </div>
+              <div class="asset-map" id="assetMap" aria-label="示意资产地图">
+                <div class="map-grid"></div>
+                <span class="map-label ml-north">北部</span><span class="map-label ml-east">东部</span><span class="map-label ml-west">西部</span>
+                <button class="map-point wind p1" data-asset="北辰风电场" data-region="north" aria-label="北辰风电场，正常"><span></span></button>
+                <button class="map-point wind risk p2" data-asset="海岳风电场" data-region="east" aria-label="海岳风电场，需关注"><span></span></button>
+                <button class="map-point wind p3" data-asset="云岭风电场" data-region="west" aria-label="云岭风电场，正常"><span></span></button>
+                <button class="map-point wind p4" data-asset="临港风电场" data-region="east" aria-label="临港风电场，正常"><span></span></button>
+                <button class="map-point storage p5" data-asset="北辰储能站" data-region="north" aria-label="北辰储能站，正常"><span></span></button>
+                <button class="map-point storage risk p6" data-asset="海岳储能站" data-region="east" aria-label="海岳储能站，需关注"><span></span></button>
+                <button class="map-point storage p7" data-asset="云岭储能站" data-region="west" aria-label="云岭储能站，正常"><span></span></button>
+                <div class="map-selection" id="mapSelection">
+                  <small>选择地图资产</small><strong>查看项目状态与入口</strong><span>点击任一圆点</span>
+                </div>
+              </div>
+            </article>
+
+            <aside class="status-rail">
+              <article class="panel status-card">
+                <div class="panel-head compact"><div><p class="section-kicker">ASSET STATUS</p><h2>资产状态</h2></div><span class="good-badge">整体稳健</span></div>
+                <div class="donut-wrap">
+                  <div class="donut"><span><strong>94%</strong><small>正常</small></span></div>
+                  <div class="status-list">
+                    <div><span><i class="ok"></i>正常</span><b data-bind="normal-count">191</b></div>
+                    <div><span><i class="watch"></i>关注</span><b>7</b></div>
+                    <div><span><i class="alert"></i>异常</span><b>2</b></div>
+                    <div><span><i class="none"></i>无数据</span><b>1</b></div>
+                  </div>
+                </div>
+              </article>
+              <article class="panel focus-note">
+                <p class="section-kicker">MANAGEMENT NOTE</p>
+                <h3>本月关注</h3>
+                <p>海岳项目经营差距扩大；两处资产的非计划损失高于组合基线。</p>
+                <button class="text-action" data-go="operations" data-type="wind">查看运营表现 <span>→</span></button>
+              </article>
+            </aside>
+          </section>
+
+          <section class="decision-gates" aria-label="经营与运营下钻入口">
+            <button class="gate business-gate" data-go="business">
+              <span class="gate-no">02</span>
+              <div><p class="section-kicker">BUSINESS PERFORMANCE</p><h2>经营摘要</h2><p>收入、成本与毛利是否达成截至当月目标？</p></div>
+              <div class="gate-metric"><small>YTD 毛利</small><strong data-bind="margin">¥ 3.82 亿</strong><span class="negative">距目标 −3.8%</span></div>
+              <i>进入经营看板 →</i>
+            </button>
+            <button class="gate operations-gate" data-go="operations">
+              <span class="gate-no">03</span>
+              <div><p class="section-kicker">ASSET OPERATIONS</p><h2>运营摘要</h2><p>技术表现、可利用率与损失是否处于健康区间？</p></div>
+              <div class="gate-metric"><small>风电可利用率</small><strong>97.2%</strong><span class="positive">高于目标 +0.4pp</span></div>
+              <i>进入运营看板 →</i>
+            </button>
+          </section>
+        </section>
+
+        <section class="route-page" data-route="business" aria-labelledby="businessTitle" hidden>
+          <header class="page-heading">
+            <div><p class="eyebrow">BUSINESS PERFORMANCE</p><h1 id="businessTitle">经营结果与目标差距</h1><p class="page-intro">围绕收入、成本、毛利，统一呈现实际 YTD、累计目标与全年进度。</p></div>
+            <button class="back-link" data-go="overview">← 返回资产总览</button>
+          </header>
+
+          <div class="asset-tabs" role="tablist" aria-label="经营资产类型">
+            <button role="tab" data-business-tab="wind" aria-selected="true">风电经营</button>
+            <button role="tab" data-business-tab="storage" aria-selected="false">储能经营</button>
+          </div>
+
+          <section class="business-focus">
+            <article class="margin-hero">
+              <div class="metric-label"><span>核心经营结果</span><b id="businessAssetLabel">风电组合</b></div>
+              <p>实际 YTD 毛利</p>
+              <div class="money" id="marginActual">¥ 2.74 亿</div>
+              <div class="target-line"><span>截至当月累计目标 <b id="marginTarget">¥ 2.88 亿</b></span><span class="negative" id="marginGap">差距 −4.9%</span></div>
+              <div class="progress-track"><i id="marginProgress" style="width:95.1%"></i><span class="target-tick"></span></div>
+              <div class="hero-foot"><span>全年目标 <b id="annualTarget">¥ 5.10 亿</b></span><span>全年完成进度 <b id="annualProgress">53.7%</b></span></div>
+            </article>
+            <div class="business-drivers">
+              <button class="driver-card active" data-business-metric="margin"><span>总毛利</span><strong id="driverMargin">¥ 2.74 亿</strong><small class="negative">距累计目标 −4.9%</small></button>
+              <button class="driver-card" data-business-metric="revenue"><span>总收入</span><strong id="driverRevenue">¥ 6.92 亿</strong><small class="positive">距累计目标 +1.8%</small></button>
+              <button class="driver-card" data-business-metric="cost"><span>总成本</span><strong id="driverCost">¥ 4.18 亿</strong><small class="negative">超累计目标 +6.9%</small></button>
+            </div>
+          </section>
+
+          <section class="business-detail">
+            <article class="panel trend-panel">
+              <div class="panel-head"><div><p class="section-kicker">ACTUAL VS TARGET</p><h2 id="trendTitle">毛利 · 月度与累计趋势</h2></div><div class="legend"><span><i class="actual-bar"></i>月度实际</span><span><i class="actual-line"></i>累计实际</span><span><i class="target-line-key"></i>累计目标</span></div></div>
+              <div class="chart-wrap"><svg id="businessChart" viewBox="0 0 780 280" role="img" aria-label="经营月度与累计趋势图"></svg></div>
+            </article>
+            <article class="panel composition-panel">
+              <div class="panel-head compact"><div><p class="section-kicker">MARGIN BRIDGE</p><h2>经营构成</h2></div></div>
+              <div class="bridge-list" id="bridgeList"></div>
+            </article>
+          </section>
+
+          <article class="panel rank-panel">
+            <div class="panel-head"><div><p class="section-kicker">ASSET RANKING</p><h2 id="businessRankTitle">风电项目经营排名</h2></div><span class="table-note">点击项目可进入运营看板</span></div>
+            <div class="table-scroll"><table><thead><tr><th>资产</th><th>实际 YTD</th><th>累计目标</th><th>差距</th><th>完成率</th><th>全年进度</th><th>状态</th></tr></thead><tbody id="businessTable"></tbody></table></div>
+          </article>
+        </section>
+
+        <section class="route-page" data-route="operations" aria-labelledby="operationsTitle" hidden>
+          <header class="page-heading">
+            <div><p class="eyebrow">ASSET OPERATIONS</p><h1 id="operationsTitle">资产运营表现</h1><p class="page-intro">先看组合技术结果，再比较单台风机或单个储能站的月度表现。</p></div>
+            <button class="back-link" data-go="overview">← 返回资产总览</button>
+          </header>
+
+          <div class="asset-tabs" role="tablist" aria-label="运营资产类型">
+            <button role="tab" data-operations-tab="wind" aria-selected="true">风电 · 单机</button>
+            <button role="tab" data-operations-tab="storage" aria-selected="false">储能 · 单站</button>
+          </div>
+
+          <section class="operations-lead">
+            <article class="ops-primary">
+              <span class="metric-overline" id="opsPrimaryOverline">风电组合核心指标</span>
+              <div class="ops-value"><strong id="opsPrimaryValue">97.2</strong><span id="opsPrimaryUnit">%</span></div>
+              <h2 id="opsPrimaryName">风机可利用率</h2>
+              <p><span class="positive" id="opsPrimaryDelta">高于目标 +0.4pp</span> · <span id="opsPrimaryContext">组合加权，186 台风机</span></p>
+              <div class="benchmark"><span>风险线 95%</span><i><b id="benchmarkFill" style="width:82%"></b></i><span>目标 96.8%</span></div>
+            </article>
+            <div class="ops-kpis" id="opsKpis"></div>
+          </section>
+
+          <section class="operations-detail">
+            <article class="panel comparison-panel">
+              <div class="panel-head"><div><p class="section-kicker">MONTHLY ASSET COMPARISON</p><h2 id="comparisonTitle">单机月度对比 · 可利用率</h2></div><label class="metric-select">对比指标 <select id="opsMetricSelect"></select></label></div>
+              <div class="comparison-list" id="comparisonList"></div>
+            </article>
+            <aside class="maintenance-stack">
+              <article class="panel maintenance-card">
+                <p class="section-kicker">MAINTENANCE SUMMARY</p><h2>运维异常摘要</h2>
+                <div class="maintenance-number"><strong id="maintenanceCount">6</strong><span>个资产<br>需要关注</span></div>
+                <div class="maintenance-grid"><div><small>MTTR</small><b id="maintenanceMttr">5.8h</b></div><div><small>非计划损失</small><b id="maintenanceLoss">21.4h</b></div></div>
+                <p class="quiet">当前仅呈现异常概况，不进入告警—工单闭环。</p>
+              </article>
+              <article class="panel anomaly-card">
+                <div><span class="risk-pulse"></span><p><strong id="anomalyAsset">海岳 · WT-17</strong><small id="anomalyReason">可利用率连续两月低于目标</small></p></div>
+                <button id="focusAnomaly">定位资产 →</button>
+              </article>
+            </aside>
+          </section>
+        </section>
+      </main>
+
+      <footer class="app-footer"><span>Northstar Assets · V2 Architecture Demo</span><span>演示数据仅用于验证信息结构，不代表真实经营结果</span></footer>
+    </div>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
