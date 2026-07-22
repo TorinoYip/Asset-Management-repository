@@ -1,9 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1500" viewBox="0 0 1800 1500" role="img" aria-labelledby="title desc">
 <title id="title">资产看板 V2 主架构、相对布局与信息流</title>
 <desc id="desc">展示资产总览、经营看板和运营看板的主要布局、筛选继承、地图交互、站点下钻与未来闭环边界。</desc>
-<defs>
- <filter id="s"><feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#172B4D" flood-opacity=".10"/></filter>
- <marker id="ab" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5 0 10Z" fill="#0C66E4"/></marker>
+<defs><marker id="ab" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5 0 10Z" fill="#0C66E4"/></marker>
  <marker id="ag" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5 0 10Z" fill="#22A06B"/></marker>
  <marker id="ay" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5 0 10Z" fill="#B38600"/></marker>
  <marker id="ar" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5 0 10Z" fill="#E2483D"/></marker>
@@ -17,7 +15,7 @@
 <text class="t" x="40" y="52">资产看板 V2｜主架构、相对布局与信息流</text>
 <text class="st" x="42" y="82">实线为当前 V2；灰色虚线为未来 +1/+2；所有页面共享年份、截至月份、区域、资产类型与站点上下文</text>
 
-<g filter="url(#s)"><rect class="p" x="35" y="115" width="220" height="1260" rx="16"/>
+<g><rect class="p" x="35" y="115" width="220" height="1260" rx="16"/>
 <text class="bt" x="62" y="158">一级导航</text>
 <rect x="65" y="200" width="160" height="62" rx="10" fill="#0C66E4"/><text class="nv" x="105" y="238" fill="#fff">资产总览</text>
 <rect x="65" y="295" width="160" height="62" rx="10" fill="#E9F2FF" stroke="#0C66E4"/><text class="nv" x="105" y="333" fill="#0052CC">经营看板</text>
@@ -27,21 +25,21 @@
 <rect x="300" y="115" width="1430" height="55" rx="10" fill="#DEEBFF" stroke="#0C66E4"/>
 <text class="bt" x="335" y="150" fill="#0052CC">全局上下文：年份｜截至月份｜区域/项目公司｜资产类型｜站点</text>
 
-<g filter="url(#s)"><rect class="p" x="300" y="200" width="1430" height="330" rx="16"/><path class="h" d="M316 200h1398a16 16 0 0116 16v30H300v-30a16 16 0 0116-16z"/><text class="ph" x="330" y="231">01 资产总览｜Portfolio Executive Overview</text>
+<g><rect class="p" x="300" y="200" width="1430" height="330" rx="16"/><path class="h" d="M316 200h1398a16 16 0 0116 16v30H300v-30a16 16 0 0116-16z"/><text class="ph" x="330" y="231">01 资产总览｜Portfolio Executive Overview</text>
 <g><rect x="330" y="268" width="190" height="58" rx="9" fill="#F4F7FB" stroke="#B3BAC5"/><text class="bt" x="350" y="303">站点数</text><rect x="550" y="268" width="190" height="58" rx="9" fill="#F4F7FB" stroke="#B3BAC5"/><text class="bt" x="570" y="303">风电装机</text><rect x="770" y="268" width="190" height="58" rx="9" fill="#F4F7FB" stroke="#B3BAC5"/><text class="bt" x="790" y="303">储能 MW/MWh</text><rect x="990" y="268" width="190" height="58" rx="9" fill="#F4F7FB" stroke="#B3BAC5"/><text class="bt" x="1010" y="303">YTD发电量</text><rect x="1210" y="268" width="190" height="58" rx="9" fill="#F4F7FB" stroke="#B3BAC5"/><text class="bt" x="1230" y="303">YTD充/放电</text><rect x="1430" y="268" width="190" height="58" rx="9" fill="#F4F7FB" stroke="#B3BAC5"/><text class="bt" x="1450" y="303">资产状态</text></g>
 <rect x="330" y="355" width="650" height="132" rx="11" fill="#E9F2FF" stroke="#579DFF"/><text class="bt" x="355" y="389">资产地图（8栏）</text><text class="bs" x="355" y="417">经纬度站点｜颜色=类型/状态｜大小=容量</text><text class="bs" x="355" y="445">点击站点 → 写入站点上下文</text>
 <rect x="1010" y="355" width="250" height="132" rx="11" fill="#F1F2F4" stroke="#8590A2"/><text class="bt" x="1035" y="390">组合构成</text><text class="bs" x="1035" y="420">区域｜类型｜状态</text>
 <rect x="1290" y="355" width="190" height="132" rx="11" fill="#E3FCEF" stroke="#4BCE97"/><text class="bt" x="1315" y="390">经营摘要</text><text class="bs" x="1315" y="420">实际YTD｜目标｜差距</text>
 <rect x="1510" y="355" width="190" height="132" rx="11" fill="#FFF7D6" stroke="#E2B203"/><text class="bt" x="1535" y="390">运营摘要</text><text class="bs" x="1535" y="420">电量｜效率｜损失</text></g>
 
-<g filter="url(#s)"><rect class="p" x="300" y="570" width="1430" height="330" rx="16"/><path class="h" d="M316 570h1398a16 16 0 0116 16v30H300v-30a16 16 0 0116-16z"/><text class="ph" x="330" y="601">02 经营看板｜风电 / 储能经营透视</text>
+<g><rect class="p" x="300" y="570" width="1430" height="330" rx="16"/><path class="h" d="M316 570h1398a16 16 0 0116 16v30H300v-30a16 16 0 0116-16z"/><text class="ph" x="330" y="601">02 经营看板｜风电 / 储能经营透视</text>
 <rect x="330" y="638" width="230" height="42" rx="9" fill="#E9F2FF" stroke="#0C66E4"/><text class="bt" x="355" y="665">资产 Tab：风电｜储能</text>
 <rect x="580" y="630" width="160" height="58" rx="9" fill="#F4F7FB" stroke="#B3BAC5"/><text class="bt" x="600" y="665">实际YTD</text><rect x="760" y="630" width="160" height="58" rx="9" fill="#F4F7FB" stroke="#B3BAC5"/><text class="bt" x="780" y="665">累计目标</text><rect x="940" y="630" width="160" height="58" rx="9" fill="#F4F7FB" stroke="#B3BAC5"/><text class="bt" x="960" y="665">YTD差距</text><rect x="1120" y="630" width="160" height="58" rx="9" fill="#F4F7FB" stroke="#B3BAC5"/><text class="bt" x="1140" y="665">累计完成率</text><rect x="1300" y="630" width="160" height="58" rx="9" fill="#F4F7FB" stroke="#B3BAC5"/><text class="bt" x="1320" y="665">全年目标</text><rect x="1480" y="630" width="160" height="58" rx="9" fill="#F4F7FB" stroke="#B3BAC5"/><text class="bt" x="1500" y="665">全年进度</text>
 <rect x="330" y="725" width="610" height="128" rx="11" fill="#E3FCEF" stroke="#4BCE97"/><text class="bt" x="355" y="760">月度与累计趋势（8栏）</text><text class="bs" x="355" y="790">月度实际柱｜累计实际线｜累计目标线</text><text class="bs" x="355" y="818">点击月份 → 更新截至月份</text>
 <rect x="970" y="725" width="270" height="128" rx="11" fill="#F1F2F4" stroke="#8590A2"/><text class="bt" x="995" y="760">经营构成（4栏）</text><text class="bs" x="995" y="790">收入｜成本｜毛利分项</text>
 <rect x="1270" y="725" width="430" height="128" rx="11" fill="#FFF7D6" stroke="#E2B203"/><text class="bt" x="1295" y="760">站点排名与对比</text><text class="bs" x="1295" y="790">实际｜目标｜差距｜完成率｜状态</text><text class="bs" x="1295" y="818">点击站点 → 后续站点经营详情</text></g>
 
-<g filter="url(#s)"><rect class="p" x="300" y="940" width="1430" height="360" rx="16"/><path class="h" d="M316 940h1398a16 16 0 0116 16v30H300v-30a16 16 0 0116-16z"/><text class="ph" x="330" y="971">03 运营看板｜站点聚合、单机月度与储能电站月度</text>
+<g><rect class="p" x="300" y="940" width="1430" height="360" rx="16"/><path class="h" d="M316 940h1398a16 16 0 0116 16v30H300v-30a16 16 0 0116-16z"/><text class="ph" x="330" y="971">03 运营看板｜站点聚合、单机月度与储能电站月度</text>
 <rect x="330" y="1008" width="230" height="42" rx="9" fill="#E9F2FF" stroke="#0C66E4"/><text class="bt" x="355" y="1035">资产 Tab：风电｜储能</text>
 <rect x="590" y="1000" width="720" height="66" rx="9" fill="#F4F7FB" stroke="#B3BAC5"/><text class="bt" x="615" y="1028">运营 KPI 条</text><text class="bs" x="615" y="1052">风电：电量/可利用率/限电/损失　储能：充放电/效率/容量与时间可利用率</text>
 <rect x="330" y="1095" width="610" height="148" rx="11" fill="#E9F2FF" stroke="#579DFF"/><text class="bt" x="355" y="1130">站点聚合与排名（8栏）</text><text class="bs" x="355" y="1160">点击风电站点 → 单机 × 月份</text><text class="bs" x="355" y="1188">点击储能站点 → 电站 × 月份</text>
