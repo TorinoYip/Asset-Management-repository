@@ -1,0 +1,66 @@
+<mxfile host="app.diagrams.net" modified="2026-07-21T00:00:00.000Z" agent="Codex" version="24.7.17" type="github" compressed="false">
+  <diagram id="ia-v2" name="V2信息架构">
+    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="title" value="资产看板 V2｜信息架构与页面导览" style="text;html=1;strokeColor=none;fillColor=none;fontSize=26;fontStyle=1;fontColor=#172B4D;" vertex="1" parent="1"><mxGeometry x="40" y="25" width="700" height="40" as="geometry"/></mxCell>
+        <mxCell id="note" value="从集团总览逐级钻取至站点、设备与运维详情；所有跳转继承筛选上下文" style="text;html=1;strokeColor=none;fillColor=none;fontSize=13;fontColor=#5E6C84;" vertex="1" parent="1"><mxGeometry x="42" y="65" width="760" height="25" as="geometry"/></mxCell>
+
+        <mxCell id="nav" value="一级导航" style="swimlane;html=1;rounded=1;startSize=38;fillColor=#F4F7FB;strokeColor=#B3BAC5;fontStyle=1;fontColor=#172B4D;" vertex="1" parent="1"><mxGeometry x="40" y="120" width="220" height="520" as="geometry"/></mxCell>
+        <mxCell id="home" value="首页总览&#xa;资产规模｜状态｜经营/运营摘要" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0C66E4;strokeColor=#0C66E4;fontColor=#FFFFFF;fontStyle=1;fontSize=15;spacing=10;" vertex="1" parent="1"><mxGeometry x="65" y="185" width="170" height="75" as="geometry"/></mxCell>
+        <mxCell id="business" value="经营看板&#xa;目标｜实际｜差距｜排名" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E9F2FF;strokeColor=#0C66E4;fontColor=#0052CC;fontStyle=1;fontSize=15;spacing=10;" vertex="1" parent="1"><mxGeometry x="65" y="315" width="170" height="75" as="geometry"/></mxCell>
+        <mxCell id="operations" value="运营看板&#xa;风机｜储能｜运维" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E9F2FF;strokeColor=#0C66E4;fontColor=#0052CC;fontStyle=1;fontSize=15;spacing=10;" vertex="1" parent="1"><mxGeometry x="65" y="445" width="170" height="75" as="geometry"/></mxCell>
+
+        <mxCell id="overviewGroup" value="首页总览" style="swimlane;html=1;rounded=1;startSize=38;fillColor=#FFFFFF;strokeColor=#B3BAC5;fontStyle=1;fontColor=#172B4D;" vertex="1" parent="1"><mxGeometry x="310" y="120" width="1230" height="150" as="geometry"/></mxCell>
+        <mxCell id="assetOverview" value="资产概览&#xa;站点数｜资产类型｜状态&#xa;风电容量｜储能功率/容量" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E9F2FF;strokeColor=#579DFF;fontColor=#172B4D;spacing=8;" vertex="1" parent="1"><mxGeometry x="350" y="175" width="250" height="70" as="geometry"/></mxCell>
+        <mxCell id="businessSummary" value="经营摘要&#xa;收入｜成本｜毛利&#xa;目标完成率" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3FCEF;strokeColor=#4BCE97;fontColor=#172B4D;spacing=8;" vertex="1" parent="1"><mxGeometry x="790" y="175" width="250" height="70" as="geometry"/></mxCell>
+        <mxCell id="operationSummary" value="运营摘要&#xa;发电/充放电｜可利用率&#xa;告警与损失" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7D6;strokeColor=#E2B203;fontColor=#172B4D;spacing=8;" vertex="1" parent="1"><mxGeometry x="1230" y="175" width="250" height="70" as="geometry"/></mxCell>
+
+        <mxCell id="businessGroup" value="经营看板" style="swimlane;html=1;rounded=1;startSize=38;fillColor=#FFFFFF;strokeColor=#B3BAC5;fontStyle=1;fontColor=#172B4D;" vertex="1" parent="1"><mxGeometry x="310" y="300" width="1230" height="230" as="geometry"/></mxCell>
+        <mxCell id="businessKpi" value="集团经营总览&#xa;YTD：实际｜目标｜差距&#xa;收入｜成本｜毛利" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3FCEF;strokeColor=#4BCE97;fontColor=#172B4D;spacing=8;" vertex="1" parent="1"><mxGeometry x="350" y="365" width="250" height="90" as="geometry"/></mxCell>
+        <mxCell id="businessTrend" value="月度趋势与构成&#xa;收入构成｜成本构成&#xa;目标完成进度" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F4F7FB;strokeColor=#8590A2;fontColor=#172B4D;spacing=8;" vertex="1" parent="1"><mxGeometry x="690" y="365" width="250" height="90" as="geometry"/></mxCell>
+        <mxCell id="stationRank" value="站点排名与对比&#xa;毛利｜收入｜成本&#xa;同比/环比" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7D6;strokeColor=#E2B203;fontColor=#172B4D;spacing=8;" vertex="1" parent="1"><mxGeometry x="1030" y="365" width="220" height="90" as="geometry"/></mxCell>
+        <mxCell id="stationBusiness" value="站点经营详情&#xa;贡献拆解｜历史趋势&#xa;口径说明" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDEB;strokeColor=#F87168;fontColor=#172B4D;spacing=8;" vertex="1" parent="1"><mxGeometry x="1320" y="365" width="180" height="90" as="geometry"/></mxCell>
+
+        <mxCell id="opsGroup" value="运营看板" style="swimlane;html=1;rounded=1;startSize=38;fillColor=#FFFFFF;strokeColor=#B3BAC5;fontStyle=1;fontColor=#172B4D;" vertex="1" parent="1"><mxGeometry x="310" y="560" width="1230" height="350" as="geometry"/></mxCell>
+        <mxCell id="windOverview" value="风机站点总览&#xa;上网电量｜可利用率&#xa;限电与损失率" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E9F2FF;strokeColor=#579DFF;fontColor=#172B4D;spacing=8;" vertex="1" parent="1"><mxGeometry x="350" y="635" width="250" height="95" as="geometry"/></mxCell>
+        <mxCell id="windUnit" value="单机月度详情&#xa;收入/成本贡献&#xa;发电与故障" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F4F7FB;strokeColor=#8590A2;fontColor=#172B4D;spacing=8;" vertex="1" parent="1"><mxGeometry x="690" y="635" width="230" height="95" as="geometry"/></mxCell>
+        <mxCell id="storageOverview" value="储能站点总览&#xa;充放电量｜效率&#xa;容量/时间可利用率" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3FCEF;strokeColor=#4BCE97;fontColor=#172B4D;spacing=8;" vertex="1" parent="1"><mxGeometry x="350" y="775" width="250" height="95" as="geometry"/></mxCell>
+        <mxCell id="storageUnit" value="单储月度详情&#xa;收入/成本贡献&#xa;循环与故障" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F4F7FB;strokeColor=#8590A2;fontColor=#172B4D;spacing=8;" vertex="1" parent="1"><mxGeometry x="690" y="775" width="230" height="95" as="geometry"/></mxCell>
+        <mxCell id="omDetail" value="运维详情&#xa;告警｜工单｜MTTR&#xa;计划/非计划损失" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDEB;strokeColor=#F87168;fontColor=#172B4D;spacing=8;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="1100" y="700" width="250" height="100" as="geometry"/></mxCell>
+
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#0C66E4;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="home" target="assetOverview"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e2" value="经营卡片" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#22A06B;strokeWidth=2;endArrow=block;endFill=1;fontColor=#216E4E;" edge="1" parent="1" source="businessSummary" target="businessKpi"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e3" value="资产/运营卡片" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#E2B203;strokeWidth=2;endArrow=block;endFill=1;fontColor=#7F5F01;" edge="1" parent="1" source="operationSummary" target="windOverview"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#8590A2;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="businessKpi" target="businessTrend"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#8590A2;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="businessTrend" target="stationRank"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e6" value="点击站点" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#F87168;strokeWidth=2;endArrow=block;endFill=1;fontColor=#AE2E24;" edge="1" parent="1" source="stationRank" target="stationBusiness"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e7" value="点击风机" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#579DFF;strokeWidth=2;endArrow=block;endFill=1;fontColor=#0052CC;" edge="1" parent="1" source="windOverview" target="windUnit"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e8" value="异常/MTTR" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#F87168;strokeWidth=2;endArrow=block;endFill=1;fontColor=#AE2E24;" edge="1" parent="1" source="windUnit" target="omDetail"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e9" value="点击储能单元" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#4BCE97;strokeWidth=2;endArrow=block;endFill=1;fontColor=#216E4E;" edge="1" parent="1" source="storageOverview" target="storageUnit"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e10" value="异常/MTTR" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#F87168;strokeWidth=2;endArrow=block;endFill=1;fontColor=#AE2E24;" edge="1" parent="1" source="storageUnit" target="omDetail"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="journey-v2" name="关键导览">
+    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="t2" value="关键用户路径｜从发现问题到定位责任资产" style="text;html=1;strokeColor=none;fillColor=none;fontSize=26;fontStyle=1;fontColor=#172B4D;" vertex="1" parent="1"><mxGeometry x="60" y="40" width="800" height="40" as="geometry"/></mxCell>
+        <mxCell id="j1" value="1 发现偏差&#xa;首页 KPI 显示毛利未达标" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E9F2FF;strokeColor=#0C66E4;fontColor=#172B4D;fontStyle=1;fontSize=16;spacing=12;" vertex="1" parent="1"><mxGeometry x="80" y="190" width="260" height="110" as="geometry"/></mxCell>
+        <mxCell id="j2" value="2 解释差距&#xa;经营看板拆解收入、成本、毛利" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3FCEF;strokeColor=#22A06B;fontColor=#172B4D;fontStyle=1;fontSize=16;spacing=12;" vertex="1" parent="1"><mxGeometry x="410" y="190" width="280" height="110" as="geometry"/></mxCell>
+        <mxCell id="j3" value="3 定位站点&#xa;排名与对比锁定异常站点" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7D6;strokeColor=#E2B203;fontColor=#172B4D;fontStyle=1;fontSize=16;spacing=12;" vertex="1" parent="1"><mxGeometry x="760" y="190" width="270" height="110" as="geometry"/></mxCell>
+        <mxCell id="j4" value="4 定位设备&#xa;进入风机或储能单元月度详情" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F4F7FB;strokeColor=#8590A2;fontColor=#172B4D;fontStyle=1;fontSize=16;spacing=12;" vertex="1" parent="1"><mxGeometry x="1100" y="190" width="280" height="110" as="geometry"/></mxCell>
+        <mxCell id="j5" value="5 关联运维&#xa;查看告警、工单、MTTR 与损失" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDEB;strokeColor=#F87168;fontColor=#172B4D;fontStyle=1;fontSize=16;spacing=12;" vertex="1" parent="1"><mxGeometry x="1100" y="430" width="280" height="110" as="geometry"/></mxCell>
+        <mxCell id="context" value="全程继承筛选上下文：组织 / 区域 / 站点 / 资产类型 / 时间 / 目标版本" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DEEBFF;strokeColor=#0C66E4;fontColor=#0052CC;fontStyle=1;fontSize=17;spacing=12;" vertex="1" parent="1"><mxGeometry x="410" y="650" width="620" height="80" as="geometry"/></mxCell>
+        <mxCell id="je1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#0C66E4;strokeWidth=3;endArrow=block;endFill=1;" edge="1" parent="1" source="j1" target="j2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="je2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#22A06B;strokeWidth=3;endArrow=block;endFill=1;" edge="1" parent="1" source="j2" target="j3"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="je3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#E2B203;strokeWidth=3;endArrow=block;endFill=1;" edge="1" parent="1" source="j3" target="j4"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="je4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#F87168;strokeWidth=3;endArrow=block;endFill=1;" edge="1" parent="1" source="j4" target="j5"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="je5" value="筛选上下文" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;strokeColor=#0C66E4;strokeWidth=2;endArrow=block;endFill=1;fontColor=#0052CC;" edge="1" parent="1" source="j5" target="context"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
