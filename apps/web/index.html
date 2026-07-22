@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="风电与储能资产管理看板 V2 交互架构 Demo">
-  <title>Northstar Assets · V2 Demo</title>
+  <meta name="description" content="风电、储能与分布式资产管理看板">
+  <title>Asset Intellgent</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -12,10 +12,10 @@
     <aside class="sidebar" aria-label="主导航">
       <a class="brand" href="#overview" aria-label="返回资产总览">
         <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
-        <span><strong>Northstar</strong><small>ASSET INTELLIGENCE</small></span>
+        <span><strong>Asset Intellgent</strong><small>ASSET MANAGEMENT</small></span>
       </a>
 
-      <div class="demo-chip"><span></span> V2 · FAKE DATA</div>
+      <div class="context-chip"><span></span> MONTHLY ASSET VIEW</div>
 
       <nav class="primary-nav">
         <a class="nav-item" href="#overview" data-route-link="overview">
@@ -30,14 +30,14 @@
       </nav>
 
       <div class="sidebar-foot">
-        <p>ARCHITECTURE PROTOTYPE</p>
-        <span>月度管理视图<br>非实时监控系统</span>
+        <p>ASSET MANAGEMENT</p>
+        <span>月度管理视图<br>经营与运营透视</span>
       </div>
     </aside>
 
     <div class="workspace">
       <header class="topbar">
-        <div class="mobile-brand">Northstar · V2</div>
+        <div class="mobile-brand">Asset Intellgent</div>
         <div class="filter-set" aria-label="全局筛选">
           <label>统计期
             <select id="monthFilter">
@@ -45,19 +45,24 @@
               <option value="2025-06">截至 2025 年 6 月</option>
             </select>
           </label>
-          <label>区域
-            <select id="regionFilter">
-              <option value="all">全部区域</option>
-              <option value="north">北部区域</option>
-              <option value="east">东部区域</option>
-              <option value="west">西部区域</option>
+          <label>省份
+            <select id="provinceFilter">
+              <option value="all">全部省份</option>
+              <option value="hebei">河北省</option>
+              <option value="shandong">山东省</option>
+              <option value="gansu">甘肃省</option>
+            </select>
+          </label>
+          <label>电站
+            <select id="stationFilter">
+              <option value="all">全部电站</option>
             </select>
           </label>
           <label>资产类型
             <select id="assetFilter">
-              <option value="all">风电 + 储能</option>
               <option value="wind">风电</option>
               <option value="storage">储能</option>
+              <option value="distributed">分布式</option>
             </select>
           </label>
         </div>
@@ -72,16 +77,16 @@
               <h1 id="overviewTitle">资产组合，一眼看清规模与状态</h1>
               <p class="page-intro">先回答“我们拥有什么、表现如何、哪里需要关注”，再进入经营或运营视图。</p>
             </div>
-            <div class="scope-stamp"><span>当前范围</span><strong data-scope>全部区域 · 全部资产</strong></div>
+            <div class="scope-stamp"><span>当前范围</span><strong data-scope>全部省份 · 全部电站 · 风电</strong></div>
           </header>
 
           <section class="portfolio-lead" aria-label="组合核心状态">
             <div class="lead-story">
               <p class="section-kicker">组合规模</p>
-              <div class="lead-number"><strong data-bind="capacity">1.26</strong><span>GW</span></div>
-              <p class="lead-caption">风电装机容量 · <b data-bind="wind-count">186</b> 台风机</p>
+              <div class="lead-number"><strong data-bind="capacity">1.26</strong><span id="leadUnit">GW</span></div>
+              <p class="lead-caption" id="leadCaption">风电装机容量 · <b>186</b> 台风机</p>
               <div class="lead-divider"></div>
-              <div class="storage-inline">
+              <div class="storage-inline" id="secondaryAssetLine">
                 <span>储能组合</span><strong data-bind="storage-power">420</strong><em>MW</em><strong data-bind="storage-capacity">840</strong><em>MWh</em>
               </div>
             </div>
@@ -100,14 +105,14 @@
               </div>
               <div class="asset-map" id="assetMap" aria-label="示意资产地图">
                 <div class="map-grid"></div>
-                <span class="map-label ml-north">北部</span><span class="map-label ml-east">东部</span><span class="map-label ml-west">西部</span>
-                <button class="map-point wind p1" data-asset="北辰风电场" data-region="north" aria-label="北辰风电场，正常"><span></span></button>
-                <button class="map-point wind risk p2" data-asset="海岳风电场" data-region="east" aria-label="海岳风电场，需关注"><span></span></button>
-                <button class="map-point wind p3" data-asset="云岭风电场" data-region="west" aria-label="云岭风电场，正常"><span></span></button>
-                <button class="map-point wind p4" data-asset="临港风电场" data-region="east" aria-label="临港风电场，正常"><span></span></button>
-                <button class="map-point storage p5" data-asset="北辰储能站" data-region="north" aria-label="北辰储能站，正常"><span></span></button>
-                <button class="map-point storage risk p6" data-asset="海岳储能站" data-region="east" aria-label="海岳储能站，需关注"><span></span></button>
-                <button class="map-point storage p7" data-asset="云岭储能站" data-region="west" aria-label="云岭储能站，正常"><span></span></button>
+                <span class="map-label ml-north">河北</span><span class="map-label ml-east">山东</span><span class="map-label ml-west">甘肃</span>
+                <button class="map-point wind p1" data-asset="北辰风电场" data-province="hebei" aria-label="河北省北辰风电场，正常"><span></span></button>
+                <button class="map-point wind risk p2" data-asset="海岳风电场" data-province="shandong" aria-label="山东省海岳风电场，需关注"><span></span></button>
+                <button class="map-point wind p3" data-asset="云岭风电场" data-province="gansu" aria-label="甘肃省云岭风电场，正常"><span></span></button>
+                <button class="map-point wind p4" data-asset="临港风电场" data-province="shandong" aria-label="山东省临港风电场，正常"><span></span></button>
+                <button class="map-point storage p5" data-asset="北辰储能电站" data-province="hebei" aria-label="河北省北辰储能电站，正常"><span></span></button>
+                <button class="map-point storage risk p6" data-asset="海岳储能电站" data-province="shandong" aria-label="山东省海岳储能电站，需关注"><span></span></button>
+                <button class="map-point storage p7" data-asset="云岭储能电站" data-province="gansu" aria-label="甘肃省云岭储能电站，正常"><span></span></button>
                 <div class="map-selection" id="mapSelection">
                   <small>选择地图资产</small><strong>查看项目状态与入口</strong><span>点击任一圆点</span>
                 </div>
@@ -194,6 +199,23 @@
             <div class="panel-head"><div><p class="section-kicker">ASSET RANKING</p><h2 id="businessRankTitle">风电项目经营排名</h2></div><span class="table-note">点击项目可进入运营看板</span></div>
             <div class="table-scroll"><table><thead><tr><th>资产</th><th>实际 YTD</th><th>累计目标</th><th>差距</th><th>完成率</th><th>全年进度</th><th>状态</th></tr></thead><tbody id="businessTable"></tbody></table></div>
           </article>
+
+          <article class="panel monthly-finance-panel">
+            <div class="panel-head">
+              <div><p class="section-kicker">MONTHLY FINANCIAL COMPARISON</p><h2>可选月份财务对比</h2><p class="panel-description">在当前截止月份之外，选择一个月份，对比当月收入、成本与毛利表现。</p></div>
+              <label class="metric-select">对比月份
+                <select id="compareMonthFilter">
+                  <option value="6">2025 年 6 月</option>
+                  <option value="5">2025 年 5 月</option>
+                  <option value="4">2025 年 4 月</option>
+                  <option value="3">2025 年 3 月</option>
+                  <option value="2">2025 年 2 月</option>
+                  <option value="1">2025 年 1 月</option>
+                </select>
+              </label>
+            </div>
+            <div class="month-compare-grid" id="monthCompareGrid"></div>
+          </article>
         </section>
 
         <section class="route-page" data-route="operations" aria-labelledby="operationsTitle" hidden>
@@ -239,7 +261,7 @@
         </section>
       </main>
 
-      <footer class="app-footer"><span>Northstar Assets · V2 Architecture Demo</span><span>演示数据仅用于验证信息结构，不代表真实经营结果</span></footer>
+      <footer class="app-footer"><span>Asset Intellgent</span><span>月度资产经营与运营管理视图</span></footer>
     </div>
   </div>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
