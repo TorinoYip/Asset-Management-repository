@@ -9,6 +9,12 @@
 - [Draw.io 可编辑源稿](design/drawio/asset-dashboard-v2-navigation.drawio)
 - [V1 原始参考图](资产看板_V1.png)
 
+## V2 架构预览
+
+[![资产看板 V2 信息架构与页面导览](design/exports/asset-dashboard-v2-navigation.svg)](design/drawio/asset-dashboard-v2-navigation.drawio)
+
+> 点击图片可打开对应的 draw.io 源文件。
+
 ## 仓库结构
 
 ```text
