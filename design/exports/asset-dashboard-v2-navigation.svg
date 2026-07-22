@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1500" viewBox="0 0 1800 1500" role="img" aria-labelledby="title desc">
-<title id="title">资产看板 V2 主架构、相对布局与信息流</title>
-<desc id="desc">展示资产总览、经营看板和运营看板的主要布局、筛选继承、地图交互、站点下钻与未来闭环边界。</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1325" viewBox="0 0 1800 1325" role="img" aria-labelledby="title desc">
+<title id="title">资产看板 V2 主架构、同级资产功能与信息流</title>
+<desc id="desc">展示资产总览、经营看板和运营看板的布局、筛选继承、地图交互，以及风电单机与储能单站的同级功能。</desc>
 <defs><marker id="ab" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5 0 10Z" fill="#0C66E4"/></marker>
  <marker id="ag" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5 0 10Z" fill="#22A06B"/></marker>
  <marker id="ay" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5 0 10Z" fill="#B38600"/></marker>
@@ -12,15 +12,15 @@
  </style>
 </defs>
 <rect class="bg" width="1800" height="1500"/>
-<text class="t" x="40" y="52">资产看板 V2｜主架构、相对布局与信息流</text>
-<text class="st" x="42" y="82">实线为当前 V2；灰色虚线为未来 +1/+2；所有页面共享年份、截至月份、区域、资产类型与站点上下文</text>
+<text class="t" x="40" y="52">资产看板 V2｜主架构、同级资产功能与信息流</text>
+<text class="st" x="42" y="82">所有页面共享年份、截至月份、区域、资产类型与资产对象上下文；连线表示页面跳转和组件联动</text>
 
-<g><rect class="p" x="35" y="115" width="220" height="1260" rx="16"/>
+<g><rect class="p" x="35" y="115" width="220" height="1185" rx="16"/>
 <text class="bt" x="62" y="158">一级导航</text>
 <rect x="65" y="200" width="160" height="62" rx="10" fill="#0C66E4"/><text class="nv" x="105" y="238" fill="#fff">资产总览</text>
 <rect x="65" y="295" width="160" height="62" rx="10" fill="#E9F2FF" stroke="#0C66E4"/><text class="nv" x="105" y="333" fill="#0052CC">经营看板</text>
 <rect x="65" y="390" width="160" height="62" rx="10" fill="#E9F2FF" stroke="#0C66E4"/><text class="nv" x="105" y="428" fill="#0052CC">运营看板</text>
-<rect x="65" y="1210" width="160" height="82" rx="10" fill="#F1F2F4" stroke="#8590A2" stroke-dasharray="7 5"/><text class="bs" x="92" y="1243">未来闭环</text><text class="bs" x="82" y="1270">诊断｜工单｜责任</text></g>
+</g>
 
 <rect x="300" y="115" width="1430" height="55" rx="10" fill="#DEEBFF" stroke="#0C66E4"/>
 <text class="bt" x="335" y="150" fill="#0052CC">全局上下文：年份｜截至月份｜区域/项目公司｜资产类型｜站点</text>
@@ -39,20 +39,18 @@
 <rect x="970" y="725" width="270" height="128" rx="11" fill="#F1F2F4" stroke="#8590A2"/><text class="bt" x="995" y="760">经营构成（4栏）</text><text class="bs" x="995" y="790">收入｜成本｜毛利分项</text>
 <rect x="1270" y="725" width="430" height="128" rx="11" fill="#FFF7D6" stroke="#E2B203"/><text class="bt" x="1295" y="760">站点排名与对比</text><text class="bs" x="1295" y="790">实际｜目标｜差距｜完成率｜状态</text><text class="bs" x="1295" y="818">点击站点 → 后续站点经营详情</text></g>
 
-<g><rect class="p" x="300" y="940" width="1430" height="360" rx="16"/><path class="h" d="M316 940h1398a16 16 0 0116 16v30H300v-30a16 16 0 0116-16z"/><text class="ph" x="330" y="971">03 运营看板｜站点聚合、单机月度与储能电站月度</text>
+<g><rect class="p" x="300" y="940" width="1430" height="360" rx="16"/><path class="h" d="M316 940h1398a16 16 0 0116 16v30H300v-30a16 16 0 0116-16z"/><text class="ph" x="330" y="971">03 运营看板｜风电单机与储能单站的同级月度呈现</text>
 <rect x="330" y="1008" width="230" height="42" rx="9" fill="#E9F2FF" stroke="#0C66E4"/><text class="bt" x="355" y="1035">资产 Tab：风电｜储能</text>
 <rect x="590" y="1000" width="720" height="66" rx="9" fill="#F4F7FB" stroke="#B3BAC5"/><text class="bt" x="615" y="1028">运营 KPI 条</text><text class="bs" x="615" y="1052">风电：电量/可利用率/限电/损失　储能：充放电/效率/容量与时间可利用率</text>
-<rect x="330" y="1095" width="610" height="148" rx="11" fill="#E9F2FF" stroke="#579DFF"/><text class="bt" x="355" y="1130">站点聚合与排名（8栏）</text><text class="bs" x="355" y="1160">点击风电站点 → 单机 × 月份</text><text class="bs" x="355" y="1188">点击储能站点 → 电站 × 月份</text>
+<rect x="330" y="1095" width="610" height="148" rx="11" fill="#E9F2FF" stroke="#579DFF"/><text class="bt" x="355" y="1130">同级资产排名（8栏）</text><text class="bs" x="355" y="1160">风电：单机 × 月份</text><text class="bs" x="355" y="1188">储能：单站 × 月份</text>
 <rect x="970" y="1095" width="300" height="148" rx="11" fill="#FFEDEB" stroke="#F87168"/><text class="bt" x="995" y="1130">运维异常摘要（4栏）</text><text class="bs" x="995" y="1160">异常站点｜MTTR</text><text class="bs" x="995" y="1188">计划/非计划损失</text>
-<rect x="1300" y="1095" width="400" height="148" rx="11" fill="#F1F2F4" stroke="#8590A2"/><text class="bt" x="1325" y="1130">明细比较（12栏逻辑）</text><text class="bs" x="1325" y="1160">风电：单机 × 月份</text><text class="bs" x="1325" y="1188">储能：电站 × 月份</text></g>
+<rect x="1300" y="1095" width="400" height="148" rx="11" fill="#F1F2F4" stroke="#8590A2"/><text class="bt" x="1325" y="1130">同级资产对比（12栏）</text><text class="bs" x="1325" y="1160">风电：单机 × 月份</text><text class="bs" x="1325" y="1188">储能：单站 × 月份</text></g>
 
-<rect x="300" y="1335" width="1430" height="95" rx="12" fill="#F1F2F4" stroke="#8590A2" stroke-dasharray="8 6"/>
-<text class="bt" x="330" y="1370" fill="#6B778C">未来 +1/+2：异常诊断 → 日期/事件 → 告警/工单 → 处置 → 合同/质保责任 → 财务影响</text>
-<text class="bs" x="330" y="1402">日度日报为独立系统，不进入当前资产看板页面层级。</text>
+
 
 <path class="ln" d="M1480 487v45H1010v38" stroke="#22A06B" marker-end="url(#ag)"/><text class="lab" x="1315" y="525" fill="#216E4E">查看经营</text>
 <path class="ln" d="M1605 487v420H1120v33" stroke="#B38600" marker-end="url(#ay)"/><text class="lab" x="1510" y="920" fill="#7F5F01">查看运营</text>
 <path class="ln" d="M940 789h330" stroke="#22A06B" marker-end="url(#ag)"/><text class="lab" x="1060" y="779" fill="#216E4E">月份联动</text>
 <path class="ln" d="M940 1168h360" stroke="#0C66E4" marker-end="url(#ab)"/><text class="lab" x="1070" y="1157" fill="#0052CC">站点联动</text>
-<path class="ln" d="M1120 1243v92" stroke="#8590A2" stroke-dasharray="8 6" marker-end="url(#ar)"/><text class="lab" x="1135" y="1293" fill="#6B778C">未来下钻</text>
+
 </svg>
