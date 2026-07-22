@@ -32,6 +32,7 @@
 
 ## 快速入口
 
+- [V2 HTML 交互 Demo](apps/web/index.html)
 - [V2 信息架构](docs/product/information-architecture.md)
 - [V2 页面与交互规范](docs/product/v2-page-specification.md)
 - [指标字典](docs/data/metric-dictionary.md)
@@ -43,7 +44,7 @@
 ```text
 .
 ├── apps/
-│   └── web/                  # 前端应用入口
+│   └── web/                  # 可直接打开的 V2 HTML 交互 Demo
 ├── packages/
 │   ├── domain/               # 指标、资产层级、筛选上下文与业务模型
 │   └── ui/                   # KPI、地图、趋势、排名、表格等共享组件
@@ -65,6 +66,7 @@
 
 已确定：
 
+- 已提供可直接打开的 HTML 交互 Demo，覆盖三页导航、摘要下钻、筛选、资产 Tab 与指标联动；
 - 三个一级页面：资产总览、经营看板、运营看板；
 - 月度为最小分析粒度，日度日报不属于本架构；
 - 经营同时使用全年目标、截至当月累计目标和实际 YTD；
@@ -86,6 +88,7 @@
 
 ## 版本约定
 
+- HTML Demo 使用假数据验证信息结构与交互，不代表最终技术栈或真实经营结果。
 - V1 图片只作为需求基线，不直接覆盖。
 - Draw.io 是架构、布局和交互关系的可编辑源稿。
 - SVG 是 README 展示文件，不直接编辑。
