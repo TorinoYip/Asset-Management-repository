@@ -1,94 +1,60 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1040" viewBox="0 0 1600 1040" role="img" aria-labelledby="title desc">
-  <title id="title">资产看板 V2 信息架构与页面导览</title>
-  <desc id="desc">展示首页总览、经营看板、运营看板，以及集团到站点、设备和运维详情的钻取关系。</desc>
-  <defs>
-    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
-      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#172B4D" flood-opacity="0.10"/>
-    </filter>
-    <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#0C66E4"/></marker>
-    <marker id="arrow-green" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#22A06B"/></marker>
-    <marker id="arrow-yellow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#B38600"/></marker>
-    <marker id="arrow-red" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#E2483D"/></marker>
-    <style>
-      .bg{fill:#F7F8FA}.panel{fill:#FFFFFF;stroke:#D0D4DB;stroke-width:1.5}.section-title{font:700 18px "Noto Sans SC","Microsoft YaHei",sans-serif;fill:#172B4D}
-      .title{font:700 30px "Noto Sans SC","Microsoft YaHei",sans-serif;fill:#172B4D}.subtitle{font:14px "Noto Sans SC","Microsoft YaHei",sans-serif;fill:#5E6C84}
-      .nav-title{font:700 17px "Noto Sans SC","Microsoft YaHei",sans-serif;fill:#FFFFFF}.nav-sub{font:13px "Noto Sans SC","Microsoft YaHei",sans-serif;fill:#FFFFFF}
-      .box-title{font:700 16px "Noto Sans SC","Microsoft YaHei",sans-serif;fill:#172B4D}.box-sub{font:13px "Noto Sans SC","Microsoft YaHei",sans-serif;fill:#44546F}
-      .label{font:700 12px "Noto Sans SC","Microsoft YaHei",sans-serif}.line{fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
-    </style>
-  </defs>
-  <rect class="bg" width="1600" height="1040"/>
-  <text class="title" x="48" y="52">资产看板 V2｜信息架构与页面导览</text>
-  <text class="subtitle" x="50" y="82">从集团总览逐级钻取至站点、单机/单储和运维详情；页面跳转继承组织、资产与时间筛选</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1500" viewBox="0 0 1800 1500" role="img" aria-labelledby="title desc">
+<title id="title">资产看板 V2 主架构、相对布局与信息流</title>
+<desc id="desc">展示资产总览、经营看板和运营看板的主要布局、筛选继承、地图交互、站点下钻与未来闭环边界。</desc>
+<defs>
+ <filter id="s"><feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#172B4D" flood-opacity=".10"/></filter>
+ <marker id="ab" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5 0 10Z" fill="#0C66E4"/></marker>
+ <marker id="ag" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5 0 10Z" fill="#22A06B"/></marker>
+ <marker id="ay" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5 0 10Z" fill="#B38600"/></marker>
+ <marker id="ar" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0L10 5 0 10Z" fill="#E2483D"/></marker>
+ <style>
+ .bg{fill:#F7F8FA}.p{fill:#fff;stroke:#B3BAC5;stroke-width:1.5}.h{fill:#172B4D}.t{font:700 30px "Noto Sans SC","Microsoft YaHei",sans-serif;fill:#172B4D}.st{font:14px "Noto Sans SC","Microsoft YaHei",sans-serif;fill:#5E6C84}
+ .ph{font:700 17px "Noto Sans SC","Microsoft YaHei",sans-serif;fill:#fff}.bt{font:700 15px "Noto Sans SC","Microsoft YaHei",sans-serif;fill:#172B4D}.bs{font:13px "Noto Sans SC","Microsoft YaHei",sans-serif;fill:#44546F}.nv{font:700 16px "Noto Sans SC","Microsoft YaHei",sans-serif}
+ .ln{fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}.lab{font:700 12px "Noto Sans SC","Microsoft YaHei",sans-serif}
+ </style>
+</defs>
+<rect class="bg" width="1800" height="1500"/>
+<text class="t" x="40" y="52">资产看板 V2｜主架构、相对布局与信息流</text>
+<text class="st" x="42" y="82">实线为当前 V2；灰色虚线为未来 +1/+2；所有页面共享年份、截至月份、区域、资产类型与站点上下文</text>
 
-  <g filter="url(#shadow)">
-    <rect class="panel" x="40" y="112" width="240" height="850" rx="16"/>
-    <text class="section-title" x="70" y="158">一级导航</text>
-    <rect x="70" y="190" width="180" height="92" rx="12" fill="#0C66E4"/>
-    <text class="nav-title" x="92" y="224">首页总览</text><text class="nav-sub" x="92" y="250">资产｜状态｜经营摘要</text><text class="nav-sub" x="92" y="270">运营摘要</text>
-    <rect x="70" y="330" width="180" height="92" rx="12" fill="#E9F2FF" stroke="#0C66E4" stroke-width="2"/>
-    <text class="box-title" x="92" y="365" fill="#0052CC">经营看板</text><text class="box-sub" x="92" y="391">目标｜实际｜差距｜排名</text>
-    <rect x="70" y="470" width="180" height="92" rx="12" fill="#E9F2FF" stroke="#0C66E4" stroke-width="2"/>
-    <text class="box-title" x="92" y="505" fill="#0052CC">运营看板</text><text class="box-sub" x="92" y="531">风机｜储能｜运维</text>
-    <rect x="70" y="835" width="180" height="82" rx="12" fill="#DEEBFF"/>
-    <text class="box-title" x="92" y="868">全局筛选</text><text class="box-sub" x="92" y="894">组织｜站点｜资产｜时间</text>
-  </g>
+<g filter="url(#s)"><rect class="p" x="35" y="115" width="220" height="1260" rx="16"/>
+<text class="bt" x="62" y="158">一级导航</text>
+<rect x="65" y="200" width="160" height="62" rx="10" fill="#0C66E4"/><text class="nv" x="105" y="238" fill="#fff">资产总览</text>
+<rect x="65" y="295" width="160" height="62" rx="10" fill="#E9F2FF" stroke="#0C66E4"/><text class="nv" x="105" y="333" fill="#0052CC">经营看板</text>
+<rect x="65" y="390" width="160" height="62" rx="10" fill="#E9F2FF" stroke="#0C66E4"/><text class="nv" x="105" y="428" fill="#0052CC">运营看板</text>
+<rect x="65" y="1210" width="160" height="82" rx="10" fill="#F1F2F4" stroke="#8590A2" stroke-dasharray="7 5"/><text class="bs" x="92" y="1243">未来闭环</text><text class="bs" x="82" y="1270">诊断｜工单｜责任</text></g>
 
-  <g filter="url(#shadow)">
-    <rect class="panel" x="320" y="112" width="1235" height="190" rx="16"/>
-    <text class="section-title" x="350" y="153">首页总览</text>
-    <rect x="355" y="185" width="280" height="85" rx="12" fill="#E9F2FF" stroke="#579DFF"/>
-    <text class="box-title" x="378" y="216">资产概览</text><text class="box-sub" x="378" y="241">站点数｜资产类型｜资产状态</text><text class="box-sub" x="378" y="260">风电容量｜储能功率/容量</text>
-    <rect x="800" y="185" width="280" height="85" rx="12" fill="#E3FCEF" stroke="#4BCE97"/>
-    <text class="box-title" x="823" y="216">经营摘要</text><text class="box-sub" x="823" y="241">收入｜成本｜毛利｜目标完成率</text>
-    <rect x="1245" y="185" width="270" height="85" rx="12" fill="#FFF7D6" stroke="#E2B203"/>
-    <text class="box-title" x="1268" y="216">运营摘要</text><text class="box-sub" x="1268" y="241">发电/充放电｜可利用率</text><text class="box-sub" x="1268" y="260">告警与损失</text>
-  </g>
+<rect x="300" y="115" width="1430" height="55" rx="10" fill="#DEEBFF" stroke="#0C66E4"/>
+<text class="bt" x="335" y="150" fill="#0052CC">全局上下文：年份｜截至月份｜区域/项目公司｜资产类型｜站点</text>
 
-  <g filter="url(#shadow)">
-    <rect class="panel" x="320" y="330" width="1235" height="240" rx="16"/>
-    <text class="section-title" x="350" y="371">经营看板</text>
-    <rect x="355" y="410" width="250" height="105" rx="12" fill="#E3FCEF" stroke="#4BCE97"/>
-    <text class="box-title" x="378" y="442">集团经营总览</text><text class="box-sub" x="378" y="468">YTD：实际｜目标｜差距</text><text class="box-sub" x="378" y="492">收入｜成本｜毛利</text>
-    <rect x="680" y="410" width="250" height="105" rx="12" fill="#F1F2F4" stroke="#8590A2"/>
-    <text class="box-title" x="703" y="442">月度趋势与构成</text><text class="box-sub" x="703" y="468">收入构成｜成本构成</text><text class="box-sub" x="703" y="492">目标完成进度</text>
-    <rect x="1005" y="410" width="220" height="105" rx="12" fill="#FFF7D6" stroke="#E2B203"/>
-    <text class="box-title" x="1028" y="442">站点排名与对比</text><text class="box-sub" x="1028" y="468">毛利｜收入｜成本</text><text class="box-sub" x="1028" y="492">同比｜环比</text>
-    <rect x="1300" y="410" width="215" height="105" rx="12" fill="#FFEDEB" stroke="#F87168"/>
-    <text class="box-title" x="1323" y="442">站点经营详情</text><text class="box-sub" x="1323" y="468">贡献拆解｜历史趋势</text><text class="box-sub" x="1323" y="492">指标口径说明</text>
-  </g>
+<g filter="url(#s)"><rect class="p" x="300" y="200" width="1430" height="330" rx="16"/><path class="h" d="M316 200h1398a16 16 0 0116 16v30H300v-30a16 16 0 0116-16z"/><text class="ph" x="330" y="231">01 资产总览｜Portfolio Executive Overview</text>
+<g><rect x="330" y="268" width="190" height="58" rx="9" fill="#F4F7FB" stroke="#B3BAC5"/><text class="bt" x="350" y="303">站点数</text><rect x="550" y="268" width="190" height="58" rx="9" fill="#F4F7FB" stroke="#B3BAC5"/><text class="bt" x="570" y="303">风电装机</text><rect x="770" y="268" width="190" height="58" rx="9" fill="#F4F7FB" stroke="#B3BAC5"/><text class="bt" x="790" y="303">储能 MW/MWh</text><rect x="990" y="268" width="190" height="58" rx="9" fill="#F4F7FB" stroke="#B3BAC5"/><text class="bt" x="1010" y="303">YTD发电量</text><rect x="1210" y="268" width="190" height="58" rx="9" fill="#F4F7FB" stroke="#B3BAC5"/><text class="bt" x="1230" y="303">YTD充/放电</text><rect x="1430" y="268" width="190" height="58" rx="9" fill="#F4F7FB" stroke="#B3BAC5"/><text class="bt" x="1450" y="303">资产状态</text></g>
+<rect x="330" y="355" width="650" height="132" rx="11" fill="#E9F2FF" stroke="#579DFF"/><text class="bt" x="355" y="389">资产地图（8栏）</text><text class="bs" x="355" y="417">经纬度站点｜颜色=类型/状态｜大小=容量</text><text class="bs" x="355" y="445">点击站点 → 写入站点上下文</text>
+<rect x="1010" y="355" width="250" height="132" rx="11" fill="#F1F2F4" stroke="#8590A2"/><text class="bt" x="1035" y="390">组合构成</text><text class="bs" x="1035" y="420">区域｜类型｜状态</text>
+<rect x="1290" y="355" width="190" height="132" rx="11" fill="#E3FCEF" stroke="#4BCE97"/><text class="bt" x="1315" y="390">经营摘要</text><text class="bs" x="1315" y="420">实际YTD｜目标｜差距</text>
+<rect x="1510" y="355" width="190" height="132" rx="11" fill="#FFF7D6" stroke="#E2B203"/><text class="bt" x="1535" y="390">运营摘要</text><text class="bs" x="1535" y="420">电量｜效率｜损失</text></g>
 
-  <g filter="url(#shadow)">
-    <rect class="panel" x="320" y="600" width="1235" height="362" rx="16"/>
-    <text class="section-title" x="350" y="641">运营看板</text>
-    <rect x="355" y="682" width="270" height="102" rx="12" fill="#E9F2FF" stroke="#579DFF"/>
-    <text class="box-title" x="378" y="714">风机站点总览</text><text class="box-sub" x="378" y="740">上网电量｜可利用率</text><text class="box-sub" x="378" y="764">限电｜计划/非计划损失</text>
-    <rect x="720" y="682" width="235" height="102" rx="12" fill="#F1F2F4" stroke="#8590A2"/>
-    <text class="box-title" x="743" y="714">单机月度详情</text><text class="box-sub" x="743" y="740">收入/成本贡献</text><text class="box-sub" x="743" y="764">发电与故障</text>
-    <rect x="355" y="824" width="270" height="102" rx="12" fill="#E3FCEF" stroke="#4BCE97"/>
-    <text class="box-title" x="378" y="856">储能站点总览</text><text class="box-sub" x="378" y="882">充放电量｜效率</text><text class="box-sub" x="378" y="906">容量/时间可利用率</text>
-    <rect x="720" y="824" width="235" height="102" rx="12" fill="#F1F2F4" stroke="#8590A2"/>
-    <text class="box-title" x="743" y="856">单储月度详情</text><text class="box-sub" x="743" y="882">收入/成本贡献</text><text class="box-sub" x="743" y="906">循环与故障</text>
-    <rect x="1150" y="750" width="285" height="112" rx="12" fill="#FFEDEB" stroke="#F87168" stroke-width="2"/>
-    <text class="box-title" x="1175" y="785">运维详情</text><text class="box-sub" x="1175" y="813">告警｜工单｜MTTR</text><text class="box-sub" x="1175" y="839">计划/非计划损失</text>
-  </g>
+<g filter="url(#s)"><rect class="p" x="300" y="570" width="1430" height="330" rx="16"/><path class="h" d="M316 570h1398a16 16 0 0116 16v30H300v-30a16 16 0 0116-16z"/><text class="ph" x="330" y="601">02 经营看板｜风电 / 储能经营透视</text>
+<rect x="330" y="638" width="230" height="42" rx="9" fill="#E9F2FF" stroke="#0C66E4"/><text class="bt" x="355" y="665">资产 Tab：风电｜储能</text>
+<rect x="580" y="630" width="160" height="58" rx="9" fill="#F4F7FB" stroke="#B3BAC5"/><text class="bt" x="600" y="665">实际YTD</text><rect x="760" y="630" width="160" height="58" rx="9" fill="#F4F7FB" stroke="#B3BAC5"/><text class="bt" x="780" y="665">累计目标</text><rect x="940" y="630" width="160" height="58" rx="9" fill="#F4F7FB" stroke="#B3BAC5"/><text class="bt" x="960" y="665">YTD差距</text><rect x="1120" y="630" width="160" height="58" rx="9" fill="#F4F7FB" stroke="#B3BAC5"/><text class="bt" x="1140" y="665">累计完成率</text><rect x="1300" y="630" width="160" height="58" rx="9" fill="#F4F7FB" stroke="#B3BAC5"/><text class="bt" x="1320" y="665">全年目标</text><rect x="1480" y="630" width="160" height="58" rx="9" fill="#F4F7FB" stroke="#B3BAC5"/><text class="bt" x="1500" y="665">全年进度</text>
+<rect x="330" y="725" width="610" height="128" rx="11" fill="#E3FCEF" stroke="#4BCE97"/><text class="bt" x="355" y="760">月度与累计趋势（8栏）</text><text class="bs" x="355" y="790">月度实际柱｜累计实际线｜累计目标线</text><text class="bs" x="355" y="818">点击月份 → 更新截至月份</text>
+<rect x="970" y="725" width="270" height="128" rx="11" fill="#F1F2F4" stroke="#8590A2"/><text class="bt" x="995" y="760">经营构成（4栏）</text><text class="bs" x="995" y="790">收入｜成本｜毛利分项</text>
+<rect x="1270" y="725" width="430" height="128" rx="11" fill="#FFF7D6" stroke="#E2B203"/><text class="bt" x="1295" y="760">站点排名与对比</text><text class="bs" x="1295" y="790">实际｜目标｜差距｜完成率｜状态</text><text class="bs" x="1295" y="818">点击站点 → 后续站点经营详情</text></g>
 
-  <path class="line" d="M635 228 H800" stroke="#0C66E4" marker-end="url(#arrow-blue)"/>
-  <path class="line" d="M1080 228 H1245" stroke="#0C66E4" marker-end="url(#arrow-blue)"/>
-  <path class="line" d="M940 270 V410" stroke="#22A06B" marker-end="url(#arrow-green)"/>
-  <text class="label" x="954" y="344" fill="#216E4E">点击经营卡片</text>
-  <path class="line" d="M1380 270 V600 H490 V682" stroke="#B38600" marker-end="url(#arrow-yellow)"/>
-  <text class="label" x="1242" y="592" fill="#7F5F01">点击资产/运营卡片</text>
-  <path class="line" d="M605 463 H680" stroke="#22A06B" marker-end="url(#arrow-green)"/>
-  <path class="line" d="M930 463 H1005" stroke="#B38600" marker-end="url(#arrow-yellow)"/>
-  <path class="line" d="M1225 463 H1300" stroke="#E2483D" marker-end="url(#arrow-red)"/>
-  <text class="label" x="1232" y="449" fill="#AE2E24">点击站点</text>
-  <path class="line" d="M625 733 H720" stroke="#0C66E4" marker-end="url(#arrow-blue)"/>
-  <path class="line" d="M625 875 H720" stroke="#22A06B" marker-end="url(#arrow-green)"/>
-  <path class="line" d="M955 733 H1050 V785 H1150" stroke="#E2483D" marker-end="url(#arrow-red)"/>
-  <path class="line" d="M955 875 H1050 V827 H1150" stroke="#E2483D" marker-end="url(#arrow-red)"/>
-  <text class="label" x="1035" y="715" fill="#AE2E24">异常 / MTTR</text>
+<g filter="url(#s)"><rect class="p" x="300" y="940" width="1430" height="360" rx="16"/><path class="h" d="M316 940h1398a16 16 0 0116 16v30H300v-30a16 16 0 0116-16z"/><text class="ph" x="330" y="971">03 运营看板｜站点聚合、单机月度与储能电站月度</text>
+<rect x="330" y="1008" width="230" height="42" rx="9" fill="#E9F2FF" stroke="#0C66E4"/><text class="bt" x="355" y="1035">资产 Tab：风电｜储能</text>
+<rect x="590" y="1000" width="720" height="66" rx="9" fill="#F4F7FB" stroke="#B3BAC5"/><text class="bt" x="615" y="1028">运营 KPI 条</text><text class="bs" x="615" y="1052">风电：电量/可利用率/限电/损失　储能：充放电/效率/容量与时间可利用率</text>
+<rect x="330" y="1095" width="610" height="148" rx="11" fill="#E9F2FF" stroke="#579DFF"/><text class="bt" x="355" y="1130">站点聚合与排名（8栏）</text><text class="bs" x="355" y="1160">点击风电站点 → 单机 × 月份</text><text class="bs" x="355" y="1188">点击储能站点 → 电站 × 月份</text>
+<rect x="970" y="1095" width="300" height="148" rx="11" fill="#FFEDEB" stroke="#F87168"/><text class="bt" x="995" y="1130">运维异常摘要（4栏）</text><text class="bs" x="995" y="1160">异常站点｜MTTR</text><text class="bs" x="995" y="1188">计划/非计划损失</text>
+<rect x="1300" y="1095" width="400" height="148" rx="11" fill="#F1F2F4" stroke="#8590A2"/><text class="bt" x="1325" y="1130">明细比较（12栏逻辑）</text><text class="bs" x="1325" y="1160">风电：单机 × 月份</text><text class="bs" x="1325" y="1188">储能：电站 × 月份</text></g>
 
-  <rect x="1030" y="915" width="470" height="28" rx="14" fill="#DEEBFF"/>
-  <text class="label" x="1052" y="934" fill="#0052CC">钻取继承：组织 / 区域 / 站点 / 资产类型 / 时间 / 目标版本</text>
+<rect x="300" y="1335" width="1430" height="95" rx="12" fill="#F1F2F4" stroke="#8590A2" stroke-dasharray="8 6"/>
+<text class="bt" x="330" y="1370" fill="#6B778C">未来 +1/+2：异常诊断 → 日期/事件 → 告警/工单 → 处置 → 合同/质保责任 → 财务影响</text>
+<text class="bs" x="330" y="1402">日度日报为独立系统，不进入当前资产看板页面层级。</text>
+
+<path class="ln" d="M1480 487v45H1010v38" stroke="#22A06B" marker-end="url(#ag)"/><text class="lab" x="1315" y="525" fill="#216E4E">查看经营</text>
+<path class="ln" d="M1605 487v420H1120v33" stroke="#B38600" marker-end="url(#ay)"/><text class="lab" x="1510" y="920" fill="#7F5F01">查看运营</text>
+<path class="ln" d="M940 789h330" stroke="#22A06B" marker-end="url(#ag)"/><text class="lab" x="1060" y="779" fill="#216E4E">月份联动</text>
+<path class="ln" d="M940 1168h360" stroke="#0C66E4" marker-end="url(#ab)"/><text class="lab" x="1070" y="1157" fill="#0052CC">站点联动</text>
+<path class="ln" d="M1120 1243v92" stroke="#8590A2" stroke-dasharray="8 6" marker-end="url(#ar)"/><text class="lab" x="1135" y="1293" fill="#6B778C">未来下钻</text>
 </svg>
