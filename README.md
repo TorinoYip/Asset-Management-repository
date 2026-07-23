@@ -32,7 +32,8 @@
 
 ## 快速入口
 
-- [Asset Intellgent 网页](apps/web/index.html)
+- [在线打开 Asset Intellgent](https://torinoyip.github.io/Asset-Management-repository/)
+- [Asset Intellgent 网页源文件](apps/web/index.html)
 - [V2 信息架构](docs/product/information-architecture.md)
 - [V2 页面与交互规范](docs/product/v2-page-specification.md)
 - [指标字典](docs/data/metric-dictionary.md)
