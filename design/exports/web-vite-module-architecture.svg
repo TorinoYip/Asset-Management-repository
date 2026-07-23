@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Asset Intellgent 前端目标开发架构</title>
+  <desc id="desc">Vanilla JavaScript、ES Modules 与 Vite 的分层模块架构，包含应用入口、状态路由、五个页面、领域层、共享组件、数据适配与 GitHub Pages 发布。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f7f9fc"/>
+      <stop offset="1" stop-color="#eef3f2"/>
+    </linearGradient>
+    <linearGradient id="hero" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#102a49"/>
+      <stop offset="1" stop-color="#174b7c"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="7" stdDeviation="10" flood-color="#10233f" flood-opacity=".10"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10Z" fill="#69809a"/>
+    </marker>
+    <style>
+      text{font-family:Inter,"SF Pro Display","PingFang SC","Microsoft YaHei",sans-serif}
+      .eyebrow{font-size:13px;font-weight:800;letter-spacing:2.4px;fill:#78a5d3}
+      .title{font-size:34px;font-weight:800;fill:#fff}
+      .subtitle{font-size:16px;fill:#b9cce0}
+      .layer-label{font-size:13px;font-weight:800;letter-spacing:1.8px;fill:#1767e8}
+      .box-title{font-size:17px;font-weight:800;fill:#10233f}
+      .box-copy{font-size:12px;fill:#6f7e91}
+      .code{font-family:"SFMono-Regular",Consolas,monospace;font-size:12px;fill:#29415d}
+      .small{font-size:11px;fill:#7b8999}
+      .flow{fill:none;stroke:#69809a;stroke-width:1.6;marker-end:url(#arrow)}
+      .soft-flow{fill:none;stroke:#9badbd;stroke-width:1.3;stroke-dasharray:5 5;marker-end:url(#arrow)}
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect x="40" y="34" width="1520" height="116" rx="22" fill="url(#hero)" filter="url(#shadow)"/>
+  <text x="78" y="70" class="eyebrow">TARGET FRONTEND ARCHITECTURE</text>
+  <text x="78" y="111" class="title">Asset Intellgent · 模块化前端架构</text>
+  <text x="1035" y="83" class="subtitle">Vanilla JavaScript</text>
+  <text x="1035" y="110" class="subtitle">ES Modules + Vite</text>
+  <rect x="1350" y="67" width="154" height="46" rx="23" fill="#b8e34a"/>
+  <text x="1427" y="95" text-anchor="middle" font-size="14" font-weight="800" fill="#102a49">GitHub Pages</text>
+
+  <text x="65" y="193" class="layer-label">01 · APPLICATION SHELL</text>
+  <rect x="55" y="210" width="1490" height="98" rx="16" fill="#fff" stroke="#dce3ea" filter="url(#shadow)"/>
+  <rect x="78" y="230" width="250" height="58" rx="11" fill="#edf3fd" stroke="#c8dafa"/>
+  <text x="98" y="254" class="box-title">index.html</text>
+  <text x="98" y="274" class="code">#app · semantic shell</text>
+  <rect x="354" y="230" width="250" height="58" rx="11" fill="#edf3fd" stroke="#c8dafa"/>
+  <text x="374" y="254" class="box-title">src/main.js</text>
+  <text x="374" y="274" class="code">bootstrap · mount · render</text>
+  <rect x="630" y="230" width="322" height="58" rx="11" fill="#eef8f5" stroke="#c8e4dc"/>
+  <text x="650" y="254" class="box-title">Vite Runtime</text>
+  <text x="650" y="274" class="code">ESM graph · HMR · dev server</text>
+  <rect x="978" y="230" width="266" height="58" rx="11" fill="#fff8e9" stroke="#ead7a9"/>
+  <text x="998" y="254" class="box-title">vite.config.js</text>
+  <text x="998" y="274" class="code">base · build · aliases</text>
+  <rect x="1270" y="230" width="250" height="58" rx="11" fill="#f2f5f7" stroke="#d9e0e6"/>
+  <text x="1290" y="254" class="box-title">dist/</text>
+  <text x="1290" y="274" class="code">versioned static output</text>
+
+  <text x="65" y="349" class="layer-label">02 · CORE CONTROL PLANE</text>
+  <rect x="55" y="366" width="1490" height="108" rx="16" fill="#102a49" filter="url(#shadow)"/>
+  <rect x="78" y="389" width="270" height="62" rx="11" fill="#173b63" stroke="#315a82"/>
+  <text x="98" y="414" font-size="17" font-weight="800" fill="#fff">Router</text>
+  <text x="98" y="436" font-size="12" fill="#a7bdd2">hash route · page lifecycle</text>
+  <rect x="374" y="389" width="270" height="62" rx="11" fill="#173b63" stroke="#315a82"/>
+  <text x="394" y="414" font-size="17" font-weight="800" fill="#fff">Global Store</text>
+  <text x="394" y="436" font-size="12" fill="#a7bdd2">month · province · station · type</text>
+  <rect x="670" y="389" width="270" height="62" rx="11" fill="#173b63" stroke="#315a82"/>
+  <text x="690" y="414" font-size="17" font-weight="800" fill="#fff">Actions</text>
+  <text x="690" y="436" font-size="12" fill="#a7bdd2">intent · state transition · events</text>
+  <rect x="966" y="389" width="270" height="62" rx="11" fill="#173b63" stroke="#315a82"/>
+  <text x="986" y="414" font-size="17" font-weight="800" fill="#fff">Render Coordinator</text>
+  <text x="986" y="436" font-size="12" fill="#a7bdd2">scope update · page refresh</text>
+  <rect x="1262" y="389" width="258" height="62" rx="11" fill="#264c68" stroke="#6a879b"/>
+  <text x="1282" y="414" font-size="17" font-weight="800" fill="#d7f38c">Single source of truth</text>
+  <text x="1282" y="436" font-size="12" fill="#b8c9d7">all filters share one context</text>
+
+  <text x="65" y="516" class="layer-label">03 · PAGE MODULES</text>
+  <rect x="55" y="533" width="1490" height="118" rx="16" fill="#fff" stroke="#dce3ea" filter="url(#shadow)"/>
+  <g>
+    <rect x="78" y="557" width="260" height="70" rx="11" fill="#edf3fd" stroke="#c8dafa"/>
+    <text x="98" y="584" class="box-title">01 资产看板</text><text x="98" y="607" class="code">pages/overview/</text>
+    <rect x="368" y="557" width="260" height="70" rx="11" fill="#edf3fd" stroke="#c8dafa"/>
+    <text x="388" y="584" class="box-title">02 营收总览</text><text x="388" y="607" class="code">pages/revenue/</text>
+    <rect x="658" y="557" width="260" height="70" rx="11" fill="#eef8f5" stroke="#c8e4dc"/>
+    <text x="678" y="584" class="box-title">03 按类型分析</text><text x="678" y="607" class="code">pages/types/</text>
+    <rect x="948" y="557" width="260" height="70" rx="11" fill="#eef8f5" stroke="#c8e4dc"/>
+    <text x="968" y="584" class="box-title">04 按站点分析</text><text x="968" y="607" class="code">pages/stations/</text>
+    <rect x="1238" y="557" width="282" height="70" rx="11" fill="#f2f5f7" stroke="#d9e0e6"/>
+    <text x="1258" y="584" class="box-title">05 蒙西日报入口</text><text x="1258" y="607" class="code">pages/mengxi/</text>
+  </g>
+
+  <text x="65" y="693" class="layer-label">04 · DOMAIN, DATA &amp; SHARED CAPABILITIES</text>
+  <rect x="55" y="710" width="1490" height="130" rx="16" fill="#fff" stroke="#dce3ea" filter="url(#shadow)"/>
+  <rect x="78" y="734" width="280" height="80" rx="11" fill="#fff8e9" stroke="#ead7a9"/>
+  <text x="98" y="761" class="box-title">Domain Selectors</text>
+  <text x="98" y="784" class="code">filter · aggregate · KPI rules</text>
+  <text x="98" y="802" class="small">统一 YTD、目标、状态口径</text>
+  <rect x="382" y="734" width="280" height="80" rx="11" fill="#eef8f5" stroke="#c8e4dc"/>
+  <text x="402" y="761" class="box-title">Data Services</text>
+  <text x="402" y="784" class="code">repository · adapter · API</text>
+  <text x="402" y="802" class="small">本地数据与后端接口可替换</text>
+  <rect x="686" y="734" width="280" height="80" rx="11" fill="#edf3fd" stroke="#c8dafa"/>
+  <text x="706" y="761" class="box-title">Shared Components</text>
+  <text x="706" y="784" class="code">KPI · table · map · tabs</text>
+  <text x="706" y="802" class="small">五页复用的无框架组件</text>
+  <rect x="990" y="734" width="250" height="80" rx="11" fill="#f2f5f7" stroke="#d9e0e6"/>
+  <text x="1010" y="761" class="box-title">Utilities</text>
+  <text x="1010" y="784" class="code">format · DOM · validate</text>
+  <text x="1010" y="802" class="small">纯函数与通用工具</text>
+  <rect x="1264" y="734" width="256" height="80" rx="11" fill="#f2f5f7" stroke="#d9e0e6"/>
+  <text x="1284" y="761" class="box-title">Assets &amp; Styles</text>
+  <text x="1284" y="784" class="code">China SVG · CSS tokens</text>
+  <text x="1284" y="802" class="small">本地资源，不依赖 CDN</text>
+
+  <path class="flow" d="M328 259H354"/>
+  <path class="flow" d="M604 259H630"/>
+  <path class="flow" d="M952 259H978"/>
+  <path class="flow" d="M1244 259H1270"/>
+  <path class="flow" d="M479 288V347Q479 355 487 355H509V389"/>
+  <path class="flow" d="M644 420H670"/>
+  <path class="flow" d="M940 420H966"/>
+  <path class="flow" d="M1101 451V520Q1101 528 1093 528H1078V557"/>
+  <path class="soft-flow" d="M509 451V520Q509 528 501 528H498V557"/>
+  <path class="flow" d="M803 627V697Q803 705 795 705H826V734"/>
+  <path class="soft-flow" d="M522 734V687Q522 677 532 677H1380Q1392 677 1392 651"/>
+
+  <text x="55" y="875" class="small">开发：Vite dev server + HMR　·　生产：vite build → dist/　·　发布：GitHub Actions → GitHub Pages</text>
+  <text x="1545" y="875" text-anchor="end" class="small">目标开发架构 · 2026-07</text>
+</svg>

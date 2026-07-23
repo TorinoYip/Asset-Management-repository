@@ -8,6 +8,13 @@
 
 > 点击图片可查看 draw.io 可编辑源稿。图中展示页面布局、筛选继承、地图交互、经营趋势、站点排名和资产月度对比。
 
+
+## 前端目标开发架构
+
+[![Vanilla JavaScript、ES Modules 与 Vite 前端目标开发架构](design/exports/web-vite-module-architecture.svg)](design/drawio/web-vite-module-architecture.drawio)
+
+> 点击图片可打开 Draw.io 可编辑源稿。该图定义正式开发阶段的目标结构：Vanilla JavaScript 负责无框架组件，ES Modules 建立显式依赖，Vite 提供开发服务器、HMR 与生产构建。当前 `apps/web` 已完成职责拆分并保留静态直开兼容；图中的 Vite 构建链是下一步工程化迁移目标。
+
 ## V2 信息细目补充表
 
 > 本表是 Draw.io 架构图的字段级补充，不重复页面布局。它说明各组件内部具体呈现什么、采用什么统计口径，以及哪些规则仍待确认。
@@ -38,6 +45,7 @@
 - [V2 页面与交互规范](docs/product/v2-page-specification.md)
 - [指标字典](docs/data/metric-dictionary.md)
 - [Draw.io 可编辑源稿](design/drawio/asset-dashboard-v2-navigation.drawio)
+- [前端目标开发架构图](design/drawio/web-vite-module-architecture.drawio)
 - [V1 原始参考图](资产看板_V1.png)
 
 ## 仓库结构
@@ -57,9 +65,11 @@
 │       └── metric-dictionary.md
 ├── design/
 │   ├── drawio/
-│   │   └── asset-dashboard-v2-navigation.drawio
+│   │   ├── asset-dashboard-v2-navigation.drawio
+│   │   └── web-vite-module-architecture.drawio
 │   └── exports/
-│       └── asset-dashboard-v2-navigation.svg
+│       ├── asset-dashboard-v2-navigation.svg
+│       └── web-vite-module-architecture.svg
 └── 资产看板_V1.png           # V1 需求基线，不覆盖
 ```
 
