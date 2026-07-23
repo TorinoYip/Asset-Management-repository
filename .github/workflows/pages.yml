@@ -1,5 +1,7 @@
 name: Publish Asset Intellgent
 
+# Publishes the static dashboard from apps/web.
+
 on:
   push:
     branches:
