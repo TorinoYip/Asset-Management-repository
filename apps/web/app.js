@@ -298,7 +298,12 @@ function renderOverview() {
   renderAssetRegister();
   renderProvincePopover(state.mapProvince);
   $$(".province-point").forEach(point => {
+    const provinceCount = scopedRecords().filter(record => record.province === point.dataset.mapProvince).length;
+    const countLabel = point.querySelector("small");
+    if (countLabel) countLabel.textContent = `${provinceCount} 站`;
+    point.setAttribute("aria-label", `${provinceMeta[point.dataset.mapProvince].label}，${provinceCount} 座当前范围电站`);
     point.classList.toggle("active", point.dataset.mapProvince === state.mapProvince);
+    point.classList.toggle("empty", provinceCount === 0);
     point.classList.toggle("filtered", state.province !== "all" && point.dataset.mapProvince === state.province);
     point.classList.toggle("dimmed", state.province !== "all" && point.dataset.mapProvince !== state.province);
   });
