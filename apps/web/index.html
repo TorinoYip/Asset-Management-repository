@@ -90,43 +90,43 @@
           <section class="overview-primary" aria-label="一级资产大屏">
             <button class="executive-card revenue-card" data-go="revenue">
               <span class="card-sequence">01 / 经营摘要</span>
-              <div class="executive-title"><div><p>实际 YTD 毛利</p><strong id="overviewMargin">¥ 3.82 亿</strong></div><span class="status-chip watch">未达累计目标</span></div>
+              <div class="executive-title"><div><p id="overviewPeriodLabel">实际 YTD 毛利 · 截至 2025 年 7 月</p><strong id="overviewMargin">¥ 2.74 亿</strong></div><span class="status-chip watch" id="overviewTargetStatus">未达累计目标</span></div>
               <div class="executive-metrics">
-                <div><small>累计目标</small><b>¥ 3.92 亿</b></div>
-                <div><small>达成率</small><b>97.4%</b></div>
-                <div><small>YTD 收入</small><b>¥ 9.76 亿</b></div>
-                <div><small>YTD 成本</small><b>¥ 5.94 亿</b></div>
+                <div><small>累计目标</small><b id="overviewTarget">¥ 2.88 亿</b></div>
+                <div><small>达成率</small><b id="overviewAttainment">95.1%</b></div>
+                <div><small>YTD 收入</small><b id="overviewRevenue">¥ 6.92 亿</b></div>
+                <div><small>YTD 成本</small><b id="overviewCost">¥ 4.18 亿</b></div>
               </div>
               <span class="card-entry">进入营收总览 →</span>
             </button>
 
             <article class="executive-card asset-card">
               <span class="card-sequence">02 / 资产概况</span>
-              <div class="asset-headline"><strong>14</strong><span>座电站<br><b>199</b> 台风机</span></div>
+              <div class="asset-headline"><strong id="overviewStationCount">9</strong><span>座电站<br><b id="overviewAssetDescriptor">199 台风机</b></span></div>
               <div class="asset-overview-grid">
-                <div><small>风电装机</small><b>1.26 GW</b></div>
-                <div><small>储能功率</small><b>420 MW</b></div>
-                <div><small>储能容量</small><b>840 MWh</b></div>
-                <div><small>正常运行</small><b>12 / 14</b></div>
+                <div><small>风电装机</small><b id="overviewWindCapacity">1.26 GW</b></div>
+                <div><small>储能功率</small><b id="overviewStoragePower">0 MW</b></div>
+                <div><small>储能容量</small><b id="overviewStorageEnergy">0 MWh</b></div>
+                <div><small>正常运行</small><b id="overviewNormalAssets">7 / 9</b></div>
               </div>
             </article>
           </section>
 
           <section class="overview-secondary" aria-label="二级资产概况">
             <article class="overview-mini-card">
-              <span>风电规模</span><strong>9 座</strong>
-              <p>1.26 GW · 199 台风机</p>
-              <div class="mini-progress"><i style="width:64%"></i></div>
+              <span>风电规模</span><strong id="windStationCount">9 座</strong>
+              <p id="windScaleSummary">1.26 GW · 199 台风机</p>
+              <div class="mini-progress"><i id="windScaleProgress" style="width:100%"></i></div>
             </article>
             <article class="overview-mini-card storage">
-              <span>储能规模</span><strong>5 座</strong>
-              <p>420 MW / 840 MWh</p>
-              <div class="mini-progress"><i style="width:36%"></i></div>
+              <span>储能规模</span><strong id="storageStationCount">0 座</strong>
+              <p id="storageScaleSummary">0 MW / 0 MWh</p>
+              <div class="mini-progress"><i id="storageScaleProgress" style="width:0%"></i></div>
             </article>
             <article class="overview-mini-card health">
-              <span>资产状态</span><strong>85.7%</strong>
-              <p><b class="positive">12 正常</b> · <b class="negative">2 关注</b></p>
-              <div class="status-dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="risk"></i><i class="risk"></i></div>
+              <span>资产状态</span><strong id="assetHealthRate">77.8%</strong>
+              <p><b class="positive" id="normalAssetLabel">7 正常</b> · <b class="negative" id="riskAssetLabel">2 关注</b></p>
+              <div class="status-dots" id="assetStatusDots"></div>
             </article>
           </section>
 
@@ -165,7 +165,7 @@
               <table class="composition-table">
                 <thead><tr><th>省份</th><th>风电场</th><th>储能站</th><th>总电站</th><th>风电装机</th><th>风机数量</th><th>储能功率</th><th>储能容量</th><th>构成</th></tr></thead>
                 <tbody id="compositionTable"></tbody>
-                <tfoot><tr><td>组合合计</td><td>9</td><td>5</td><td>14</td><td>1,260 MW</td><td>199 台</td><td>420 MW</td><td>840 MWh</td><td><span class="mix-label">风电 64% · 储能 36%</span></td></tr></tfoot>
+                <tfoot id="compositionTableFoot"></tfoot>
               </table>
             </div>
           </section>
@@ -217,9 +217,9 @@
               <div class="hero-foot"><span>全年目标 <b id="annualTarget">¥ 5.10 亿</b></span><span>全年完成进度 <b id="annualProgress">53.7%</b></span></div>
             </article>
             <div class="business-drivers">
-              <button class="driver-card active" data-business-metric="margin"><span>总毛利</span><strong id="driverMargin">¥ 2.74 亿</strong><small class="negative">距累计目标 −4.9%</small></button>
-              <button class="driver-card" data-business-metric="revenue"><span>总收入</span><strong id="driverRevenue">¥ 6.92 亿</strong><small class="positive">距累计目标 +1.8%</small></button>
-              <button class="driver-card" data-business-metric="cost"><span>总成本</span><strong id="driverCost">¥ 4.18 亿</strong><small class="negative">超累计目标 +6.9%</small></button>
+              <button class="driver-card active" data-business-metric="margin"><span>总毛利</span><strong id="driverMargin">¥ 2.74 亿</strong><small class="negative" id="driverMarginDelta">距累计目标 −4.9%</small></button>
+              <button class="driver-card" data-business-metric="revenue"><span>总收入</span><strong id="driverRevenue">¥ 6.92 亿</strong><small class="positive" id="driverRevenueDelta">距累计目标 +1.8%</small></button>
+              <button class="driver-card" data-business-metric="cost"><span>总成本</span><strong id="driverCost">¥ 4.18 亿</strong><small class="negative" id="driverCostDelta">超累计目标 +6.9%</small></button>
             </div>
           </section>
 
