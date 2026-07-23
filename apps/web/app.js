@@ -34,23 +34,23 @@ const typeLabels = {
 };
 
 const stationRecords = [
-  { id: "beichen-wind", name: "北辰风电场", type: "wind", province: "hebei", size: "160 MW", revenue: .86, cost: .50, margin: .36, attainment: 105.4, ops: "可利用率 98.1%", status: "good" },
-  { id: "fengning-wind", name: "丰宁风电场", type: "wind", province: "hebei", size: "140 MW", revenue: .77, cost: .46, margin: .31, attainment: 101.6, ops: "可利用率 97.8%", status: "good" },
-  { id: "baiyunxia-wind", name: "白云峡风电场", type: "wind", province: "hebei", size: "100 MW", revenue: .55, cost: .34, margin: .21, attainment: 98.8, ops: "可利用率 97.3%", status: "good" },
-  { id: "fengning-storage", name: "丰宁储能电站", type: "storage", province: "hebei", size: "100 MW / 200 MWh", revenue: .75, cost: .43, margin: .32, attainment: 109.7, ops: "综合效率 88.6%", status: "good" },
+  { id: "beichen-wind", name: "北辰风电场", type: "wind", province: "hebei", size: "160 MW", capacity: 160, turbines: 25, revenue: .86, cost: .50, margin: .36, attainment: 105.4, ops: "可利用率 98.1%", status: "good" },
+  { id: "fengning-wind", name: "丰宁风电场", type: "wind", province: "hebei", size: "140 MW", capacity: 140, turbines: 22, revenue: .77, cost: .46, margin: .31, attainment: 101.6, ops: "可利用率 97.8%", status: "good" },
+  { id: "baiyunxia-wind", name: "白云峡风电场", type: "wind", province: "hebei", size: "100 MW", capacity: 100, turbines: 17, revenue: .55, cost: .34, margin: .21, attainment: 98.8, ops: "可利用率 97.3%", status: "good" },
+  { id: "fengning-storage", name: "丰宁储能电站", type: "storage", province: "hebei", size: "100 MW / 200 MWh", power: 100, energy: 200, revenue: .75, cost: .43, margin: .32, attainment: 109.7, ops: "综合效率 88.6%", status: "good" },
 
-  { id: "wulan-wind", name: "乌兰风电场", type: "wind", province: "inner-mongolia", size: "180 MW", revenue: .92, cost: .57, margin: .35, attainment: 103.2, ops: "可利用率 97.6%", status: "good" },
-  { id: "damao-wind", name: "达茂风电场", type: "wind", province: "inner-mongolia", size: "160 MW", revenue: .83, cost: .53, margin: .30, attainment: 99.1, ops: "可利用率 96.9%", status: "good" },
-  { id: "ordos-storage", name: "鄂尔多斯储能电站", type: "storage", province: "inner-mongolia", size: "80 MW / 160 MWh", revenue: .61, cost: .36, margin: .25, attainment: 103.6, ops: "综合效率 87.9%", status: "good" },
-  { id: "mengxi-storage", name: "蒙西调频储能电站", type: "storage", province: "inner-mongolia", size: "60 MW / 120 MWh", revenue: .46, cost: .29, margin: .17, attainment: 97.2, ops: "综合效率 86.7%", status: "watch" },
+  { id: "wulan-wind", name: "乌兰风电场", type: "wind", province: "inner-mongolia", size: "180 MW", capacity: 180, turbines: 29, revenue: .92, cost: .57, margin: .35, attainment: 103.2, ops: "可利用率 97.6%", status: "good" },
+  { id: "damao-wind", name: "达茂风电场", type: "wind", province: "inner-mongolia", size: "160 MW", capacity: 160, turbines: 25, revenue: .83, cost: .53, margin: .30, attainment: 99.1, ops: "可利用率 96.9%", status: "good" },
+  { id: "ordos-storage", name: "鄂尔多斯储能电站", type: "storage", province: "inner-mongolia", size: "80 MW / 160 MWh", power: 80, energy: 160, revenue: .61, cost: .36, margin: .25, attainment: 103.6, ops: "综合效率 87.9%", status: "good" },
+  { id: "mengxi-storage", name: "蒙西调频储能电站", type: "storage", province: "inner-mongolia", size: "60 MW / 120 MWh", power: 60, energy: 120, revenue: .46, cost: .29, margin: .17, attainment: 97.2, ops: "综合效率 86.7%", status: "watch" },
 
-  { id: "haiyue-wind", name: "海岳风电场", type: "wind", province: "shandong", size: "150 MW", revenue: .75, cost: .50, margin: .25, attainment: 84.0, ops: "可利用率 94.8%", status: "bad" },
-  { id: "lingang-wind", name: "临港风电场", type: "wind", province: "shandong", size: "120 MW", revenue: .64, cost: .40, margin: .24, attainment: 96.5, ops: "可利用率 96.2%", status: "watch" },
-  { id: "lingang-storage", name: "临港储能电站", type: "storage", province: "shandong", size: "80 MW / 160 MWh", revenue: .58, cost: .34, margin: .24, attainment: 104.0, ops: "综合效率 88.2%", status: "good" },
+  { id: "haiyue-wind", name: "海岳风电场", type: "wind", province: "shandong", size: "150 MW", capacity: 150, turbines: 24, revenue: .75, cost: .50, margin: .25, attainment: 84.0, ops: "可利用率 94.8%", status: "bad" },
+  { id: "lingang-wind", name: "临港风电场", type: "wind", province: "shandong", size: "120 MW", capacity: 120, turbines: 19, revenue: .64, cost: .40, margin: .24, attainment: 96.5, ops: "可利用率 96.2%", status: "watch" },
+  { id: "lingang-storage", name: "临港储能电站", type: "storage", province: "shandong", size: "80 MW / 160 MWh", power: 80, energy: 160, revenue: .58, cost: .34, margin: .24, attainment: 104.0, ops: "综合效率 88.2%", status: "good" },
 
-  { id: "zhoushan-wind", name: "舟山风电场", type: "wind", province: "zhejiang", size: "130 MW", revenue: .68, cost: .42, margin: .26, attainment: 102.1, ops: "可利用率 97.5%", status: "good" },
-  { id: "haining-wind", name: "海宁风电场", type: "wind", province: "zhejiang", size: "120 MW", revenue: .63, cost: .38, margin: .25, attainment: 100.4, ops: "可利用率 97.1%", status: "good" },
-  { id: "shaoxing-storage", name: "绍兴储能电站", type: "storage", province: "zhejiang", size: "100 MW / 200 MWh", revenue: .71, cost: .43, margin: .28, attainment: 101.8, ops: "综合效率 87.6%", status: "good" }
+  { id: "zhoushan-wind", name: "舟山风电场", type: "wind", province: "zhejiang", size: "130 MW", capacity: 130, turbines: 20, revenue: .68, cost: .42, margin: .26, attainment: 102.1, ops: "可利用率 97.5%", status: "good" },
+  { id: "haining-wind", name: "海宁风电场", type: "wind", province: "zhejiang", size: "120 MW", capacity: 120, turbines: 18, revenue: .63, cost: .38, margin: .25, attainment: 100.4, ops: "可利用率 97.1%", status: "good" },
+  { id: "shaoxing-storage", name: "绍兴储能电站", type: "storage", province: "zhejiang", size: "100 MW / 200 MWh", power: 100, energy: 200, revenue: .71, cost: .43, margin: .28, attainment: 101.8, ops: "综合效率 87.6%", status: "good" }
 ];
 
 const provincePortfolio = {
@@ -145,19 +145,104 @@ function stationCatalog(type = state.assetFilter) {
   return stationRecords.filter(record => type === "distributed" ? false : record.type === type);
 }
 
-function filteredStations({ respectDetail = false } = {}) {
-  let records = [...stationRecords];
+function scopedRecords(type = state.assetFilter) {
+  if (type === "distributed") return [];
+  let records = stationRecords.filter(record => record.type === type);
   if (state.province !== "all") records = records.filter(record => record.province === state.province);
+  if (state.station !== "all") records = records.filter(record => record.id === state.station);
+  return records;
+}
+
+function financialRecord(record) {
+  const typeRecords = stationRecords.filter(item => item.type === record.type);
+  const data = businessData[record.type];
+  const raw = typeRecords.reduce((sum, item) => {
+    sum.revenue += item.revenue;
+    sum.cost += item.cost;
+    sum.margin += item.margin;
+    sum.target += item.margin / (item.attainment / 100);
+    return sum;
+  }, { revenue: 0, cost: 0, margin: 0, target: 0 });
+  return {
+    ...record,
+    revenue: record.revenue * data.revenue / raw.revenue,
+    cost: record.cost * data.cost / raw.cost,
+    margin: record.margin * data.actual / raw.margin,
+    marginTarget: (record.margin / (record.attainment / 100)) * data.target / raw.target
+  };
+}
+
+function currentMonthIndex() {
+  const month = Number(state.month.split("-")[1]) || 7;
+  return Math.max(0, Math.min(month - 1, 6));
+}
+
+function financialSlice(type = state.assetFilter) {
+  const data = businessData[type];
+  const records = scopedRecords(type).map(financialRecord);
+  if (!data) {
+    return {
+      type, records: [], actual: 0, target: 0, annual: 0, revenue: 0, cost: 0,
+      attainment: 0, annualProgress: 0, actualFactor: 0, targetFactor: 0,
+      monthIndex: currentMonthIndex(), scopeShare: 0, targetScopeShare: 0
+    };
+  }
+  const monthIndex = currentMonthIndex();
+  const actualFactor = data.monthly.slice(0, monthIndex + 1).reduce((sum, value) => sum + value, 0) /
+    data.monthly.reduce((sum, value) => sum + value, 0);
+  const targetFactor = data.targetMonthly.slice(0, monthIndex + 1).reduce((sum, value) => sum + value, 0) /
+    data.targetMonthly.reduce((sum, value) => sum + value, 0);
+  const july = records.reduce((sum, record) => {
+    sum.revenue += record.revenue;
+    sum.cost += record.cost;
+    sum.margin += record.margin;
+    sum.target += record.marginTarget;
+    return sum;
+  }, { revenue: 0, cost: 0, margin: 0, target: 0 });
+  const actual = july.margin * actualFactor;
+  const target = july.target * targetFactor;
+  const revenue = july.revenue * actualFactor;
+  const cost = july.cost * actualFactor;
+  const annual = july.target * (data.annual / data.target);
+  return {
+    type, records, data, actual, target, annual, revenue, cost,
+    attainment: target ? actual / target * 100 : 0,
+    annualProgress: annual ? actual / annual * 100 : 0,
+    actualFactor, targetFactor, monthIndex,
+    scopeShare: data.actual ? july.margin / data.actual : 0,
+    targetScopeShare: data.target ? july.target / data.target : 0
+  };
+}
+
+function assetScale(records) {
+  return records.reduce((sum, record) => {
+    if (record.type === "wind") {
+      sum.wind += 1;
+      sum.windCapacity += record.capacity || 0;
+      sum.turbines += record.turbines || 0;
+    } else if (record.type === "storage") {
+      sum.storage += 1;
+      sum.storagePower += record.power || 0;
+      sum.storageEnergy += record.energy || 0;
+    }
+    if (record.status === "good") sum.normal += 1;
+    else sum.risk += 1;
+    return sum;
+  }, { wind: 0, storage: 0, windCapacity: 0, turbines: 0, storagePower: 0, storageEnergy: 0, normal: 0, risk: 0 });
+}
+
+function formatCapacity(mw) {
+  return mw >= 1000 ? `${(mw / 1000).toFixed(2)} GW` : `${mw} MW`;
+}
+
+function filteredStations({ respectDetail = false } = {}) {
+  let records = scopedRecords();
   if (respectDetail) {
     if (state.detailType !== "all") records = records.filter(record => record.type === state.detailType);
     if (state.detailSearch) {
       const query = state.detailSearch.trim().toLowerCase();
       records = records.filter(record => record.name.toLowerCase().includes(query));
     }
-  } else if (state.assetFilter !== "distributed") {
-    records = records.filter(record => record.type === state.assetFilter);
-  } else {
-    records = [];
   }
   return records;
 }
@@ -208,6 +293,7 @@ function updateStationFilter() {
 }
 
 function renderOverview() {
+  renderOverviewSummary();
   renderComposition();
   renderAssetRegister();
   renderProvincePopover(state.mapProvince);
@@ -218,45 +304,116 @@ function renderOverview() {
   });
 }
 
+function renderOverviewSummary() {
+  const slice = financialSlice();
+  const records = scopedRecords();
+  const scale = assetScale(records);
+  const total = records.length;
+  const monthLabel = `截至 2025 年 ${slice.monthIndex + 1} 月`;
+  const reached = slice.attainment >= 100;
+
+  $("#overviewPeriodLabel").textContent = `实际 YTD 毛利 · ${monthLabel}`;
+  $("#overviewMargin").textContent = formatMoney(slice.actual);
+  $("#overviewTarget").textContent = formatMoney(slice.target);
+  $("#overviewAttainment").textContent = total ? `${slice.attainment.toFixed(1)}%` : "—";
+  $("#overviewRevenue").textContent = formatMoney(slice.revenue);
+  $("#overviewCost").textContent = formatMoney(slice.cost);
+  $("#overviewTargetStatus").textContent = !total ? "当前范围无资产" : reached ? "达到累计目标" : "未达累计目标";
+  $("#overviewTargetStatus").className = `status-chip ${reached ? "good" : "watch"}`;
+
+  $("#overviewStationCount").textContent = total;
+  $("#overviewAssetDescriptor").textContent = state.assetFilter === "wind"
+    ? `${scale.turbines} 台风机`
+    : state.assetFilter === "storage"
+      ? `${scale.storagePower} MW / ${scale.storageEnergy} MWh`
+      : "待接入资产";
+  $("#overviewWindCapacity").textContent = formatCapacity(scale.windCapacity);
+  $("#overviewStoragePower").textContent = `${scale.storagePower} MW`;
+  $("#overviewStorageEnergy").textContent = `${scale.storageEnergy} MWh`;
+  $("#overviewNormalAssets").textContent = `${scale.normal} / ${total}`;
+
+  $("#windStationCount").textContent = `${scale.wind} 座`;
+  $("#windScaleSummary").textContent = `${formatCapacity(scale.windCapacity)} · ${scale.turbines} 台风机`;
+  $("#storageStationCount").textContent = `${scale.storage} 座`;
+  $("#storageScaleSummary").textContent = `${scale.storagePower} MW / ${scale.storageEnergy} MWh`;
+  const totalTypes = scale.wind + scale.storage;
+  $("#windScaleProgress").style.width = `${totalTypes ? scale.wind / totalTypes * 100 : 0}%`;
+  $("#storageScaleProgress").style.width = `${totalTypes ? scale.storage / totalTypes * 100 : 0}%`;
+
+  const health = total ? scale.normal / total * 100 : 0;
+  $("#assetHealthRate").textContent = total ? `${health.toFixed(1)}%` : "—";
+  $("#normalAssetLabel").textContent = `${scale.normal} 正常`;
+  $("#riskAssetLabel").textContent = `${scale.risk} 关注`;
+  $("#assetStatusDots").innerHTML = records.map(record => `<i class="${record.status === "good" ? "" : "risk"}" title="${record.name} · ${statusLabel(record.status)}"></i>`).join("");
+}
+
 function renderProvincePopover(provinceKey) {
   const portfolio = provincePortfolio[provinceKey];
-  const records = stationRecords.filter(record => record.province === provinceKey);
+  let records = scopedRecords().filter(record => record.province === provinceKey);
   if (!portfolio) return;
+  const financialRecords = records.map(financialRecord);
+  const data = businessData[state.assetFilter];
+  const monthIndex = currentMonthIndex();
+  const actualFactor = data
+    ? data.monthly.slice(0, monthIndex + 1).reduce((sum, value) => sum + value, 0) / data.monthly.reduce((sum, value) => sum + value, 0)
+    : 0;
+  const targetFactor = data
+    ? data.targetMonthly.slice(0, monthIndex + 1).reduce((sum, value) => sum + value, 0) / data.targetMonthly.reduce((sum, value) => sum + value, 0)
+    : 0;
+  const margin = financialRecords.reduce((sum, record) => sum + record.margin, 0) * actualFactor;
+  const target = financialRecords.reduce((sum, record) => sum + record.marginTarget, 0) * targetFactor;
+  const attainment = target ? margin / target * 100 : 0;
+  const attention = records.filter(record => record.status !== "good").length;
+  const status = records.length ? (attention ? `${attention} 项关注` : "整体正常") : "当前范围无资产";
+  const operations = records.length ? records.slice(0, 2).map(record => record.ops).join(" / ") : "—";
   $("#provincePopover").innerHTML = `
     <div class="popover-heading">
       <div><span>PROVINCE SUMMARY</span><h3>${portfolio.label}</h3></div>
-      <b class="${portfolio.status.includes("正常") ? "positive" : "negative"}">${portfolio.status}</b>
+      <b class="${status.includes("正常") ? "positive" : "negative"}">${status}</b>
     </div>
     <div class="popover-summary">
-      <div><small>YTD 毛利</small><strong>${portfolio.margin}</strong></div>
-      <div><small>目标达成率</small><strong>${portfolio.attainment}</strong></div>
-      <div><small>运营摘要</small><strong>${portfolio.operations}</strong></div>
+      <div><small>YTD 毛利</small><strong>${formatMoney(margin)}</strong></div>
+      <div><small>目标达成率</small><strong>${records.length ? `${attainment.toFixed(1)}%` : "—"}</strong></div>
+      <div><small>运营摘要</small><strong>${operations}</strong></div>
     </div>
     <div class="province-stations">
-      ${records.map(record => `
+      ${records.length ? financialRecords.map(record => `
         <button data-view-station="${record.id}">
           <span><i class="${record.type}"></i><b>${record.name}</b><small>${typeLabels[record.type]} · ${record.size}</small></span>
-          <span><small>YTD 毛利</small><b>${formatMoney(record.margin)}</b><em class="${record.status === "good" ? "positive" : "negative"}">${record.ops}</em></span>
+          <span><small>YTD 毛利</small><b>${formatMoney(record.margin * actualFactor)}</b><em class="${record.status === "good" ? "positive" : "negative"}">${record.ops}</em></span>
         </button>
-      `).join("")}
+      `).join("") : `<p class="popover-empty">当前筛选范围在该省暂无资产</p>`}
     </div>
   `;
 }
 
 function renderComposition() {
-  const rows = state.province === "all" ? compositionRows : compositionRows.filter(row => row.province === state.province);
+  const records = scopedRecords();
+  const provinceKeys = Object.keys(provinceMeta).filter(key => key !== "all");
+  const rows = provinceKeys.map(province => {
+    const provinceRecords = records.filter(record => record.province === province);
+    const scale = assetScale(provinceRecords);
+    return { province, ...scale, total: provinceRecords.length };
+  }).filter(row => row.total);
   $("#compositionTable").innerHTML = rows.map(row => `
     <tr>
       <td><strong>${provinceMeta[row.province].label}</strong></td>
       <td>${row.wind}</td><td>${row.storage}</td><td><b>${row.total}</b></td>
-      <td>${row.windCapacity}</td><td>${row.turbines}</td><td>${row.storagePower}</td><td>${row.storageCapacity}</td>
-      <td><div class="mix-bar" title="风电 ${row.windShare}% · 储能 ${100 - row.windShare}%"><i style="width:${row.windShare}%"></i><b></b></div></td>
+      <td>${row.windCapacity} MW</td><td>${row.turbines} 台</td><td>${row.storagePower} MW</td><td>${row.storageEnergy} MWh</td>
+      <td><div class="mix-bar" title="风电 ${row.total ? Math.round(row.wind / row.total * 100) : 0}% · 储能 ${row.total ? Math.round(row.storage / row.total * 100) : 0}%"><i style="width:${row.total ? row.wind / row.total * 100 : 0}%"></i><b></b></div></td>
     </tr>
-  `).join("");
+  `).join("") || `<tr><td colspan="9" class="empty-state">当前筛选范围暂无资产构成数据</td></tr>`;
+  const total = assetScale(records);
+  const totalAssets = records.length;
+  $("#compositionTableFoot").innerHTML = `
+    <tr><td>组合合计</td><td>${total.wind}</td><td>${total.storage}</td><td>${totalAssets}</td><td>${total.windCapacity} MW</td><td>${total.turbines} 台</td><td>${total.storagePower} MW</td><td>${total.storageEnergy} MWh</td><td><span class="mix-label">风电 ${totalAssets ? Math.round(total.wind / totalAssets * 100) : 0}% · 储能 ${totalAssets ? Math.round(total.storage / totalAssets * 100) : 0}%</span></td></tr>
+  `;
 }
 
 function renderAssetRegister() {
-  const records = filteredStations({ respectDetail: true });
+  const slice = financialSlice();
+  const financialMap = new Map(slice.records.map(record => [record.id, record]));
+  const records = filteredStations({ respectDetail: true }).map(record => financialMap.get(record.id) || financialRecord(record));
   const tbody = $("#assetRegisterTable");
   if (!records.length) {
     tbody.innerHTML = `<tr><td colspan="10" class="empty-state">当前条件下暂无电站</td></tr>`;
@@ -268,8 +425,8 @@ function renderAssetRegister() {
         <td><span class="type-pill ${record.type}">${typeLabels[record.type]}</span></td>
         <td>${provinceMeta[record.province].label}</td>
         <td>${record.size}</td>
-        <td>${formatMoney(record.margin)}</td>
-        <td class="${record.attainment >= 100 ? "positive" : "negative"}">${record.attainment.toFixed(1)}%</td>
+        <td>${formatMoney(record.margin * slice.actualFactor)}</td>
+        <td class="${record.marginTarget && record.margin * slice.actualFactor / (record.marginTarget * slice.targetFactor) >= 1 ? "positive" : "negative"}">${record.marginTarget && slice.targetFactor ? `${(record.margin * slice.actualFactor / (record.marginTarget * slice.targetFactor) * 100).toFixed(1)}%` : "—"}</td>
         <td>${record.ops}</td>
         <td><span class="status-pill ${record.status}">${statusLabel(record.status)}</span></td>
         <td><button class="row-action" data-view-station="${record.id}">查看详情</button></td>
@@ -283,39 +440,62 @@ function renderAssetRegister() {
 }
 
 function renderRevenue() {
-  const data = businessData[state.businessType];
-  const attainment = data.actual / data.target * 100;
-  $("#businessAssetLabel").textContent = data.label;
-  $("#marginActual").textContent = formatMoney(data.actual);
-  $("#marginTarget").textContent = formatMoney(data.target);
-  $("#marginGap").textContent = `差距 ${attainment >= 100 ? "+" : "−"}${Math.abs(attainment - 100).toFixed(1)}%`;
+  const slice = financialSlice(state.businessType);
+  const station = selectedStation();
+  const scopeLabel = station?.type === state.businessType
+    ? station.name
+    : state.province === "all"
+      ? `${typeLabels[state.businessType]}组合`
+      : `${provinceMeta[state.province].label} · ${typeLabels[state.businessType]}`;
+  const attainment = slice.attainment;
+  const revenueTarget = slice.revenue / (state.businessType === "wind" ? 1.018 : 1.025);
+  const costTarget = slice.cost / (state.businessType === "wind" ? 1.069 : 1.015);
+  const revenueGap = revenueTarget ? (slice.revenue / revenueTarget - 1) * 100 : 0;
+  const costGap = costTarget ? (slice.cost / costTarget - 1) * 100 : 0;
+  $("#businessAssetLabel").textContent = scopeLabel;
+  $("#marginActual").textContent = formatMoney(slice.actual);
+  $("#marginTarget").textContent = formatMoney(slice.target);
+  $("#marginGap").textContent = slice.records.length ? `差距 ${attainment >= 100 ? "+" : "−"}${Math.abs(attainment - 100).toFixed(1)}%` : "当前范围无资产";
   $("#marginGap").className = attainment >= 100 ? "positive" : "negative";
   $("#marginProgress").style.width = `${Math.min(attainment, 100)}%`;
-  $("#annualTarget").textContent = formatMoney(data.annual);
-  $("#annualProgress").textContent = `${(data.actual / data.annual * 100).toFixed(1)}%`;
-  $("#driverMargin").textContent = formatMoney(data.actual);
-  $("#driverRevenue").textContent = formatMoney(data.revenue);
-  $("#driverCost").textContent = formatMoney(data.cost);
+  $("#annualTarget").textContent = formatMoney(slice.annual);
+  $("#annualProgress").textContent = slice.records.length ? `${slice.annualProgress.toFixed(1)}%` : "—";
+  $("#driverMargin").textContent = formatMoney(slice.actual);
+  $("#driverRevenue").textContent = formatMoney(slice.revenue);
+  $("#driverCost").textContent = formatMoney(slice.cost);
+  $("#driverMarginDelta").textContent = slice.records.length ? `距累计目标 ${attainment >= 100 ? "+" : "−"}${Math.abs(attainment - 100).toFixed(1)}%` : "当前范围无资产";
+  $("#driverMarginDelta").className = attainment >= 100 ? "positive" : "negative";
+  $("#driverRevenueDelta").textContent = slice.records.length ? `距累计目标 ${revenueGap >= 0 ? "+" : ""}${revenueGap.toFixed(1)}%` : "当前范围无资产";
+  $("#driverRevenueDelta").className = revenueGap >= 0 ? "positive" : "negative";
+  $("#driverCostDelta").textContent = slice.records.length ? `相对累计目标 ${costGap >= 0 ? "+" : ""}${costGap.toFixed(1)}%` : "当前范围无资产";
+  $("#driverCostDelta").className = costGap <= 0 ? "positive" : "negative";
   $("#businessRankTitle").textContent = `${typeLabels[state.businessType]}项目经营排名`;
   $$("[data-business-tab]").forEach(button => button.setAttribute("aria-selected", button.dataset.businessTab === state.businessType));
   $$("[data-business-metric]").forEach(button => button.classList.toggle("active", button.dataset.businessMetric === state.businessMetric));
-  renderBusinessChart(data);
-  renderBusinessBridge(data);
-  renderBusinessTable(data);
-  renderMonthComparison(data);
+  renderBusinessChart(slice);
+  renderBusinessBridge(slice);
+  renderBusinessTable(slice);
+  updateCompareMonthOptions(slice.monthIndex);
+  renderMonthComparison(slice);
 }
 
-function renderBusinessChart(data) {
+function renderBusinessChart(slice) {
   const metricNames = { margin: "毛利", revenue: "收入", cost: "成本" };
   const multiplier = state.businessMetric === "revenue" ? 2.52 : state.businessMetric === "cost" ? 1.52 : 1;
-  const actual = data.monthly.map(value => value * multiplier);
-  const target = data.targetMonthly.map(value => value * multiplier);
+  if (!slice.records.length) {
+    $("#businessChart").innerHTML = `<text x="390" y="140" text-anchor="middle" fill="#758298" font-size="13">当前筛选范围暂无经营数据</text>`;
+    $("#trendTitle").textContent = `${metricNames[state.businessMetric]} · 月度与累计趋势`;
+    return;
+  }
+  const actual = slice.data.monthly.slice(0, slice.monthIndex + 1).map(value => value * multiplier * slice.scopeShare);
+  const target = slice.data.targetMonthly.slice(0, slice.monthIndex + 1).map(value => value * multiplier * slice.targetScopeShare);
   const cumulative = actual.map((_, index) => actual.slice(0, index + 1).reduce((sum, value) => sum + value, 0));
   const cumulativeTarget = target.map((_, index) => target.slice(0, index + 1).reduce((sum, value) => sum + value, 0));
-  const max = Math.max(...cumulative, ...cumulativeTarget) * 1.08;
+  const max = Math.max(...cumulative, ...cumulativeTarget, 1) * 1.08;
   const width = 780, height = 280, left = 48, right = 24, top = 20, bottom = 40;
   const chartWidth = width - left - right, chartHeight = height - top - bottom;
-  const x = index => left + index * chartWidth / 6;
+  const intervals = Math.max(actual.length - 1, 1);
+  const x = index => left + index * chartWidth / intervals;
   const y = value => top + chartHeight - value / max * chartHeight;
   const line = values => values.map((value, index) => `${index ? "L" : "M"} ${x(index)} ${y(value)}`).join(" ");
   const grid = [0, .25, .5, .75, 1].map(ratio => `<line x1="${left}" y1="${top + chartHeight * ratio}" x2="${width - right}" y2="${top + chartHeight * ratio}" stroke="#e8ecee"/><text x="4" y="${top + chartHeight * ratio + 4}" fill="#7b8794" font-size="9">${Math.round(max * (1 - ratio))}</text>`).join("");
@@ -323,13 +503,24 @@ function renderBusinessChart(data) {
     const barHeight = value / max * chartHeight;
     return `<rect x="${x(index) - 12}" y="${top + chartHeight - barHeight}" width="24" height="${barHeight}" rx="4" fill="#c6d8f5"/>`;
   }).join("");
-  const labels = ["1月", "2月", "3月", "4月", "5月", "6月", "7月"].map((month, index) => `<text x="${x(index)}" y="${height - 12}" text-anchor="middle" fill="#7b8794" font-size="10">${month}</text>`).join("");
+  const labels = actual.map((_, index) => `<text x="${x(index)}" y="${height - 12}" text-anchor="middle" fill="#7b8794" font-size="10">${index + 1}月</text>`).join("");
   $("#businessChart").innerHTML = `${grid}${bars}<path d="${line(cumulativeTarget)}" fill="none" stroke="#d28b2e" stroke-width="2" stroke-dasharray="5 5"/><path d="${line(cumulative)}" fill="none" stroke="#1767e8" stroke-width="3"/>${cumulative.map((value, index) => `<circle cx="${x(index)}" cy="${y(value)}" r="4" fill="#fff" stroke="#1767e8" stroke-width="2"/>`).join("")}${labels}`;
   $("#trendTitle").textContent = `${metricNames[state.businessMetric]} · 月度与累计趋势`;
 }
 
-function renderBusinessBridge(data) {
-  $("#bridgeList").innerHTML = data.bridge.map(([label, value, share]) => `
+function renderBusinessBridge(slice) {
+  if (!slice.records.length) {
+    $("#bridgeList").innerHTML = `<p class="empty-state">当前筛选范围暂无经营构成</p>`;
+    return;
+  }
+  const shares = state.businessType === "wind"
+    ? [["电量收入", .85], ["其他收入", .15]]
+    : [["容量租赁", .58], ["峰谷套利及其他", .42]];
+  const bridge = [
+    ...shares.map(([label, share]) => [label, slice.revenue * share, share * 100]),
+    ["运营成本", slice.cost, slice.revenue ? slice.cost / slice.revenue * 100 : 0]
+  ];
+  $("#bridgeList").innerHTML = bridge.map(([label, value, share]) => `
     <div class="bridge-item">
       <div><span>${label}</span><b>${formatMoney(value)}</b></div>
       <div class="bridge-bar"><i style="width:${share}%"></i></div>
@@ -337,16 +528,46 @@ function renderBusinessBridge(data) {
   `).join("") + `<div class="bridge-foot">实际 YTD 口径 · 收入构成与成本同时披露，便于识别经营结果来自哪里。</div>`;
 }
 
-function renderBusinessTable(data) {
-  $("#businessTable").innerHTML = data.ranks.map(row => `
-    <tr><td><strong>${row[0]}</strong></td><td>${formatMoney(row[1])}</td><td>${formatMoney(row[2])}</td><td class="${row[6] === "good" ? "positive" : "negative"}">${row[3]}</td><td>${row[4]}</td><td>${row[5]}</td><td><span class="status-pill ${row[6]}">${statusLabel(row[6])}</span></td></tr>
+function renderBusinessTable(slice) {
+  if (!slice.records.length) {
+    $("#businessTable").innerHTML = `<tr><td colspan="7" class="empty-state">当前筛选范围暂无可排名资产</td></tr>`;
+    return;
+  }
+  const annualRatio = slice.data.annual / slice.data.target;
+  const rows = slice.records.map(record => {
+    const actual = record.margin * slice.actualFactor;
+    const target = record.marginTarget * slice.targetFactor;
+    const attainment = target ? actual / target * 100 : 0;
+    const annual = record.marginTarget * annualRatio;
+    const progress = annual ? actual / annual * 100 : 0;
+    const status = attainment >= 100 ? "good" : attainment >= 95 ? "watch" : "bad";
+    return { record, actual, target, attainment, progress, status };
+  }).sort((a, b) => b.actual - a.actual);
+  $("#businessTable").innerHTML = rows.map(row => `
+    <tr><td><strong>${row.record.name}</strong></td><td>${formatMoney(row.actual)}</td><td>${formatMoney(row.target)}</td><td class="${row.attainment >= 100 ? "positive" : "negative"}">${row.attainment >= 100 ? "+" : "−"}${Math.abs(row.attainment - 100).toFixed(1)}%</td><td>${row.attainment.toFixed(1)}%</td><td>${row.progress.toFixed(1)}%</td><td><span class="status-pill ${row.status}">${statusLabel(row.status)}</span></td></tr>
   `).join("");
 }
 
-function renderMonthComparison(data) {
-  const currentIndex = 6;
-  const compareIndex = Math.max(0, Math.min(Number(state.compareMonth) - 1, 5));
-  const margin = data.monthly;
+function updateCompareMonthOptions(currentIndex) {
+  const select = $("#compareMonthFilter");
+  const currentMonth = currentIndex + 1;
+  const months = Array.from({ length: Math.max(currentMonth - 1, 0) }, (_, index) => currentMonth - index - 1);
+  if (!months.includes(Number(state.compareMonth))) state.compareMonth = months[0] || 1;
+  select.innerHTML = months.length
+    ? months.map(month => `<option value="${month}">2025 年 ${month} 月</option>`).join("")
+    : `<option value="1">暂无可比月份</option>`;
+  select.value = String(state.compareMonth);
+  select.disabled = !months.length;
+}
+
+function renderMonthComparison(slice) {
+  if (!slice.records.length) {
+    $("#monthComparisonTable").innerHTML = `<tr><td colspan="6" class="empty-state">当前筛选范围暂无月份对比数据</td></tr>`;
+    return;
+  }
+  const currentIndex = slice.monthIndex;
+  const compareIndex = Math.max(0, Math.min(Number(state.compareMonth) - 1, Math.max(currentIndex - 1, 0)));
+  const margin = slice.data.monthly.map(value => value * slice.scopeShare);
   const revenue = margin.map((value, index) => value * (state.businessType === "wind" ? 2.52 + index * .015 : 2.62 + index * .01));
   const cost = revenue.map((value, index) => value - margin[index]);
   const rows = [
@@ -561,11 +782,11 @@ function bindEvents() {
   });
   $("#assetFilter").addEventListener("change", event => {
     state.assetFilter = event.target.value;
-    if (state.assetFilter !== "distributed") {
-      state.operationsType = state.assetFilter;
-      state.businessType = state.assetFilter;
-      state.typeAsset = state.assetFilter;
-    }
+    state.businessType = state.assetFilter;
+    state.typeAsset = state.assetFilter;
+    if (state.assetFilter !== "distributed") state.operationsType = state.assetFilter;
+    state.detailType = "all";
+    $("#detailTypeFilter").value = "all";
     updateStationFilter();
     renderCurrentRoute();
   });
@@ -576,6 +797,11 @@ function bindEvents() {
 
   $$("[data-business-tab]").forEach(button => button.addEventListener("click", () => {
     state.businessType = button.dataset.businessTab;
+    state.assetFilter = state.businessType;
+    state.station = "all";
+    $("#assetFilter").value = state.assetFilter;
+    updateStationFilter();
+    updateScope();
     renderRevenue();
   }));
   $$("[data-business-metric]").forEach(button => button.addEventListener("click", () => {
