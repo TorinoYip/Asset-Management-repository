@@ -144,7 +144,20 @@ function bindEvents() {
     ["mouseenter", "focus"].forEach(eventName => point.addEventListener(eventName, () => {
       state.mapProvince = point.dataset.mapProvince;
       renderProvincePopover(state.mapProvince);
+      $("#provincePopover").classList.add("is-visible");
+      $("#provincePopover").setAttribute("aria-hidden", "false");
       $$(".province-point").forEach(item => item.classList.toggle("active", item === point));
     }));
+  });
+  $("#provinceMap").addEventListener("mouseleave", () => {
+    $("#provincePopover").classList.remove("is-visible");
+    $("#provincePopover").setAttribute("aria-hidden", "true");
+    $$(".province-point").forEach(point => point.classList.remove("active"));
+  });
+  $("#provinceMap").addEventListener("focusout", event => {
+    if ($("#provinceMap").contains(event.relatedTarget)) return;
+    $("#provincePopover").classList.remove("is-visible");
+    $("#provincePopover").setAttribute("aria-hidden", "true");
+    $$(".province-point").forEach(point => point.classList.remove("active"));
   });
 }

@@ -53,11 +53,10 @@ window.AssetApp.templates.overview = `<section class="route-page" data-route="ov
 
           <section class="panel province-map-panel">
             <div class="panel-head">
-              <div><p class="section-kicker">PROVINCE ASSET FOOTPRINT</p><h2>资产明细 · 省份分布</h2><p class="panel-description">每个点代表一个省份。将鼠标移到省份上，查看省内电站的财务与运营摘要。</p></div>
+              <div><p class="section-kicker">PROVINCE ASSET FOOTPRINT</p><h2>资产明细 · 省份分布</h2><p class="panel-description">每个点代表一个省份。悬停点位后，通过引导线查看省内资产的毛利、目标达成率与状态。</p></div>
               <div class="map-legend"><span><i></i>正常</span><span><i class="watch"></i>存在关注项</span></div>
             </div>
             <div class="province-map-layout">
-              <aside class="province-popover" id="provincePopover" aria-live="polite"></aside>
               <div class="province-map" id="provinceMap" aria-label="中国省份资产分布交互地图">
                 <img class="china-map-base" src="assets/china-map.svg" alt="">
                 <button class="province-point hebei" data-map-province="hebei" aria-label="河北省，4座电站">
@@ -72,6 +71,7 @@ window.AssetApp.templates.overview = `<section class="route-page" data-route="ov
                 <button class="province-point zhejiang" data-map-province="zhejiang" aria-label="浙江省，3座电站">
                   <i></i><b>浙江</b><small>3 站</small>
                 </button>
+                <aside class="province-popover" id="provincePopover" aria-live="polite" aria-hidden="true"></aside>
               </div>
               <p class="map-compliance-note">交互示意底图；正式公开使用前需替换为经审核的标准地图并标注审图号。</p>
             </div>

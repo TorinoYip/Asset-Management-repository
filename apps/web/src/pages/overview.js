@@ -2,13 +2,15 @@ function renderOverview() {
   renderOverviewSummary();
   renderComposition();
   renderAssetRegister();
-  renderProvincePopover(state.mapProvince);
+  if ($("#provincePopover").classList.contains("is-visible")) {
+    renderProvincePopover(state.mapProvince);
+  }
   $$(".province-point").forEach(point => {
     const provinceCount = scopedRecords().filter(record => record.province === point.dataset.mapProvince).length;
     const countLabel = point.querySelector("small");
     if (countLabel) countLabel.textContent = `${provinceCount} 站`;
     point.setAttribute("aria-label", `${provinceMeta[point.dataset.mapProvince].label}，${provinceCount} 座当前范围电站`);
-    point.classList.toggle("active", point.dataset.mapProvince === state.mapProvince);
+    point.classList.toggle("active", $("#provincePopover").classList.contains("is-visible") && point.dataset.mapProvince === state.mapProvince);
     point.classList.toggle("empty", provinceCount === 0);
     point.classList.toggle("filtered", state.province !== "all" && point.dataset.mapProvince === state.province);
     point.classList.toggle("dimmed", state.province !== "all" && point.dataset.mapProvince !== state.province);
@@ -59,9 +61,14 @@ function renderOverviewSummary() {
 }
 
 function renderProvincePopover(provinceKey) {
-  const portfolio = provincePortfolio[provinceKey];
-  let records = scopedRecords().filter(record => record.province === provinceKey);
-  if (!portfolio) return;
+  const anchorPositions = {
+    hebei: [66.4, 43.8],
+    "inner-mongolia": [61.9, 28.8],
+    shandong: [72, 48],
+    zhejiang: [75.5, 68]
+  };
+  const records = scopedRecords().filter(record => record.province === provinceKey);
+  if (!provinceMeta[provinceKey] || !anchorPositions[provinceKey]) return;
   const financialRecords = records.map(financialRecord);
   const data = businessData[state.assetFilter];
   const monthIndex = currentMonthIndex();
@@ -71,40 +78,29 @@ function renderProvincePopover(provinceKey) {
   const targetFactor = data
     ? data.targetMonthly.slice(0, monthIndex + 1).reduce((sum, value) => sum + value, 0) / data.targetMonthly.reduce((sum, value) => sum + value, 0)
     : 0;
-  const margin = financialRecords.reduce((sum, record) => sum + record.margin, 0) * actualFactor;
-  const target = financialRecords.reduce((sum, record) => sum + record.marginTarget, 0) * targetFactor;
-  const attainment = target ? margin / target * 100 : 0;
-  const attention = records.filter(record => record.status !== "good").length;
-  const status = records.length ? (attention ? `${attention} 项关注` : "整体正常") : "当前范围无资产";
-  const operations = records.length ? records.slice(0, 2).map(record => record.ops).join(" / ") : "—";
-  $("#provincePopover").innerHTML = `
+  const [left, top] = anchorPositions[provinceKey];
+  const popover = $("#provincePopover");
+  popover.style.setProperty("--anchor-left", `${left}%`);
+  popover.style.setProperty("--anchor-top", `${top}%`);
+  popover.innerHTML = `
     <div class="popover-heading">
-      <div><span>PROVINCE SUMMARY</span><h3>${portfolio.label}</h3></div>
-      <b class="${status.includes("正常") ? "positive" : "negative"}">${status}</b>
+      <div><span>PROVINCE ASSETS</span><h3>${provinceMeta[provinceKey].label}</h3></div>
+      <b>${records.length} 项资产</b>
     </div>
-    <div class="popover-summary">
-      <div><small>YTD 毛利</small><strong>${formatMoney(margin)}</strong></div>
-      <div><small>目标达成率</small><strong>${records.length ? `${attainment.toFixed(1)}%` : "—"}</strong></div>
-      <div><small>运营摘要</small><strong>${operations}</strong></div>
-    </div>
-    <div class="province-stations table-scroll">
+    <div class="province-stations">
       <table class="province-asset-table">
-        <thead><tr><th>机组资产</th><th>类型</th><th>装机 / 容量</th><th>YTD 毛利</th><th>累计目标达成率</th><th>核心运营指标</th><th>状态</th><th></th></tr></thead>
+        <thead><tr><th>资产</th><th>YTD 毛利</th><th>目标达成率</th><th>状态</th></tr></thead>
         <tbody>${records.length ? financialRecords.map(record => {
           const recordTarget = record.marginTarget * targetFactor;
           const recordActual = record.margin * actualFactor;
           const recordAttainment = recordTarget ? recordActual / recordTarget * 100 : 0;
           return `<tr>
             <td><strong>${record.name}</strong></td>
-            <td><span class="type-pill ${record.type}">${typeLabels[record.type]}</span></td>
-            <td>${record.size}</td>
             <td>${formatMoney(recordActual)}</td>
             <td class="${recordAttainment >= 100 ? "positive" : "negative"}">${recordAttainment.toFixed(1)}%</td>
-            <td>${record.ops}</td>
             <td><span class="status-pill ${record.status}">${statusLabel(record.status)}</span></td>
-            <td><button class="row-action" data-view-station="${record.id}">查看</button></td>
           </tr>`;
-        }).join("") : `<tr><td colspan="8" class="popover-empty">当前筛选范围在该省暂无资产</td></tr>`}</tbody>
+        }).join("") : `<tr><td colspan="4" class="popover-empty">当前筛选范围暂无资产</td></tr>`}</tbody>
       </table>
     </div>
   `;
