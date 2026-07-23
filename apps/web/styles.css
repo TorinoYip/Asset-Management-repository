@@ -217,6 +217,7 @@ input:focus-visible { outline: 3px solid rgba(23, 103, 232, .2); outline-offset:
 .executive-title strong { font-size: clamp(38px, 4.4vw, 60px); line-height: 1; letter-spacing: -.065em; }
 .status-chip { display: inline-block; padding: 6px 9px; border-radius: 999px; font-size: 10px; font-weight: 800; white-space: nowrap; }
 .status-chip.watch { color: #ffd699; background: rgba(210,139,46,.18); border: 1px solid rgba(255,214,153,.24); }
+.status-chip.good { color: #d7f38c; background: rgba(184,227,74,.14); border: 1px solid rgba(215,243,140,.22); }
 .executive-metrics { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.13); }
 .executive-metrics div { padding-right: 18px; }
 .executive-metrics small, .executive-metrics b { display: block; }
@@ -292,6 +293,7 @@ input:focus-visible { outline: 3px solid rgba(23, 103, 232, .2); outline-offset:
 .province-stations b { font-size: 10px; }
 .province-stations small { margin-top: 3px; color: #91a7bd; font-size: 8px; }
 .province-stations em { margin-top: 3px; font-size: 8px; font-style: normal; }
+.popover-empty { margin: 14px 0 0; padding: 18px 12px; border: 1px dashed rgba(255,255,255,.16); border-radius: 9px; color: #91a7bd; font-size: 10px; text-align: center; }
 
 .composition-table tfoot td { padding: 15px 12px; border-top: 2px solid var(--line); background: #f7f9fa; font-weight: 800; }
 .mix-bar { display: flex; width: 105px; height: 8px; margin-left: auto; overflow: hidden; border-radius: 99px; background: #e9eef1; }
