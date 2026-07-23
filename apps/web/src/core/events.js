@@ -96,7 +96,13 @@ function bindEvents() {
   });
 
   $$("[data-type-tab]").forEach(button => button.addEventListener("click", () => {
-    state.typeAsset = button.dataset.typeTab;
+    state.assetFilter = button.dataset.typeTab;
+    state.typeAsset = state.assetFilter;
+    state.station = "all";
+    if (state.assetFilter !== "distributed") state.operationsType = state.assetFilter;
+    $("#assetFilter").value = state.assetFilter;
+    updateStationFilter();
+    updateScope();
     renderTypes();
   }));
   $("#typePeriodFilter").addEventListener("change", event => {
@@ -106,7 +112,12 @@ function bindEvents() {
 
   $$("[data-operations-tab]").forEach(button => button.addEventListener("click", () => {
     state.operationsType = button.dataset.operationsTab;
+    state.assetFilter = state.operationsType;
+    state.typeAsset = state.assetFilter;
     state.station = "all";
+    $("#assetFilter").value = state.assetFilter;
+    updateStationFilter();
+    updateScope();
     renderStations();
   }));
   $("#opsMetricSelect").addEventListener("change", event => {

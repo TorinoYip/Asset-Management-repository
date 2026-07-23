@@ -54,7 +54,7 @@ window.AssetApp.templates.overview = `<section class="route-page" data-route="ov
           <section class="panel province-map-panel">
             <div class="panel-head">
               <div><p class="section-kicker">PROVINCE ASSET FOOTPRINT</p><h2>资产明细 · 省份分布</h2><p class="panel-description">每个点代表一个省份。悬停点位后，通过引导线查看省内资产的毛利、目标达成率与状态。</p></div>
-              <div class="map-legend"><span><i></i>正常</span><span><i class="watch"></i>存在关注项</span></div>
+              <div class="map-legend"><span><i></i>正常</span><span><i class="watch"></i>关注</span><span><i class="risk"></i>异常</span></div>
             </div>
             <div class="province-map-layout">
               <div class="province-map" id="provinceMap" aria-label="中国省份资产分布交互地图">
@@ -65,7 +65,7 @@ window.AssetApp.templates.overview = `<section class="route-page" data-route="ov
                 <button class="province-point inner-mongolia" data-map-province="inner-mongolia" aria-label="内蒙古，4座电站">
                   <i></i><b>内蒙古</b><small>4 站</small>
                 </button>
-                <button class="province-point shandong risk" data-map-province="shandong" aria-label="山东省，3座电站，存在关注项">
+                <button class="province-point shandong" data-map-province="shandong" aria-label="山东省，3座电站">
                   <i></i><b>山东</b><small>3 站</small>
                 </button>
                 <button class="province-point zhejiang" data-map-province="zhejiang" aria-label="浙江省，3座电站">

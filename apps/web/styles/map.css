@@ -48,6 +48,10 @@
   background: var(--bad);
   box-shadow: 0 0 0 6px rgba(197,72,69,.16), 0 5px 14px rgba(16,35,63,.24);
 }
+.province-point.watch > i {
+  background: var(--warn);
+  box-shadow: 0 0 0 6px rgba(196,122,19,.17), 0 5px 14px rgba(16,35,63,.24);
+}
 .province-point b,
 .province-point small {
   position: absolute;

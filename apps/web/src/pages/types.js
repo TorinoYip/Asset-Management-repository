@@ -1,43 +1,77 @@
 function periodLabel(period) {
-  return period === "ytd" ? "YTD" : `2025 年 ${period} 月`;
+  return period === "ytd"
+    ? `YTD · 截至 2025 年 ${currentMonthIndex() + 1} 月`
+    : `2025 年 ${period} 月`;
+}
+
+function updateTypePeriodOptions() {
+  const select = $("#typePeriodFilter");
+  const cutoffMonth = currentMonthIndex() + 1;
+  if (state.typePeriod !== "ytd" && Number(state.typePeriod) > cutoffMonth) {
+    state.typePeriod = "ytd";
+  }
+  select.innerHTML = [
+    `<option value="ytd">YTD · 截至 2025 年 ${cutoffMonth} 月</option>`,
+    ...Array.from({ length: cutoffMonth }, (_, index) => cutoffMonth - index)
+      .map(month => `<option value="${month}">2025 年 ${month} 月</option>`)
+  ].join("");
+  select.value = state.typePeriod;
 }
 
 function periodAdjusted(record) {
-  if (state.typePeriod === "ytd") return { ...record };
-  const month = Number(state.typePeriod);
-  const factor = [.115, .12, .13, .135, .14, .145, .155][month - 1] || .14;
-  const nameFactor = (record.name.charCodeAt(0) % 7 - 3) * .008;
-  const attainmentDelta = ((month + record.name.length) % 5 - 2) * 1.6;
+  const normalized = financialRecord(record);
+  const data = businessData[record.type];
+  if (!data) return { ...record, revenue: 0, cost: 0, margin: 0, attainment: 0 };
+  const actualTotal = data.monthly.reduce((sum, value) => sum + value, 0);
+  const targetTotal = data.targetMonthly.reduce((sum, value) => sum + value, 0);
+  const cutoffIndex = currentMonthIndex();
+  const periodIndex = state.typePeriod === "ytd"
+    ? cutoffIndex
+    : Math.max(0, Math.min(Number(state.typePeriod) - 1, cutoffIndex));
+  const actualFactor = state.typePeriod === "ytd"
+    ? data.monthly.slice(0, periodIndex + 1).reduce((sum, value) => sum + value, 0) / actualTotal
+    : data.monthly[periodIndex] / actualTotal;
+  const targetFactor = state.typePeriod === "ytd"
+    ? data.targetMonthly.slice(0, periodIndex + 1).reduce((sum, value) => sum + value, 0) / targetTotal
+    : data.targetMonthly[periodIndex] / targetTotal;
+  const margin = normalized.margin * actualFactor;
+  const target = normalized.marginTarget * targetFactor;
   return {
     ...record,
-    revenue: record.revenue * (factor + nameFactor),
-    cost: record.cost * (factor + nameFactor * .7),
-    margin: record.margin * (factor + nameFactor * 1.2),
-    attainment: Math.max(78, record.attainment + attainmentDelta)
+    revenue: normalized.revenue * actualFactor,
+    cost: normalized.cost * actualFactor,
+    margin,
+    attainment: target ? margin / target * 100 : 0
   };
 }
 
 function renderTypes() {
-  $$("[data-type-tab]").forEach(button => button.setAttribute("aria-selected", button.dataset.typeTab === state.typeAsset));
-  const records = stationRecords.filter(record => record.type === state.typeAsset).map(periodAdjusted);
-  const label = typeLabels[state.typeAsset];
+  state.typeAsset = state.assetFilter;
+  updateTypePeriodOptions();
+  $$("[data-type-tab]").forEach(button => button.setAttribute("aria-selected", button.dataset.typeTab === state.assetFilter));
+  const records = scopedRecords(state.assetFilter).map(periodAdjusted);
+  const label = typeLabels[state.assetFilter];
   const period = periodLabel(state.typePeriod);
   $("#typeComparisonTitle").textContent = `${label}站点横向比较 · ${period}`;
   $("#typeTableTitle").textContent = `${label}站点经营数据`;
   if (!records.length) {
-    $("#typeSummary").innerHTML = `<article class="empty-state">分布式资产条目将在数据口径确认后接入。</article>`;
+    const scope = state.assetFilter === "distributed" ? "分布式资产条目将在数据口径确认后接入。" : "当前时间、省份和电站条件下暂无资产。";
+    $("#typeSummary").innerHTML = `<article class="empty-state">${scope}</article>`;
     $("#typeComparisonList").innerHTML = `<p class="empty-state">暂无可比较的资产</p>`;
     $("#typeDistribution").innerHTML = `<p class="empty-state">暂无分布数据</p>`;
     $("#typeAnalysisTable").innerHTML = `<tr><td colspan="9" class="empty-state">暂无数据</td></tr>`;
     return;
   }
   const totals = records.reduce((sum, record) => {
-    sum.revenue += record.revenue; sum.cost += record.cost; sum.margin += record.margin; sum.attainment += record.attainment;
+    sum.revenue += record.revenue;
+    sum.cost += record.cost;
+    sum.margin += record.margin;
+    sum.attainment += record.attainment;
     return sum;
   }, { revenue: 0, cost: 0, margin: 0, attainment: 0 });
   const average = totals.attainment / records.length;
   $("#typeSummary").innerHTML = [
-    ["同类资产", `${records.length} 座`, `${label}范围`],
+    ["同类资产", `${records.length} 座`, `${provinceMeta[state.province].label} · ${label}`],
     ["收入", formatMoney(totals.revenue), period],
     ["毛利", formatMoney(totals.margin), period],
     ["平均达成率", `${average.toFixed(1)}%`, average >= 100 ? "高于目标" : "低于目标"]

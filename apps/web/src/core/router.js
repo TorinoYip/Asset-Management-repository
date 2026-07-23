@@ -25,6 +25,7 @@ function renderCurrentRoute() {
   if (state.route === "revenue") renderRevenue();
   if (state.route === "types") renderTypes();
   if (state.route === "stations") renderStations();
+  if (state.route === "mengxi") renderMengxi();
 }
 
 function updateScope() {

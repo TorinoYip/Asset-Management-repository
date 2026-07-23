@@ -6,12 +6,18 @@ function renderOverview() {
     renderProvincePopover(state.mapProvince);
   }
   $$(".province-point").forEach(point => {
-    const provinceCount = scopedRecords().filter(record => record.province === point.dataset.mapProvince).length;
+    const provinceRecords = scopedRecords().filter(record => record.province === point.dataset.mapProvince);
+    const provinceCount = provinceRecords.length;
+    const hasAbnormal = provinceRecords.some(record => record.status === "bad");
+    const hasAttention = provinceRecords.some(record => record.status === "watch");
     const countLabel = point.querySelector("small");
     if (countLabel) countLabel.textContent = `${provinceCount} 站`;
-    point.setAttribute("aria-label", `${provinceMeta[point.dataset.mapProvince].label}，${provinceCount} 座当前范围电站`);
+    const statusText = hasAbnormal ? "存在异常项" : hasAttention ? "存在关注项" : provinceCount ? "整体正常" : "当前范围无资产";
+    point.setAttribute("aria-label", `${provinceMeta[point.dataset.mapProvince].label}，${provinceCount} 座当前范围电站，${statusText}`);
     point.classList.toggle("active", $("#provincePopover").classList.contains("is-visible") && point.dataset.mapProvince === state.mapProvince);
     point.classList.toggle("empty", provinceCount === 0);
+    point.classList.toggle("watch", !hasAbnormal && hasAttention);
+    point.classList.toggle("risk", hasAbnormal);
     point.classList.toggle("filtered", state.province !== "all" && point.dataset.mapProvince === state.province);
     point.classList.toggle("dimmed", state.province !== "all" && point.dataset.mapProvince !== state.province);
   });
