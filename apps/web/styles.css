@@ -264,6 +264,7 @@ input:focus-visible { outline: 3px solid rgba(23, 103, 232, .2); outline-offset:
 .province-point b { font-size: 12px; }
 .province-point small { margin-top: 3px; color: var(--muted); font-size: 9px; }
 .province-point:hover, .province-point:focus, .province-point.active { z-index: 2; transform: translateY(-4px) scale(1.04); border-color: #8fb5f3; box-shadow: 0 14px 32px rgba(16,35,63,.16); }
+.province-point.empty { opacity: .34; }
 .province-point.dimmed { opacity: .26; }
 .province-point.filtered { box-shadow: 0 0 0 3px rgba(23,103,232,.2), 0 14px 32px rgba(16,35,63,.14); }
 .province-point.hebei { left: 51%; top: 23%; }
