@@ -11,8 +11,6 @@ const state = {
   compareMonth: 6,
   typeAsset: "wind",
   typePeriod: "ytd",
-  detailType: "all",
-  detailSearch: "",
   tableProvince: "all",
   tableStation: "all",
   mapProvince: "hebei",

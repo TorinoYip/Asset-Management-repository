@@ -91,15 +91,3 @@ function assetScale(records) {
 function formatCapacity(mw) {
   return mw >= 1000 ? `${(mw / 1000).toFixed(2)} GW` : `${mw} MW`;
 }
-
-function filteredStations({ respectDetail = false } = {}) {
-  let records = scopedRecords();
-  if (respectDetail) {
-    if (state.detailType !== "all") records = records.filter(record => record.type === state.detailType);
-    if (state.detailSearch) {
-      const query = state.detailSearch.trim().toLowerCase();
-      records = records.filter(record => record.name.toLowerCase().includes(query));
-    }
-  }
-  return records;
-}

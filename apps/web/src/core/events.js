@@ -67,8 +67,6 @@ function bindEvents() {
     state.businessType = state.assetFilter;
     state.typeAsset = state.assetFilter;
     if (state.assetFilter !== "distributed") state.operationsType = state.assetFilter;
-    state.detailType = "all";
-    $("#detailTypeFilter").value = "all";
     updateStationFilter();
     renderCurrentRoute();
   });
@@ -126,14 +124,6 @@ function bindEvents() {
   });
   $("#focusAnomaly").addEventListener("click", () => showToast("已定位当前异常资产；日度诊断将在后续版本接入。"));
 
-  $("#detailTypeFilter").addEventListener("change", event => {
-    state.detailType = event.target.value;
-    renderAssetRegister();
-  });
-  $("#assetSearch").addEventListener("input", event => {
-    state.detailSearch = event.target.value;
-    renderAssetRegister();
-  });
   $("#assetRegisterTable").addEventListener("change", event => {
     const checkbox = event.target.closest("[data-select-asset]");
     if (!checkbox) return;
@@ -142,7 +132,7 @@ function bindEvents() {
     renderAssetRegister();
   });
   $("#selectAllAssets").addEventListener("change", event => {
-    const visible = assetTableRecords({ respectDetail: true });
+    const visible = assetTableRecords();
     visible.forEach(record => event.target.checked ? state.selectedAssets.add(record.id) : state.selectedAssets.delete(record.id));
     renderAssetRegister();
   });

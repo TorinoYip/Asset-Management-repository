@@ -108,18 +108,6 @@ window.AssetApp.templates.overview = `<section class="route-page" data-route="ov
           <section class="panel asset-detail-panel">
             <div class="panel-head asset-detail-head">
               <div><p class="section-kicker">ASSET REGISTER</p><h2>资产明细</h2></div>
-              <div class="asset-table-tools">
-                <label>类型
-                  <select id="detailTypeFilter">
-                    <option value="all">全部类型</option>
-                    <option value="wind">风电</option>
-                    <option value="storage">储能</option>
-                  </select>
-                </label>
-                <label>搜索
-                  <input id="assetSearch" type="search" placeholder="输入电站名称">
-                </label>
-              </div>
             </div>
             <div class="selection-summary"><span><b id="selectedAssetCount">0</b> 个条目已选择</span><button id="clearAssetSelection">清除选择</button></div>
             <div class="table-scroll">

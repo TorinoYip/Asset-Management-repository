@@ -59,20 +59,13 @@ function updateAssetTableFilters() {
   stationSelect.value = state.tableStation;
 }
 
-function assetTableRecords({ respectDetail = false } = {}) {
+function assetTableRecords() {
   let records = assetTableBaseRecords();
   if (state.tableProvince !== "all") {
     records = records.filter(record => record.province === state.tableProvince);
   }
   if (state.tableStation !== "all") {
     records = records.filter(record => record.id === state.tableStation);
-  }
-  if (respectDetail) {
-    if (state.detailType !== "all") records = records.filter(record => record.type === state.detailType);
-    if (state.detailSearch) {
-      const query = state.detailSearch.trim().toLowerCase();
-      records = records.filter(record => record.name.toLowerCase().includes(query));
-    }
   }
   return records;
 }
@@ -192,7 +185,7 @@ function renderComposition() {
 function renderAssetRegister() {
   const slice = financialSlice();
   const financialMap = new Map(slice.records.map(record => [record.id, record]));
-  const records = assetTableRecords({ respectDetail: true }).map(record => financialMap.get(record.id) || financialRecord(record));
+  const records = assetTableRecords().map(record => financialMap.get(record.id) || financialRecord(record));
   const tbody = $("#assetRegisterTable");
   if (!records.length) {
     tbody.innerHTML = `<tr><td colspan="10" class="empty-state">当前条件下暂无电站</td></tr>`;
