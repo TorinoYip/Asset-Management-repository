@@ -43,7 +43,7 @@ window.AssetApp.templates.revenue = `<section class="route-page" data-route="rev
 
           <article class="panel monthly-finance-panel">
             <div class="panel-head">
-              <div><p class="section-kicker">MONTHLY FINANCIAL COMPARISON</p><h2>可选月份财务对比</h2><p class="panel-description">通过下拉框选择任一月份，以表格方式对比当前月和所选月份。</p></div>
+              <div><p class="section-kicker">MONTHLY FINANCIAL COMPARISON</p><h2>可选月份财务对比</h2></div>
               <label class="metric-select">对比月份
                 <select id="compareMonthFilter">
                   <option value="6">2025 年 6 月</option>

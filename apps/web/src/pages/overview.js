@@ -1,4 +1,5 @@
 function renderOverview() {
+  updateAssetTableFilters();
   renderOverviewSummary();
   renderComposition();
   renderAssetRegister();
@@ -21,6 +22,59 @@ function renderOverview() {
     point.classList.toggle("filtered", state.province !== "all" && point.dataset.mapProvince === state.province);
     point.classList.toggle("dimmed", state.province !== "all" && point.dataset.mapProvince !== state.province);
   });
+}
+
+function assetTableBaseRecords() {
+  if (state.assetFilter === "distributed") return [];
+  return stationRecords.filter(record =>
+    record.type === state.assetFilter &&
+    (state.province === "all" || record.province === state.province)
+  );
+}
+
+function updateAssetTableFilters() {
+  const provinceSelect = $("#tableProvinceFilter");
+  const stationSelect = $("#tableStationFilter");
+  const baseRecords = assetTableBaseRecords();
+  const provinceKeys = [...new Set(baseRecords.map(record => record.province))];
+
+  if (state.tableProvince !== "all" && !provinceKeys.includes(state.tableProvince)) {
+    state.tableProvince = "all";
+    state.tableStation = "all";
+  }
+  provinceSelect.innerHTML = `<option value="all">全部省份</option>${provinceKeys
+    .map(province => `<option value="${province}">${provinceMeta[province].label}</option>`)
+    .join("")}`;
+  provinceSelect.value = state.tableProvince;
+
+  const stationOptions = baseRecords.filter(record =>
+    state.tableProvince === "all" || record.province === state.tableProvince
+  );
+  if (!stationOptions.some(record => record.id === state.tableStation)) {
+    state.tableStation = "all";
+  }
+  stationSelect.innerHTML = `<option value="all">全部电站</option>${stationOptions
+    .map(record => `<option value="${record.id}">${record.name}</option>`)
+    .join("")}`;
+  stationSelect.value = state.tableStation;
+}
+
+function assetTableRecords({ respectDetail = false } = {}) {
+  let records = assetTableBaseRecords();
+  if (state.tableProvince !== "all") {
+    records = records.filter(record => record.province === state.tableProvince);
+  }
+  if (state.tableStation !== "all") {
+    records = records.filter(record => record.id === state.tableStation);
+  }
+  if (respectDetail) {
+    if (state.detailType !== "all") records = records.filter(record => record.type === state.detailType);
+    if (state.detailSearch) {
+      const query = state.detailSearch.trim().toLowerCase();
+      records = records.filter(record => record.name.toLowerCase().includes(query));
+    }
+  }
+  return records;
 }
 
 function renderOverviewSummary() {
@@ -113,7 +167,7 @@ function renderProvincePopover(provinceKey) {
 }
 
 function renderComposition() {
-  const records = scopedRecords();
+  const records = assetTableRecords();
   const provinceKeys = Object.keys(provinceMeta).filter(key => key !== "all");
   const rows = provinceKeys.map(province => {
     const provinceRecords = records.filter(record => record.province === province);
@@ -138,7 +192,7 @@ function renderComposition() {
 function renderAssetRegister() {
   const slice = financialSlice();
   const financialMap = new Map(slice.records.map(record => [record.id, record]));
-  const records = filteredStations({ respectDetail: true }).map(record => financialMap.get(record.id) || financialRecord(record));
+  const records = assetTableRecords({ respectDetail: true }).map(record => financialMap.get(record.id) || financialRecord(record));
   const tbody = $("#assetRegisterTable");
   if (!records.length) {
     tbody.innerHTML = `<tr><td colspan="10" class="empty-state">当前条件下暂无电站</td></tr>`;

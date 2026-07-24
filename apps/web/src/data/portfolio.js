@@ -13,6 +13,8 @@ const state = {
   typePeriod: "ytd",
   detailType: "all",
   detailSearch: "",
+  tableProvince: "all",
+  tableStation: "all",
   mapProvince: "hebei",
   selectedAssets: new Set()
 };

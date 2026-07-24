@@ -8,6 +8,12 @@ function showToast(message) {
 
 function setRoute(route, updateHash = true) {
   state.route = routes.includes(route) ? route : "overview";
+  const isOverview = state.route === "overview";
+  $("#stationFilterWrap").hidden = isOverview;
+  if (isOverview && state.station !== "all") {
+    state.station = "all";
+    updateStationFilter();
+  }
   $$(".route-page").forEach(page => {
     page.hidden = page.dataset.route !== state.route;
   });

@@ -53,7 +53,7 @@ window.AssetApp.templates.overview = `<section class="route-page" data-route="ov
 
           <section class="panel province-map-panel">
             <div class="panel-head">
-              <div><p class="section-kicker">PROVINCE ASSET FOOTPRINT</p><h2>资产明细 · 省份分布</h2><p class="panel-description">每个点代表一个省份。悬停点位后，通过引导线查看省内资产的毛利、目标达成率与状态。</p></div>
+              <div><p class="section-kicker">PROVINCE ASSET FOOTPRINT</p><h2>资产明细 · 省份分布</h2></div>
               <div class="map-legend"><span><i></i>正常</span><span><i class="watch"></i>关注</span><span><i class="risk"></i>异常</span></div>
             </div>
             <div class="province-map-layout">
@@ -77,9 +77,23 @@ window.AssetApp.templates.overview = `<section class="route-page" data-route="ov
             </div>
           </section>
 
+          <div class="asset-table-scope-bar" aria-label="资产表格筛选">
+            <span>资产表筛选</span>
+            <label>省份
+              <select id="tableProvinceFilter">
+                <option value="all">全部省份</option>
+              </select>
+            </label>
+            <label>电站
+              <select id="tableStationFilter">
+                <option value="all">全部电站</option>
+              </select>
+            </label>
+          </div>
+
           <section class="panel portfolio-table-panel">
             <div class="panel-head">
-              <div><p class="section-kicker">ASSET COMPOSITION</p><h2>资产构成</h2><p class="panel-description">从省份、资产类型与规模三个维度展示组合结构，对应“我们拥有什么”的二级披露。</p></div>
+              <div><p class="section-kicker">ASSET COMPOSITION</p><h2>资产构成</h2></div>
               <span class="table-note">口径：截至当前统计期的在运资产</span>
             </div>
             <div class="table-scroll">
@@ -93,7 +107,7 @@ window.AssetApp.templates.overview = `<section class="route-page" data-route="ov
 
           <section class="panel asset-detail-panel">
             <div class="panel-head asset-detail-head">
-              <div><p class="section-kicker">ASSET REGISTER</p><h2>资产明细</h2><p class="panel-description">横表用于筛选和选择具体电站，后续可由“查看详情”进入站点页面。</p></div>
+              <div><p class="section-kicker">ASSET REGISTER</p><h2>资产明细</h2></div>
               <div class="asset-table-tools">
                 <label>类型
                   <select id="detailTypeFilter">

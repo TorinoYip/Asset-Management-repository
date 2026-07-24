@@ -142,12 +142,24 @@ function bindEvents() {
     renderAssetRegister();
   });
   $("#selectAllAssets").addEventListener("change", event => {
-    const visible = filteredStations({ respectDetail: true });
+    const visible = assetTableRecords({ respectDetail: true });
     visible.forEach(record => event.target.checked ? state.selectedAssets.add(record.id) : state.selectedAssets.delete(record.id));
     renderAssetRegister();
   });
   $("#clearAssetSelection").addEventListener("click", () => {
     state.selectedAssets.clear();
+    renderAssetRegister();
+  });
+  $("#tableProvinceFilter").addEventListener("change", event => {
+    state.tableProvince = event.target.value;
+    state.tableStation = "all";
+    updateAssetTableFilters();
+    renderComposition();
+    renderAssetRegister();
+  });
+  $("#tableStationFilter").addEventListener("change", event => {
+    state.tableStation = event.target.value;
+    renderComposition();
     renderAssetRegister();
   });
 

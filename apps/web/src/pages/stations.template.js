@@ -52,7 +52,7 @@ window.AssetApp.templates.stations = `<section class="route-page" data-route="st
           </section>
 
           <article class="panel settlement-panel">
-            <div class="panel-head"><div><p class="section-kicker">FINANCIAL BREAKDOWN</p><h2>结算单拆解</h2><p class="panel-description">用同一张明细表承接财务结果与运营贡献，示例口径以后续实际结算字段为准。</p></div><span class="table-note">单位：万元</span></div>
+            <div class="panel-head"><div><p class="section-kicker">FINANCIAL BREAKDOWN</p><h2>结算单拆解</h2></div><span class="table-note">单位：万元</span></div>
             <div class="table-scroll">
               <table><thead><tr><th>结算项目</th><th>本月实际</th><th>本月目标</th><th>差异</th><th>YTD 实际</th><th>YTD 目标</th><th>说明</th></tr></thead><tbody id="settlementTable"></tbody></table>
             </div>
