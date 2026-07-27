@@ -43,6 +43,8 @@
 - [Asset Intellgent 网页源文件](apps/web/index.html)
 - [V2 信息架构](docs/product/information-architecture.md)
 - [V2 页面与交互规范](docs/product/v2-page-specification.md)
+- [看板数据 I/O 与数据源属性清单](docs/data/dashboard-data-io-v0.1.md)
+- [字段级数据源对齐清单（CSV）](docs/data/dashboard-source-field-inventory-v0.1.csv)
 - [指标字典](docs/data/metric-dictionary.md)
 - [Draw.io 可编辑源稿](design/drawio/asset-dashboard-v2-navigation.drawio)
 - [前端目标开发架构图](design/drawio/web-vite-module-architecture.drawio)
