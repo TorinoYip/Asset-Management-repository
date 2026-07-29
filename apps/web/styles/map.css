@@ -1,5 +1,17 @@
 /* Province revenue intensity and station asset map */
 .province-map-panel .panel-head { align-items: center; }
+.fullscreen-map-link {
+  padding: 7px 11px;
+  border: 1px solid #cdd9e5;
+  border-radius: 8px;
+  color: #1767e8;
+  background: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.fullscreen-map-link:hover { border-color: #8fb5f3; background: #f5f9ff; }
 .province-map-layout { display: block; margin-top: 10px; }
 .province-map {
   --map-top-space: 116px;
