@@ -1,0 +1,88 @@
+html,
+.fullscreen-map-page { width: 100%; min-width: 0; min-height: 100%; }
+.fullscreen-map-page {
+  overflow: hidden;
+  background: #eef4f6;
+}
+.fullscreen-map-header {
+  position: relative;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  min-height: 58px;
+  padding: 8px 24px;
+  border-bottom: 1px solid rgba(16,35,63,.1);
+  background: rgba(255,255,255,.94);
+  box-shadow: 0 8px 24px rgba(16,35,63,.06);
+  backdrop-filter: blur(12px);
+}
+.fullscreen-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: max-content;
+  color: var(--ink);
+  text-decoration: none;
+}
+.fullscreen-brand .brand-mark { width: 28px; height: 28px; border-color: rgba(16,35,63,.18); }
+.fullscreen-brand strong { display: block; font-size: 14px; }
+.fullscreen-brand small { display: block; margin-top: 2px; color: var(--muted); font-size: 7px; letter-spacing: .16em; }
+.fullscreen-map-title { text-align: center; }
+.fullscreen-map-title span { color: var(--blue); font-size: 8px; font-weight: 900; letter-spacing: .14em; }
+.fullscreen-map-title h1 { margin: 2px 0 0; font-size: 17px; letter-spacing: -.03em; }
+.fullscreen-map-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+}
+.fullscreen-map-actions label {
+  color: var(--muted);
+  font-size: 8px;
+  font-weight: 800;
+}
+.fullscreen-map-actions select {
+  margin-left: 6px;
+  padding: 6px 24px 6px 9px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  color: var(--ink);
+  background: #fff;
+  font-size: 10px;
+  font-weight: 700;
+}
+.fullscreen-map-actions a,
+.fullscreen-map-link {
+  padding: 7px 11px;
+  border: 1px solid #cdd9e5;
+  border-radius: 8px;
+  color: #1767e8;
+  background: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.fullscreen-map-actions a:hover,
+.fullscreen-map-link:hover { border-color: #8fb5f3; background: #f5f9ff; }
+.fullscreen-map-stage {
+  width: 100vw;
+  height: calc(100vh - 58px);
+  min-height: 620px;
+  padding: 0 18px 12px;
+}
+.fullscreen-map-page .province-map {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+}
+.fullscreen-map-page .map-revenue-legend { left: 16px; }
+.fullscreen-map-page .map-control-panel { right: 16px; }
+
+@media (max-width: 900px) {
+  .fullscreen-map-header { grid-template-columns: auto 1fr; }
+  .fullscreen-map-title { display: none; }
+  .fullscreen-map-actions label { display: none; }
+  .fullscreen-map-stage { min-width: 820px; overflow: auto; }
+}
