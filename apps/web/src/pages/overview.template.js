@@ -57,9 +57,6 @@ window.AssetApp.templates.overview = `<section class="route-page" data-route="ov
             </div>
             <div class="province-map-layout">
               <div class="province-map" id="provinceMap" aria-label="中国省份资产分布交互地图">
-                <object class="china-map-base" id="chinaMapObject" type="image/svg+xml" data="assets/china-map.svg" tabindex="-1" aria-hidden="true">
-                  <img src="assets/china-map.svg" alt="">
-                </object>
                 <aside class="map-overlay map-revenue-legend" id="provinceRevenueLegend" aria-label="省份单位兆瓦收入图例"></aside>
                 <aside class="map-overlay map-control-panel" aria-label="地图图层控制">
                   <div class="map-control-heading"><strong>地图图层</strong><span id="mapPeriodLabel">截至 7 月</span></div>
@@ -79,13 +76,17 @@ window.AssetApp.templates.overview = `<section class="route-page" data-route="ov
                     <label><input type="checkbox" id="mapMarginToggle" checked><span>毛利达标图层</span></label>
                   </div>
                   <div class="map-status-legend" id="mapStatusLegend">
-                    <span><i class="good"></i>≥ 100%</span>
-                    <span><i class="watch"></i>95–100%</span>
-                    <span><i class="bad"></i>&lt; 95%</span>
+                    <span><i class="good"></i>达标 ≥ 100%</span>
+                    <span><i class="bad"></i>未达标 &lt; 100%</span>
                   </div>
                 </aside>
-                <div class="station-map-layer" id="stationMapLayer" aria-label="电站点位"></div>
-                <aside class="station-popover" id="stationPopover" aria-live="polite" aria-hidden="true"></aside>
+                <div class="map-canvas">
+                  <object class="china-map-base" id="chinaMapObject" type="image/svg+xml" data="assets/china-map.svg" tabindex="-1" aria-hidden="true">
+                    <img src="assets/china-map.svg" alt="">
+                  </object>
+                  <div class="station-map-layer" id="stationMapLayer" aria-label="电站点位"></div>
+                  <aside class="station-popover" id="stationPopover" aria-live="polite" aria-hidden="true"></aside>
+                </div>
               </div>
             </div>
           </section>
