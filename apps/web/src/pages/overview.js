@@ -95,7 +95,7 @@ function renderOverviewSummary() {
   $("#assetStatusDots").innerHTML = records.map(record => `<i class="${record.status === "good" ? "" : "risk"}" title="${record.name} · ${statusLabel(record.status)}"></i>`).join("");
 }
 
-const mapHeatColors = ["#ffffcc", "#fed976", "#fd8d3c", "#f03b20", "#bd0026"];
+const mapHeatColors = ["#e0f3f8", "#abd9e9", "#74add1", "#4575b4", "#313695"];
 const mapEmptyColor = "#dce9e4";
 const mapProvinceNames = {
   hebei: "河北",
@@ -216,14 +216,14 @@ function projectStationCoordinate(record) {
   if (!Number.isFinite(record.longitude) || !Number.isFinite(record.latitude)) {
     return { left: record.mapX, top: record.mapY };
   }
-  const minLongitude = 73.5;
-  const maxLongitude = 135.2;
-  const minLatitude = 18;
-  const maxLatitude = 53.6;
-  const mercator = latitude => Math.log(Math.tan(Math.PI / 4 + latitude * Math.PI / 360));
-  const left = (record.longitude - minLongitude) / (maxLongitude - minLongitude) * 98.8;
-  const top = (mercator(maxLatitude) - mercator(record.latitude)) /
-    (mercator(maxLatitude) - mercator(minLatitude)) * 98.5;
+  /*
+   * 当前 china-map.svg 使用等距经纬度线性投影。以下系数由该 SVG
+   * 与原始省级 GeoJSON 的边界坐标拟合得到，避免使用 Mercator 导致跨省偏移。
+   */
+  const svgX = 15.35918804 * record.longitude - 1121.18747389;
+  const svgY = -18.90170247 * record.latitude + 1020.74224766;
+  const left = svgX / 960 * 100;
+  const top = svgY / 690 * 100;
   return {
     left: Math.max(1, Math.min(99, left)),
     top: Math.max(1, Math.min(99, top))
