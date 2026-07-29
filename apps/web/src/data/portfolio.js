@@ -27,7 +27,16 @@ const provinceMeta = {
   hebei: { label: "河北省", factor: .31 },
   "inner-mongolia": { label: "内蒙古", factor: .28 },
   shandong: { label: "山东省", factor: .22 },
-  zhejiang: { label: "浙江省", factor: .19 }
+  zhejiang: { label: "浙江省", factor: .19 },
+  guangxi: { label: "广西", factor: 0 },
+  henan: { label: "河南省", factor: 0 },
+  anhui: { label: "安徽省", factor: 0 },
+  gansu: { label: "甘肃省", factor: 0 },
+  heilongjiang: { label: "黑龙江省", factor: 0 },
+  jiangsu: { label: "江苏省", factor: 0 },
+  qinghai: { label: "青海省", factor: 0 },
+  ningxia: { label: "宁夏", factor: 0 },
+  yunnan: { label: "云南省", factor: 0 }
 };
 
 const typeLabels = {
@@ -42,7 +51,7 @@ const stationRecords = [
   { id: "baiyunxia-wind", name: "白云峡风电场", type: "wind", province: "hebei", ownership: "owned", mapX: 67.2, mapY: 43.6, size: "100 MW", capacity: 100, turbines: 17, revenue: .55, cost: .34, margin: .21, attainment: 98.8, ops: "可利用率 97.3%", status: "good" },
   { id: "fengning-storage", name: "丰宁储能电站", type: "storage", province: "hebei", ownership: "owned", mapX: 66.2, mapY: 43.2, size: "100 MW / 200 MWh", power: 100, energy: 200, revenue: .75, cost: .43, margin: .32, attainment: 109.7, ops: "综合效率 88.6%", status: "good" },
 
-  { id: "wulan-wind", name: "乌兰风电场", type: "wind", province: "inner-mongolia", ownership: "owned", mapX: 60.2, mapY: 27.1, size: "180 MW", capacity: 180, turbines: 29, revenue: .92, cost: .57, margin: .35, attainment: 103.2, ops: "可利用率 97.6%", status: "good" },
+  { id: "wulan-wind", name: "乌兰风电场", type: "wind", province: "inner-mongolia", ownership: "owned", longitude: 122.05, latitude: 46.08, size: "180 MW", capacity: 180, turbines: 29, revenue: .92, cost: .57, margin: .35, attainment: 103.2, ops: "可利用率 97.6%", status: "good" },
   { id: "damao-wind", name: "达茂风电场", type: "wind", province: "inner-mongolia", ownership: "managed", mapX: 62.2, mapY: 29.1, size: "160 MW", capacity: 160, turbines: 25, revenue: .83, cost: .53, margin: .30, attainment: 99.1, ops: "可利用率 96.9%", status: "good" },
   { id: "ordos-storage", name: "鄂尔多斯储能电站", type: "storage", province: "inner-mongolia", ownership: "owned", mapX: 59.2, mapY: 31.0, size: "80 MW / 160 MWh", power: 80, energy: 160, revenue: .61, cost: .36, margin: .25, attainment: 103.6, ops: "综合效率 87.9%", status: "good" },
   { id: "mengxi-storage", name: "蒙西调频储能电站", type: "storage", province: "inner-mongolia", ownership: "managed", mapX: 63.3, mapY: 27.1, size: "60 MW / 120 MWh", power: 60, energy: 120, revenue: .46, cost: .29, margin: .17, attainment: 97.2, ops: "综合效率 86.7%", status: "watch" },
@@ -55,6 +64,37 @@ const stationRecords = [
   { id: "haining-wind", name: "海宁风电场", type: "wind", province: "zhejiang", ownership: "managed", mapX: 74.8, mapY: 67.8, size: "120 MW", capacity: 120, turbines: 18, revenue: .63, cost: .38, margin: .25, attainment: 100.4, ops: "可利用率 97.1%", status: "good" },
   { id: "shaoxing-storage", name: "绍兴储能电站", type: "storage", province: "zhejiang", ownership: "managed", mapX: 75.8, mapY: 69.2, size: "100 MW / 200 MWh", power: 100, energy: 200, revenue: .71, cost: .43, margin: .28, attainment: 101.8, ops: "综合效率 87.6%", status: "good" }
 ];
+
+/*
+ * 地图专用扩展示例。该数据集只参与省份收入分档、点位和悬浮卡片，
+ * 不进入经营、运营、资产构成与资产明细页面。
+ */
+const additionalMapStations = [
+  { id: "qingshuihe-wind", name: "清水河风电场", type: "wind", province: "inner-mongolia", ownership: "owned", longitude: 111.65, latitude: 39.92, size: "120 MW", capacity: 120, turbines: 20, revenue: .66, cost: .40, margin: .26, attainment: 103.5, ops: "可利用率 97.4%", status: "good", mapOnly: true },
+  { id: "lingshan-wind", name: "灵山风电场", type: "wind", province: "guangxi", ownership: "owned", longitude: 109.29, latitude: 22.42, size: "100 MW", capacity: 100, turbines: 17, revenue: .60, cost: .39, margin: .21, attainment: 101.8, ops: "可利用率 96.9%", status: "good", mapOnly: true },
+  { id: "sanmenxia-wind", name: "三门峡风电场", type: "wind", province: "henan", ownership: "owned", longitude: 111.20, latitude: 34.78, size: "150 MW", capacity: 150, turbines: 25, revenue: .78, cost: .51, margin: .27, attainment: 98.4, ops: "可利用率 96.5%", status: "watch", mapOnly: true },
+  { id: "anhui-binzhou-wind", name: "安徽滨州风电场", type: "wind", province: "anhui", ownership: "owned", longitude: 117.38, latitude: 33.05, size: "100 MW", capacity: 100, turbines: 17, revenue: .57, cost: .36, margin: .21, attainment: 102.2, ops: "可利用率 97.0%", status: "good", mapOnly: true },
+  { id: "minqin-wind", name: "民勤风电场", type: "wind", province: "gansu", ownership: "owned", longitude: 103.09, latitude: 38.62, size: "200 MW", capacity: 200, turbines: 32, revenue: .96, cost: .64, margin: .32, attainment: 96.8, ops: "可利用率 96.1%", status: "watch", mapOnly: true },
+  { id: "puyang-wind", name: "濮阳风电场", type: "wind", province: "henan", ownership: "managed", longitude: 115.03, latitude: 35.76, size: "120 MW", capacity: 120, turbines: 20, revenue: .65, cost: .43, margin: .22, attainment: 101.1, ops: "可利用率 97.1%", status: "good", mapOnly: true },
+  { id: "bameng-wind", name: "巴盟风电场", type: "wind", province: "inner-mongolia", ownership: "owned", longitude: 107.39, latitude: 40.75, size: "180 MW", capacity: 180, turbines: 29, revenue: .89, cost: .58, margin: .31, attainment: 100.7, ops: "可利用率 97.0%", status: "good", mapOnly: true },
+  { id: "siziwang-wind", name: "四子王风电场", type: "wind", province: "inner-mongolia", ownership: "owned", longitude: 111.71, latitude: 41.53, size: "160 MW", capacity: 160, turbines: 26, revenue: .76, cost: .51, margin: .25, attainment: 94.6, ops: "可利用率 95.7%", status: "bad", mapOnly: true },
+  { id: "ximeng-wind", name: "锡盟风电场", type: "wind", province: "inner-mongolia", ownership: "owned", longitude: 116.05, latitude: 43.95, size: "220 MW", capacity: 220, turbines: 35, revenue: 1.08, cost: .70, margin: .38, attainment: 104.3, ops: "可利用率 97.8%", status: "good", mapOnly: true },
+  { id: "wuhai-wind", name: "乌海风电场", type: "wind", province: "inner-mongolia", ownership: "owned", longitude: 106.82, latitude: 39.66, size: "100 MW", capacity: 100, turbines: 17, revenue: .48, cost: .33, margin: .15, attainment: 92.7, ops: "可利用率 95.2%", status: "bad", mapOnly: true },
+  { id: "gushanliang-wind", name: "谷山梁风电场", type: "wind", province: "inner-mongolia", ownership: "managed", longitude: 109.62, latitude: 39.08, size: "150 MW", capacity: 150, turbines: 24, revenue: .73, cost: .48, margin: .25, attainment: 99.3, ops: "可利用率 96.6%", status: "watch", mapOnly: true },
+  { id: "wuzhongqi-storage", name: "乌中旗储能电站", type: "storage", province: "inner-mongolia", ownership: "owned", longitude: 108.52, latitude: 41.57, size: "100 MW / 200 MWh", power: 100, energy: 200, revenue: .73, cost: .45, margin: .28, attainment: 102.4, ops: "综合效率 88.1%", status: "good", mapOnly: true },
+  { id: "anhui-jingtai-storage", name: "安徽景泰储能电站", type: "storage", province: "anhui", ownership: "owned", longitude: 117.23, latitude: 31.82, size: "80 MW / 160 MWh", power: 80, energy: 160, revenue: .55, cost: .36, margin: .19, attainment: 97.8, ops: "综合效率 87.3%", status: "watch", mapOnly: true },
+  { id: "longjiang-wind", name: "龙江风电场", type: "wind", province: "heilongjiang", ownership: "owned", longitude: 123.20, latitude: 47.34, size: "200 MW", capacity: 200, turbines: 32, revenue: 1.02, cost: .65, margin: .37, attainment: 103.8, ops: "可利用率 97.7%", status: "good", mapOnly: true },
+  { id: "rongshui-wind", name: "融水风配储项目·风电", type: "wind", province: "guangxi", ownership: "owned", longitude: 109.22, latitude: 25.09, size: "120 MW", capacity: 120, turbines: 20, revenue: .67, cost: .43, margin: .24, attainment: 101.2, ops: "可利用率 97.0%", status: "good", mapOnly: true },
+  { id: "rongshui-storage", name: "融水风配储项目·储能", type: "storage", province: "guangxi", ownership: "owned", longitude: 109.34, latitude: 25.00, size: "40 MW / 80 MWh", power: 40, energy: 80, revenue: .30, cost: .19, margin: .11, attainment: 100.5, ops: "综合效率 87.8%", status: "good", mapOnly: true },
+  { id: "guiping-wind", name: "桂平风电场", type: "wind", province: "guangxi", ownership: "owned", longitude: 110.08, latitude: 23.39, size: "100 MW", capacity: 100, turbines: 17, revenue: .56, cost: .37, margin: .19, attainment: 95.9, ops: "可利用率 96.0%", status: "watch", mapOnly: true },
+  { id: "jiangyin-wind", name: "江阴风电场", type: "wind", province: "jiangsu", ownership: "owned", longitude: 120.28, latitude: 31.91, size: "100 MW", capacity: 100, turbines: 16, revenue: .63, cost: .39, margin: .24, attainment: 104.6, ops: "可利用率 97.9%", status: "good", mapOnly: true },
+  { id: "sheyang-wind", name: "射阳风电场", type: "wind", province: "jiangsu", ownership: "owned", longitude: 120.25, latitude: 33.77, size: "200 MW", capacity: 200, turbines: 32, revenue: 1.18, cost: .75, margin: .43, attainment: 102.7, ops: "可利用率 97.5%", status: "good", mapOnly: true },
+  { id: "gonghe-storage", name: "共和储能电站", type: "storage", province: "qinghai", ownership: "owned", longitude: 100.62, latitude: 36.28, size: "100 MW / 200 MWh", power: 100, energy: 200, revenue: .69, cost: .43, margin: .26, attainment: 101.5, ops: "综合效率 88.0%", status: "good", mapOnly: true },
+  { id: "yanchi-wind", name: "盐池风电场", type: "wind", province: "ningxia", ownership: "owned", longitude: 107.41, latitude: 37.78, size: "150 MW", capacity: 150, turbines: 24, revenue: .72, cost: .49, margin: .23, attainment: 97.1, ops: "可利用率 96.4%", status: "watch", mapOnly: true },
+  { id: "dali-wind", name: "大理风电场", type: "wind", province: "yunnan", ownership: "managed", longitude: 100.27, latitude: 25.61, size: "120 MW", capacity: 120, turbines: 20, revenue: .70, cost: .44, margin: .26, attainment: 103.0, ops: "可利用率 97.2%", status: "good", mapOnly: true }
+];
+
+const mapStationRecords = [...stationRecords, ...additionalMapStations];
 
 const provincePortfolio = {
   hebei: { label: "河北省", status: "整体正常", margin: "¥ 1.20 亿", attainment: "103.8%", operations: "风电 97.7% / 储能 88.6%" },
