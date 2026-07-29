@@ -1,27 +1,9 @@
 function renderOverview() {
   updateAssetTableFilters();
   renderOverviewSummary();
+  renderProvinceRevenueMap();
   renderComposition();
   renderAssetRegister();
-  if ($("#provincePopover").classList.contains("is-visible")) {
-    renderProvincePopover(state.mapProvince);
-  }
-  $$(".province-point").forEach(point => {
-    const provinceRecords = scopedRecords().filter(record => record.province === point.dataset.mapProvince);
-    const provinceCount = provinceRecords.length;
-    const hasAbnormal = provinceRecords.some(record => record.status === "bad");
-    const hasAttention = provinceRecords.some(record => record.status === "watch");
-    const countLabel = point.querySelector("small");
-    if (countLabel) countLabel.textContent = `${provinceCount} 站`;
-    const statusText = hasAbnormal ? "存在异常项" : hasAttention ? "存在关注项" : provinceCount ? "整体正常" : "当前范围无资产";
-    point.setAttribute("aria-label", `${provinceMeta[point.dataset.mapProvince].label}，${provinceCount} 座当前范围电站，${statusText}`);
-    point.classList.toggle("active", $("#provincePopover").classList.contains("is-visible") && point.dataset.mapProvince === state.mapProvince);
-    point.classList.toggle("empty", provinceCount === 0);
-    point.classList.toggle("watch", !hasAbnormal && hasAttention);
-    point.classList.toggle("risk", hasAbnormal);
-    point.classList.toggle("filtered", state.province !== "all" && point.dataset.mapProvince === state.province);
-    point.classList.toggle("dimmed", state.province !== "all" && point.dataset.mapProvince !== state.province);
-  });
 }
 
 function assetTableBaseRecords() {
@@ -113,50 +95,175 @@ function renderOverviewSummary() {
   $("#assetStatusDots").innerHTML = records.map(record => `<i class="${record.status === "good" ? "" : "risk"}" title="${record.name} · ${statusLabel(record.status)}"></i>`).join("");
 }
 
-function renderProvincePopover(provinceKey) {
-  const anchorPositions = {
-    hebei: [66.4, 43.8],
-    "inner-mongolia": [61.9, 28.8],
-    shandong: [72, 48],
-    zhejiang: [75.5, 68]
-  };
-  const records = scopedRecords().filter(record => record.province === provinceKey);
-  if (!provinceMeta[provinceKey] || !anchorPositions[provinceKey]) return;
-  const financialRecords = records.map(financialRecord);
-  const data = businessData[state.assetFilter];
+const mapHeatColors = ["#ffffcc", "#fed976", "#fd8d3c", "#f03b20", "#bd0026"];
+const mapEmptyColor = "#dce9e4";
+const mapProvinceNames = {
+  hebei: "河北",
+  "inner-mongolia": "内蒙古",
+  shandong: "山东",
+  zhejiang: "浙江"
+};
+
+function mapPeriodFactors(type) {
+  const data = businessData[type];
   const monthIndex = currentMonthIndex();
-  const actualFactor = data
-    ? data.monthly.slice(0, monthIndex + 1).reduce((sum, value) => sum + value, 0) / data.monthly.reduce((sum, value) => sum + value, 0)
-    : 0;
-  const targetFactor = data
-    ? data.targetMonthly.slice(0, monthIndex + 1).reduce((sum, value) => sum + value, 0) / data.targetMonthly.reduce((sum, value) => sum + value, 0)
-    : 0;
-  const [left, top] = anchorPositions[provinceKey];
-  const popover = $("#provincePopover");
-  popover.style.setProperty("--anchor-left", `${left}%`);
-  popover.style.setProperty("--anchor-top", `${top}%`);
-  popover.innerHTML = `
-    <div class="popover-heading">
-      <div><span>PROVINCE ASSETS</span><h3>${provinceMeta[provinceKey].label}</h3></div>
-      <b>${records.length} 项资产</b>
-    </div>
-    <div class="province-stations">
-      <table class="province-asset-table">
-        <thead><tr><th>资产</th><th>YTD 毛利</th><th>目标达成率</th><th>状态</th></tr></thead>
-        <tbody>${records.length ? financialRecords.map(record => {
-          const recordTarget = record.marginTarget * targetFactor;
-          const recordActual = record.margin * actualFactor;
-          const recordAttainment = recordTarget ? recordActual / recordTarget * 100 : 0;
-          return `<tr>
-            <td><strong>${record.name}</strong></td>
-            <td>${formatMoney(recordActual)}</td>
-            <td class="${recordAttainment >= 100 ? "positive" : "negative"}">${recordAttainment.toFixed(1)}%</td>
-            <td><span class="status-pill ${record.status}">${statusLabel(record.status)}</span></td>
-          </tr>`;
-        }).join("") : `<tr><td colspan="4" class="popover-empty">当前筛选范围暂无资产</td></tr>`}</tbody>
-      </table>
-    </div>
+  if (!data) return { monthIndex, actualFactor: 0, targetFactor: 0 };
+  const actualFactor = data.monthly.slice(0, monthIndex + 1).reduce((sum, value) => sum + value, 0) /
+    data.monthly.reduce((sum, value) => sum + value, 0);
+  const targetFactor = data.targetMonthly.slice(0, monthIndex + 1).reduce((sum, value) => sum + value, 0) /
+    data.targetMonthly.reduce((sum, value) => sum + value, 0);
+  return { monthIndex, actualFactor, targetFactor };
+}
+
+function mapCapacity(record) {
+  return record.type === "wind" ? record.capacity || 0 : record.power || 0;
+}
+
+function mapVisibleRecords() {
+  if (state.assetFilter === "distributed") return [];
+  return stationRecords.filter(record =>
+    record.type === state.assetFilter &&
+    ((record.ownership === "owned" && state.mapOwnedVisible) ||
+      (record.ownership === "managed" && state.mapManagedVisible))
+  );
+}
+
+function mapRevenueContext() {
+  const records = mapVisibleRecords().map(financialRecord);
+  const { monthIndex, actualFactor, targetFactor } = mapPeriodFactors(state.assetFilter);
+  const totalMw = records.reduce((sum, record) => sum + mapCapacity(record), 0);
+  const totalRevenue = records.reduce((sum, record) => sum + record.revenue * actualFactor, 0);
+  const benchmark = totalMw ? totalRevenue * 10000 / totalMw : 0;
+  const provinces = Object.keys(mapProvinceNames).reduce((result, province) => {
+    const provinceRecords = records.filter(record => record.province === province);
+    const mw = provinceRecords.reduce((sum, record) => sum + mapCapacity(record), 0);
+    const revenue = provinceRecords.reduce((sum, record) => sum + record.revenue * actualFactor, 0);
+    const intensity = mw ? revenue * 10000 / mw : 0;
+    const ratio = benchmark ? intensity / benchmark : 0;
+    const band = !mw ? -1 : ratio < .8 ? 0 : ratio < .9 ? 1 : ratio < 1 ? 2 : ratio < 1.1 ? 3 : 4;
+    result[province] = { records: provinceRecords, mw, revenue, intensity, ratio, band };
+    return result;
+  }, {});
+  return { records, provinces, benchmark, monthIndex, actualFactor, targetFactor };
+}
+
+function paintProvinceMap(context) {
+  const mapObject = $("#chinaMapObject");
+  if (!mapObject || !mapObject.contentDocument) return;
+  const svg = mapObject.contentDocument;
+  svg.querySelectorAll("[data-province]").forEach(path => {
+    path.style.fill = mapEmptyColor;
+    path.style.stroke = "#b8d2c9";
+    path.style.strokeWidth = "1";
+    path.style.transition = "fill .22s ease";
+  });
+  Object.entries(mapProvinceNames).forEach(([key, label]) => {
+    const path = svg.querySelector(`[data-province="${label}"]`);
+    const province = context.provinces[key];
+    if (!path || !province) return;
+    path.style.fill = province.band >= 0 ? mapHeatColors[province.band] : mapEmptyColor;
+    if (state.province === key) {
+      path.style.stroke = "#17395f";
+      path.style.strokeWidth = "2.4";
+    }
+  });
+}
+
+function formatMapNumber(value) {
+  return Number(value).toLocaleString("zh-CN", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+}
+
+function renderMapRevenueLegend(context) {
+  const benchmark = context.benchmark;
+  const ranges = benchmark ? [
+    `< ${formatMapNumber(benchmark * .8)}`,
+    `${formatMapNumber(benchmark * .8)}–${formatMapNumber(benchmark * .9)}`,
+    `${formatMapNumber(benchmark * .9)}–${formatMapNumber(benchmark)}`,
+    `${formatMapNumber(benchmark)}–${formatMapNumber(benchmark * 1.1)}`,
+    `≥ ${formatMapNumber(benchmark * 1.1)}`
+  ] : ["—", "—", "—", "—", "—"];
+  $("#provinceRevenueLegend").innerHTML = `
+    <div class="map-legend-title"><strong>省份平均单位 MW 收入</strong><span>万元 / MW</span></div>
+    <p>${typeLabels[state.assetFilter] || "当前"}组合基准 <b>${benchmark ? formatMapNumber(benchmark) : "—"}</b></p>
+    <ol>${ranges.map((range, index) => `<li><i style="background:${mapHeatColors[index]}"></i><span>${range}</span></li>`).join("")}</ol>
+    <div class="map-empty-key"><i></i><span>当前范围无场站</span></div>
   `;
+}
+
+function stationMarginAttainment(record, context) {
+  const target = record.marginTarget * context.targetFactor;
+  return target ? record.margin * context.actualFactor / target * 100 : 0;
+}
+
+function renderStationMap(context) {
+  const layer = $("#stationMapLayer");
+  layer.innerHTML = context.records.map(record => {
+    const attainment = stationMarginAttainment(record, context);
+    const status = attainment >= 100 ? "good" : attainment >= 95 ? "watch" : "bad";
+    const selected = state.station !== "all" && state.station === record.id;
+    const dimmed = state.province !== "all" && state.province !== record.province;
+    return `<button
+      class="station-marker ${record.ownership} ${state.mapMarginLayer ? status : "neutral"}${selected ? " selected" : ""}${dimmed ? " dimmed" : ""}"
+      style="--station-left:${record.mapX}%;--station-top:${record.mapY}%"
+      data-map-station="${record.id}"
+      data-view-station="${record.id}"
+      aria-label="${record.name}，${record.ownership === "owned" ? "自持" : "代管"}，毛利目标达成率 ${attainment.toFixed(1)}%">
+        <i></i><span>${record.name}</span>
+    </button>`;
+  }).join("");
+}
+
+function renderStationPopover(stationId) {
+  const source = stationRecords.find(record => record.id === stationId);
+  const popover = $("#stationPopover");
+  if (!source || source.type !== state.assetFilter) {
+    popover.classList.remove("is-visible");
+    popover.setAttribute("aria-hidden", "true");
+    return;
+  }
+  const context = mapRevenueContext();
+  const record = financialRecord(source);
+  const capacity = mapCapacity(record);
+  const revenue = record.revenue * context.actualFactor;
+  const intensity = capacity ? revenue * 10000 / capacity : 0;
+  const margin = record.margin * context.actualFactor;
+  const target = record.marginTarget * context.targetFactor;
+  const attainment = target ? margin / target * 100 : 0;
+  const status = attainment >= 100 ? "good" : attainment >= 95 ? "watch" : "bad";
+  popover.style.setProperty("--station-left", `${record.mapX}%`);
+  popover.style.setProperty("--station-top", `${record.mapY}%`);
+  popover.innerHTML = `
+    <div class="station-popover-head">
+      <div><span>${provinceMeta[record.province].label} · ${typeLabels[record.type]}</span><h3>${record.name}</h3></div>
+      <b>${record.ownership === "owned" ? "自持" : "代管"}</b>
+    </div>
+    <dl>
+      <div><dt>规模</dt><dd>${capacity} MW</dd></div>
+      <div><dt>结算收入</dt><dd>${formatMoney(revenue)}</dd></div>
+      <div><dt>单位 MW 收入</dt><dd>${formatMapNumber(intensity)} 万元/MW</dd></div>
+      <div><dt>YTD 毛利</dt><dd>${formatMoney(margin)}</dd></div>
+      <div><dt>累计目标</dt><dd>${formatMoney(target)}</dd></div>
+      <div><dt>毛利达成率</dt><dd class="${status}">${attainment.toFixed(1)}%</dd></div>
+    </dl>
+  `;
+  popover.classList.add("is-visible");
+  popover.setAttribute("aria-hidden", "false");
+}
+
+function renderProvinceRevenueMap() {
+  const context = mapRevenueContext();
+  $("#mapPeriodLabel").textContent = `截至 ${context.monthIndex + 1} 月`;
+  $$("[data-map-asset-type]").forEach(button =>
+    button.classList.toggle("active", button.dataset.mapAssetType === state.assetFilter)
+  );
+  $("#mapOwnedToggle").checked = state.mapOwnedVisible;
+  $("#mapManagedToggle").checked = state.mapManagedVisible;
+  $("#mapMarginToggle").checked = state.mapMarginLayer;
+  $("#mapStatusLegend").classList.toggle("is-muted", !state.mapMarginLayer);
+  renderMapRevenueLegend(context);
+  renderStationMap(context);
+  paintProvinceMap(context);
+  if (state.mapStation) renderStationPopover(state.mapStation);
 }
 
 function renderComposition() {
