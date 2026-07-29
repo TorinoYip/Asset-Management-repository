@@ -54,7 +54,7 @@ window.AssetApp.templates.overview = `<section class="route-page" data-route="ov
           <section class="panel province-map-panel">
             <div class="panel-head">
               <div><h2>资产明细 · 省份分布</h2></div>
-              <a class="fullscreen-map-link" href="fullscreen-map.html" target="_blank" rel="noopener" data-fullscreen-map>全屏查看 ↗</a>
+              <a class="fullscreen-map-link" href="fullscreen-map.html" target="_blank" rel="noopener" data-fullscreen-map>新窗口全屏查看 ↗</a>
             </div>
             <div class="province-map-layout">
               <div class="province-map" id="provinceMap" aria-label="中国省份资产分布交互地图">
