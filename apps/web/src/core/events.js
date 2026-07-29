@@ -25,6 +25,11 @@ function handleRouteAction(button) {
 
 function bindEvents() {
   document.addEventListener("click", event => {
+    const fullscreenMapLink = event.target.closest("[data-fullscreen-map]");
+    if (fullscreenMapLink) {
+      fullscreenMapLink.href = `fullscreen-map.html?month=${encodeURIComponent(state.month)}&type=${encodeURIComponent(state.assetFilter)}`;
+      return;
+    }
     const navLink = event.target.closest("[data-route-link]");
     if (navLink) {
       event.preventDefault();
