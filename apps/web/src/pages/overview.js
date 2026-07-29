@@ -101,7 +101,16 @@ const mapProvinceNames = {
   hebei: "河北",
   "inner-mongolia": "内蒙古",
   shandong: "山东",
-  zhejiang: "浙江"
+  zhejiang: "浙江",
+  guangxi: "广西",
+  henan: "河南",
+  anhui: "安徽",
+  gansu: "甘肃",
+  heilongjiang: "黑龙江",
+  jiangsu: "江苏",
+  qinghai: "青海",
+  ningxia: "宁夏",
+  yunnan: "云南"
 };
 
 function mapPeriodFactors(type) {
@@ -121,15 +130,23 @@ function mapCapacity(record) {
 
 function mapVisibleRecords() {
   if (state.assetFilter === "distributed") return [];
-  return stationRecords.filter(record =>
+  return mapStationRecords.filter(record =>
     record.type === state.assetFilter &&
     ((record.ownership === "owned" && state.mapOwnedVisible) ||
       (record.ownership === "managed" && state.mapManagedVisible))
   );
 }
 
+function mapFinancialRecord(record) {
+  if (!record.mapOnly) return financialRecord(record);
+  return {
+    ...record,
+    marginTarget: record.attainment ? record.margin / (record.attainment / 100) : 0
+  };
+}
+
 function mapRevenueContext() {
-  const records = mapVisibleRecords().map(financialRecord);
+  const records = mapVisibleRecords().map(mapFinancialRecord);
   const { monthIndex, actualFactor, targetFactor } = mapPeriodFactors(state.assetFilter);
   const totalMw = records.reduce((sum, record) => sum + mapCapacity(record), 0);
   const totalRevenue = records.reduce((sum, record) => sum + record.revenue * actualFactor, 0);
@@ -195,18 +212,37 @@ function stationMarginAttainment(record, context) {
   return target ? record.margin * context.actualFactor / target * 100 : 0;
 }
 
+function projectStationCoordinate(record) {
+  if (!Number.isFinite(record.longitude) || !Number.isFinite(record.latitude)) {
+    return { left: record.mapX, top: record.mapY };
+  }
+  const minLongitude = 73.5;
+  const maxLongitude = 135.2;
+  const minLatitude = 18;
+  const maxLatitude = 53.6;
+  const mercator = latitude => Math.log(Math.tan(Math.PI / 4 + latitude * Math.PI / 360));
+  const left = (record.longitude - minLongitude) / (maxLongitude - minLongitude) * 98.8;
+  const top = (mercator(maxLatitude) - mercator(record.latitude)) /
+    (mercator(maxLatitude) - mercator(minLatitude)) * 98.5;
+  return {
+    left: Math.max(1, Math.min(99, left)),
+    top: Math.max(1, Math.min(99, top))
+  };
+}
+
 function renderStationMap(context) {
   const layer = $("#stationMapLayer");
   layer.innerHTML = context.records.map(record => {
     const attainment = stationMarginAttainment(record, context);
-    const status = attainment >= 100 ? "good" : attainment >= 95 ? "watch" : "bad";
+    const status = attainment >= 100 ? "good" : "bad";
     const selected = state.station !== "all" && state.station === record.id;
     const dimmed = state.province !== "all" && state.province !== record.province;
+    const point = projectStationCoordinate(record);
     return `<button
       class="station-marker ${record.ownership} ${state.mapMarginLayer ? status : "neutral"}${selected ? " selected" : ""}${dimmed ? " dimmed" : ""}"
-      style="--station-left:${record.mapX}%;--station-top:${record.mapY}%"
+      style="--station-left:${point.left}%;--station-top:${point.top}%"
       data-map-station="${record.id}"
-      data-view-station="${record.id}"
+      ${record.mapOnly ? "" : `data-view-station="${record.id}"`}
       aria-label="${record.name}，${record.ownership === "owned" ? "自持" : "代管"}，毛利目标达成率 ${attainment.toFixed(1)}%">
         <i></i><span>${record.name}</span>
     </button>`;
@@ -214,7 +250,7 @@ function renderStationMap(context) {
 }
 
 function renderStationPopover(stationId) {
-  const source = stationRecords.find(record => record.id === stationId);
+  const source = mapStationRecords.find(record => record.id === stationId);
   const popover = $("#stationPopover");
   if (!source || source.type !== state.assetFilter) {
     popover.classList.remove("is-visible");
@@ -222,16 +258,17 @@ function renderStationPopover(stationId) {
     return;
   }
   const context = mapRevenueContext();
-  const record = financialRecord(source);
+  const record = mapFinancialRecord(source);
   const capacity = mapCapacity(record);
   const revenue = record.revenue * context.actualFactor;
   const intensity = capacity ? revenue * 10000 / capacity : 0;
   const margin = record.margin * context.actualFactor;
   const target = record.marginTarget * context.targetFactor;
   const attainment = target ? margin / target * 100 : 0;
-  const status = attainment >= 100 ? "good" : attainment >= 95 ? "watch" : "bad";
-  popover.style.setProperty("--station-left", `${record.mapX}%`);
-  popover.style.setProperty("--station-top", `${record.mapY}%`);
+  const status = attainment >= 100 ? "good" : "bad";
+  const point = projectStationCoordinate(record);
+  popover.style.setProperty("--station-left", `${point.left}%`);
+  popover.style.setProperty("--station-top", `${point.top}%`);
   popover.innerHTML = `
     <div class="station-popover-head">
       <div><span>${provinceMeta[record.province].label} · ${typeLabels[record.type]}</span><h3>${record.name}</h3></div>
