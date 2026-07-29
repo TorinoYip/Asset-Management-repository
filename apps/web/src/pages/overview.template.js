@@ -53,27 +53,40 @@ window.AssetApp.templates.overview = `<section class="route-page" data-route="ov
 
           <section class="panel province-map-panel">
             <div class="panel-head">
-              <div><p class="section-kicker">PROVINCE ASSET FOOTPRINT</p><h2>资产明细 · 省份分布</h2></div>
-              <div class="map-legend"><span><i></i>正常</span><span><i class="watch"></i>关注</span><span><i class="risk"></i>异常</span></div>
+              <div><h2>资产明细 · 省份分布</h2></div>
             </div>
             <div class="province-map-layout">
               <div class="province-map" id="provinceMap" aria-label="中国省份资产分布交互地图">
-                <img class="china-map-base" src="assets/china-map.svg" alt="">
-                <button class="province-point hebei" data-map-province="hebei" aria-label="河北省，4座电站">
-                  <i></i><b>河北</b><small>4 站</small>
-                </button>
-                <button class="province-point inner-mongolia" data-map-province="inner-mongolia" aria-label="内蒙古，4座电站">
-                  <i></i><b>内蒙古</b><small>4 站</small>
-                </button>
-                <button class="province-point shandong" data-map-province="shandong" aria-label="山东省，3座电站">
-                  <i></i><b>山东</b><small>3 站</small>
-                </button>
-                <button class="province-point zhejiang" data-map-province="zhejiang" aria-label="浙江省，3座电站">
-                  <i></i><b>浙江</b><small>3 站</small>
-                </button>
-                <aside class="province-popover" id="provincePopover" aria-live="polite" aria-hidden="true"></aside>
+                <object class="china-map-base" id="chinaMapObject" type="image/svg+xml" data="assets/china-map.svg" tabindex="-1" aria-hidden="true">
+                  <img src="assets/china-map.svg" alt="">
+                </object>
+                <aside class="map-overlay map-revenue-legend" id="provinceRevenueLegend" aria-label="省份单位兆瓦收入图例"></aside>
+                <aside class="map-overlay map-control-panel" aria-label="地图图层控制">
+                  <div class="map-control-heading"><strong>地图图层</strong><span id="mapPeriodLabel">截至 7 月</span></div>
+                  <div class="map-control-group">
+                    <span>资产类型</span>
+                    <div class="map-segmented">
+                      <button data-map-asset-type="wind" class="active">风电</button>
+                      <button data-map-asset-type="storage">储能</button>
+                    </div>
+                  </div>
+                  <div class="map-control-group map-checks">
+                    <span>权属范围</span>
+                    <label><input type="checkbox" id="mapOwnedToggle" checked><i class="shape-owned"></i>自持</label>
+                    <label><input type="checkbox" id="mapManagedToggle" checked><i class="shape-managed"></i>代管</label>
+                  </div>
+                  <div class="map-control-group map-layer-toggle">
+                    <label><input type="checkbox" id="mapMarginToggle" checked><span>毛利达标图层</span></label>
+                  </div>
+                  <div class="map-status-legend" id="mapStatusLegend">
+                    <span><i class="good"></i>≥ 100%</span>
+                    <span><i class="watch"></i>95–100%</span>
+                    <span><i class="bad"></i>&lt; 95%</span>
+                  </div>
+                </aside>
+                <div class="station-map-layer" id="stationMapLayer" aria-label="电站点位"></div>
+                <aside class="station-popover" id="stationPopover" aria-live="polite" aria-hidden="true"></aside>
               </div>
-              <p class="map-compliance-note">交互示意底图；正式公开使用前需替换为经审核的标准地图并标注审图号。</p>
             </div>
           </section>
 
