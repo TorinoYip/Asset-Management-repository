@@ -2,6 +2,7 @@
 .province-map-panel .panel-head { align-items: center; }
 .province-map-layout { display: block; margin-top: 10px; }
 .province-map {
+  --map-top-space: 116px;
   position: relative;
   width: min(100%, 1140px);
   aspect-ratio: 960 / 690;
@@ -14,7 +15,12 @@
 .map-canvas {
   position: absolute;
   z-index: 1;
-  inset: 116px 0 0;
+  top: var(--map-top-space);
+  left: 50%;
+  width: auto;
+  height: calc(100% - var(--map-top-space));
+  aspect-ratio: 960 / 690;
+  transform: translateX(-50%);
 }
 .china-map-base {
   position: absolute;
@@ -225,7 +231,7 @@
   inset: 6px;
   display: block;
   background: #1767e8;
-  filter: drop-shadow(0 4px 5px rgba(16,35,63,.28));
+  filter: drop-shadow(0 0 1.5px rgba(255,255,255,.98)) drop-shadow(0 4px 5px rgba(16,35,63,.28));
   transition: transform .15s ease, background .15s ease;
 }
 .station-marker.owned > i { border-radius: 50%; }
@@ -344,7 +350,7 @@
 @media (max-width: 900px) {
   .map-revenue-legend { width: 340px; }
   .map-control-panel { width: 350px; }
-  .map-canvas { top: 112px; }
+  .province-map { --map-top-space: 112px; }
 }
 
 @media (max-width: 620px) {
