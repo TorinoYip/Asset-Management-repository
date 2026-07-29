@@ -43,11 +43,6 @@ function bindEvents() {
       openStation(stationButton.dataset.viewStation);
       return;
     }
-    const mapPoint = event.target.closest("[data-map-province]");
-    if (mapPoint) {
-      state.mapProvince = mapPoint.dataset.mapProvince;
-      renderOverview();
-    }
   });
 
   window.addEventListener("hashchange", () => setRoute(location.hash.slice(1), false));
@@ -58,7 +53,6 @@ function bindEvents() {
   });
   $("#provinceFilter").addEventListener("change", event => {
     state.province = event.target.value;
-    if (state.province !== "all") state.mapProvince = state.province;
     updateStationFilter();
     renderCurrentRoute();
   });
@@ -153,24 +147,63 @@ function bindEvents() {
     renderAssetRegister();
   });
 
-  $$("[data-map-province]").forEach(point => {
-    ["mouseenter", "focus"].forEach(eventName => point.addEventListener(eventName, () => {
-      state.mapProvince = point.dataset.mapProvince;
-      renderProvincePopover(state.mapProvince);
-      $("#provincePopover").classList.add("is-visible");
-      $("#provincePopover").setAttribute("aria-hidden", "false");
-      $$(".province-point").forEach(item => item.classList.toggle("active", item === point));
-    }));
+  $$("[data-map-asset-type]").forEach(button => button.addEventListener("click", () => {
+    state.assetFilter = button.dataset.mapAssetType;
+    state.businessType = state.assetFilter;
+    state.typeAsset = state.assetFilter;
+    state.operationsType = state.assetFilter;
+    state.station = "all";
+    state.mapStation = null;
+    $("#assetFilter").value = state.assetFilter;
+    updateStationFilter();
+    renderCurrentRoute();
+  }));
+  $("#mapOwnedToggle").addEventListener("change", event => {
+    state.mapOwnedVisible = event.target.checked;
+    state.mapStation = null;
+    renderProvinceRevenueMap();
+  });
+  $("#mapManagedToggle").addEventListener("change", event => {
+    state.mapManagedVisible = event.target.checked;
+    state.mapStation = null;
+    renderProvinceRevenueMap();
+  });
+  $("#mapMarginToggle").addEventListener("change", event => {
+    state.mapMarginLayer = event.target.checked;
+    renderProvinceRevenueMap();
+  });
+  $("#chinaMapObject").addEventListener("load", () => paintProvinceMap(mapRevenueContext()));
+  $("#stationMapLayer").addEventListener("pointerover", event => {
+    const marker = event.target.closest("[data-map-station]");
+    if (!marker) return;
+    state.mapStation = marker.dataset.mapStation;
+    renderStationPopover(state.mapStation);
+  });
+  $("#stationMapLayer").addEventListener("pointerout", event => {
+    const marker = event.target.closest("[data-map-station]");
+    const nextMarker = event.relatedTarget && event.relatedTarget.closest
+      ? event.relatedTarget.closest("[data-map-station]")
+      : null;
+    if (!marker || nextMarker) return;
+    state.mapStation = null;
+    $("#stationPopover").classList.remove("is-visible");
+    $("#stationPopover").setAttribute("aria-hidden", "true");
+  });
+  $("#stationMapLayer").addEventListener("focusin", event => {
+    const marker = event.target.closest("[data-map-station]");
+    if (!marker) return;
+    state.mapStation = marker.dataset.mapStation;
+    renderStationPopover(state.mapStation);
   });
   $("#provinceMap").addEventListener("mouseleave", () => {
-    $("#provincePopover").classList.remove("is-visible");
-    $("#provincePopover").setAttribute("aria-hidden", "true");
-    $$(".province-point").forEach(point => point.classList.remove("active"));
+    state.mapStation = null;
+    $("#stationPopover").classList.remove("is-visible");
+    $("#stationPopover").setAttribute("aria-hidden", "true");
   });
   $("#provinceMap").addEventListener("focusout", event => {
     if ($("#provinceMap").contains(event.relatedTarget)) return;
-    $("#provincePopover").classList.remove("is-visible");
-    $("#provincePopover").setAttribute("aria-hidden", "true");
-    $$(".province-point").forEach(point => point.classList.remove("active"));
+    state.mapStation = null;
+    $("#stationPopover").classList.remove("is-visible");
+    $("#stationPopover").setAttribute("aria-hidden", "true");
   });
 }
