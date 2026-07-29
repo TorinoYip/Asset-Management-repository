@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Asset Intellgent 全屏资产地图">
+  <title>资产地图 · Asset Intellgent</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles/fullscreen-map.css">
+</head>
+<body class="fullscreen-map-page">
+  <header class="fullscreen-map-header">
+    <a href="index.html#overview" class="fullscreen-brand" aria-label="返回资产看板">
+      <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span><strong>Asset Intellgent</strong><small>ASSET MAP</small></span>
+    </a>
+    <div class="fullscreen-map-title">
+      <span>资产地图</span>
+      <h1>省份收入与场站达标分布</h1>
+    </div>
+    <div class="fullscreen-map-actions">
+      <label>统计期
+        <select id="fullscreenMonthFilter">
+          <option value="2025-07">截至 2025 年 7 月</option>
+          <option value="2025-06">截至 2025 年 6 月</option>
+        </select>
+      </label>
+      <a href="index.html#overview">返回看板</a>
+    </div>
+  </header>
+
+  <main class="fullscreen-map-stage">
+    <div class="province-map" id="provinceMap" aria-label="中国省份资产分布全屏交互地图">
+      <aside class="map-overlay map-revenue-legend" id="provinceRevenueLegend" aria-label="省份单位兆瓦收入图例"></aside>
+      <aside class="map-overlay map-control-panel" aria-label="地图图层控制">
+        <div class="map-control-heading"><strong>地图图层</strong><span id="mapPeriodLabel">截至 7 月</span></div>
+        <div class="map-control-group">
+          <span>资产类型</span>
+          <div class="map-segmented">
+            <button data-map-asset-type="wind" class="active">风电</button>
+            <button data-map-asset-type="storage">储能</button>
+          </div>
+        </div>
+        <div class="map-control-group map-checks">
+          <span>权属范围</span>
+          <label><input type="checkbox" id="mapOwnedToggle" checked><i class="shape-owned"></i>自持</label>
+          <label><input type="checkbox" id="mapManagedToggle" checked><i class="shape-managed"></i>代管</label>
+        </div>
+        <div class="map-control-group map-layer-toggle">
+          <label><input type="checkbox" id="mapMarginToggle" checked><span>毛利达标图层</span></label>
+        </div>
+        <div class="map-status-legend" id="mapStatusLegend">
+          <span><i class="good"></i>达标 ≥ 100%</span>
+          <span><i class="bad"></i>未达标 &lt; 100%</span>
+        </div>
+      </aside>
+      <div class="map-canvas">
+        <object class="china-map-base" id="chinaMapObject" type="image/svg+xml" data="assets/china-map.svg" tabindex="-1" aria-hidden="true">
+          <img src="assets/china-map.svg" alt="">
+        </object>
+        <div class="station-map-layer" id="stationMapLayer" aria-label="电站点位"></div>
+        <aside class="station-popover" id="stationPopover" aria-live="polite" aria-hidden="true"></aside>
+      </div>
+    </div>
+  </main>
+
+  <script src="src/core/bootstrap.js" defer></script>
+  <script src="src/data/portfolio.js" defer></script>
+  <script src="src/shared/ui.js" defer></script>
+  <script src="src/domain/portfolio.js" defer></script>
+  <script src="src/pages/overview.js" defer></script>
+  <script src="src/pages/fullscreen-map.js" defer></script>
+</body>
+</html>
